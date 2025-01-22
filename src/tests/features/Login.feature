@@ -5,7 +5,6 @@ Feature: Login functionality
     When User enters the valid loginID and Password
     And User clicks the Login button
     Then User validate the home page text
-    
  
 
     
