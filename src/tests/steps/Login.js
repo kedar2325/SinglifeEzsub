@@ -15,7 +15,7 @@ When('User enters the valid loginID and Password', async function () {
         
 });
 
-And('User clicks the Login button', async function () {
+When('User clicks the Login button', async function () {
         
 });
 Then('User validate the home page text', async function () {
