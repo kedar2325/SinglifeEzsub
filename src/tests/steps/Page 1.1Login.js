@@ -4,7 +4,7 @@ const { launchURL } = require('../Helper/Action');
 require('dotenv').config();
 
 //login import
-const { Login } = require('../Pages/Login');
+const { Login } = require('../Pages/Page 1.1Login');
 
 
 
@@ -16,7 +16,7 @@ Given('User launch the login url', async function () {
 });
 
 When('User enters the valid loginID and Password', async function () {
-  await pageObject.page.waitForTimeout(80000);
+  
   await loginFunction.Enterusername();
   await loginFunction.EnterPassword();
 });

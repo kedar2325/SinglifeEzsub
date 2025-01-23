@@ -1,6 +1,6 @@
 const { clickAndSendkeys, launchURL, sleep } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
-
+require('dotenv').config();
 
 const PageLocators={
     username:"#okta-signin-username",
@@ -11,7 +11,6 @@ const PageLocators={
         await launchURL(process.env.url)
     }
     async  Enterusername(){
-        
         await clickAndSendkeys(PageLocators.username,process.env.LoginID);
     }
     async  EnterPassword(){
