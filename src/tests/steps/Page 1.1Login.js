@@ -10,12 +10,17 @@ let loginFunction;
 Given('User launch the login url', async function () {
   loginFunction=new Login();
   await loginFunction.NavigateLoginpage();
+  await pageObject.page.pause()
+  await pageObject.page.setDefaultTimeout(20000)
+  
+  
 });
 
 When('User enters the valid loginID and Password', async function () {
   await loginFunction.Enterusername();
   await loginFunction.EnterPassword();
   await loginFunction.ClickLoginButton();
+  
   
 });
 
