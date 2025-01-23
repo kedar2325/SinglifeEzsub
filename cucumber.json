@@ -11,7 +11,7 @@
       "require": [
           "src/tests/steps/*.js",
           "src/tests/Hooks/hooks.js",
-          "Pages/**/*.js",
+          "src/tests/Pages/*.js",
           "Hooks/*.js"
       ],
       "format": [
