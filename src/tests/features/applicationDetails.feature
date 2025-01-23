@@ -1,6 +1,6 @@
 Feature: Application - Review Details
 @e2e
-  Scenario: Review Details
+  Scenario: Review Details - Application
     Given User Saves the Quotation
     When User clicks the Proceed to apply button
     And User navigates to Review Detials page 
