@@ -1,4 +1,4 @@
-const { clickAndSendkeys,Click, launchURL, sleep, toClick, assertText, mouceClick } = require('../Helper/Action');
+const { clickAndSendkeys,Click, launchURL, sleep, toClick, assertText, mouceClick, assertParticularText } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -22,7 +22,7 @@ const PageLocators={
         await Click(PageLocators.loginButton)
     }
     async assertHomeText(){
-        await assertText(PageLocators.homeGreetText,"👋 Welcome, ")
+        await assertParticularText(PageLocators.homeGreetText,"👋 Welcome, ")
     }
 }
  module.exports={Login}
