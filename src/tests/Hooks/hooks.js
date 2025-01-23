@@ -29,7 +29,7 @@ Before(async function() {
 
 After(async function(scenario) {
     if (scenario.result?.status === Status.FAILED) {
-        const img = await pageObject.page.screenshot({ path: `./test-results/Screenshots/${scenario.pickle.name}`, type: "png" });
+        const img = await pageObject.page.screenshot({ path: `./test-results/Screenshots/${scenario.pickle.name}`, type: "jpg" });
         this.attach(img, "image/png");
     }
     await browser.close();

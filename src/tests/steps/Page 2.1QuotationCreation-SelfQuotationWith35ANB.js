@@ -1,3 +1,4 @@
+const { Given, Then, When, And } = require("@cucumber/cucumber");
 Given('user clicks self quotation', async function () {
         
 });
@@ -6,7 +7,7 @@ When('user clicks new EzSub profile', async function () {
         
 });
 
-And('user provides quotation details', async function () {
+When('user provides quotation details', async function () {
         
 });
 

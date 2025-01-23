@@ -1,5 +1,5 @@
 Feature: Quotation Creation - Life Insurance Plan Selection
-@e2e
+@e2e @re
   Scenario: Select Life Insurance plan selection and Apply
     Given user able to view the new quotation
     When user clicks new quotation

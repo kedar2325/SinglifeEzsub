@@ -8,10 +8,11 @@ When('user clicks new quotation', async function () {
         
 });
 
-And('user selects life insurance', async function () {
+When('user selects life insurance', async function () {
         
 });
 
-Then('User clicks yes proceed', async function () {
-        
-});
+
+Then('user clicks yes proceed', async function () {
+   
+  });

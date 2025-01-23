@@ -1,17 +1,18 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { pageObject } = require('../Hooks/PageObjects');
 const { launchURL } = require('../Helper/Action');
-const { Login } = require('../Pages/Login');
 require('dotenv').config();
+
+//login import
+const { Login } = require('../Pages/Login');
+
 
 
 let loginFunction;
+
 Given('User launch the login url', async function () {
   loginFunction=new Login();
   await loginFunction.NavigateLoginpage();
-  console.log(process.env.NRIC_Number);  
-console.log(process.env.Password);  
-console.log(process.env.LoginID); 
 });
 
 When('User enters the valid loginID and Password', async function () {
