@@ -10,8 +10,7 @@ let loginFunction;
 Given('User launch the login url', async function () {
   loginFunction=new Login();
   await loginFunction.NavigateLoginpage();
-  await pageObject.page.pause()
-  await pageObject.page.setDefaultTimeout(20000)
+  
   
   
 });
