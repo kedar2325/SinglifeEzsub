@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@cucumber/cucumber": "^11.2.0",
-    "dotenv": "^16.4.7",
-    "ezsub": "file:"
+    "dotenv": "^16.4.7"
+    
   }
 }
