@@ -119,6 +119,12 @@ async function responseHeaders(response) {
 async function assertText(Webelement, text) {
     await expect(pageObject.page.locator(Webelement)).toHaveText(text);
 }
+async function assertParticularText(Webelement,text) {
+    const elementText = await pageObject.page.locator(Webelement).textContent();
+  if (!elementText.includes(text)) {
+    throw new Error(`Expected text: "${text}", but found: "${elementText}"`);
+  }
+}
 
 async function cookieVerification() {
     const cookies = await pageObject.page.context().cookies();
@@ -174,6 +180,7 @@ module.exports = {
     responseRequest,
     responseHeaders,
     assertText,
+    assertParticularText,
     cookieVerification,
     setCookies,
     mouseHoverClick,

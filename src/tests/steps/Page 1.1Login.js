@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
-const { pageObject } = require('../Hooks/PageObjects');
-const { launchURL, sleep } = require('../Helper/Action');
+const { setDefaultTimeout } = require('@cucumber/cucumber');
+setDefaultTimeout(10000); 
 require('dotenv').config();
 
 //login import
@@ -19,15 +19,15 @@ Given('User launch the login url', async function () {
 When('User enters the valid loginID and Password', async function () {
   await loginFunction.Enterusername();
   await loginFunction.EnterPassword();
-  await loginFunction.ClickLoginButton();
+ 
   
   
 });
 
 When('User clicks the Login button', async function () {
-     
+  await loginFunction.ClickLoginButton();
        
 });
 Then('User validate the home page text', async function () {
-      
+      await loginFunction.assertHomeText();
 });
