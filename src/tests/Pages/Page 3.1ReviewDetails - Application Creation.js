@@ -20,4 +20,4 @@ class ReviewDetailsApplicationCreation{
     }
 
 
-module.exports={Login}
+module.exports={}
