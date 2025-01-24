@@ -1,4 +1,4 @@
-const { clickAndSendkeys,getByTextIDClick,Click, launchURL,  assertParticularText, toClick, GetByText_Click, sleep, clickByRole } = require('../Helper/Action');
+const { clickAndSendkeys,getByTextIDClick,Click, launchURL,  assertParticularText, toClick, GetByText_Click, sleep, clickByRole, doubleClick } = require('../Helper/Action');
 require('dotenv').config();
 const { pageObject } = require('../Hooks/PageObjects');
 
@@ -10,7 +10,9 @@ const PageLocators={
     salutationID:"#salutationCode img",
     firstName:"input[name='firstName']",
     DOBfield:"//input[@name='dob']",
-    selectYear:"//p[text()='2025']",
+    yearClick:"//p[text()='2025']",
+    leftArrowForData:"(//div[@variant='top']//img)[1]",
+    selectYear:"//div[text()='1985']",
     selectDate:"//p[text()='2']",
     occupationID:"#occupationCode",
 
@@ -46,7 +48,10 @@ class CustomerSelection{
     }
     async EnterDOB(){
         await toClick(PageLocators.DOBfield);
-        await toClick(PageLocators.selectYear);
+        await toClick(PageLocators.yearClick);
+        await doubleClick(PageLocators.leftArrowForData);
+        await doubleClick(PageLocators.leftArrowForData);
+        await Click(PageLocators.selectYear);
         await toClick(PageLocators.selectDate);
     }
     async occupation(){
