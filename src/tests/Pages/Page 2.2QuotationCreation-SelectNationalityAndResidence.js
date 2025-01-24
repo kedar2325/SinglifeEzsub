@@ -9,7 +9,7 @@ const PageLocators={
     nationality_indonesia: "//div[@id='nationalityCode']//div[contains(text(),'Indonesia')]",
     countryofresidence_click: "//div[@id='residenceCountryCode']//img[@class='sc-afc5380d-0 ekTQMr']",
     countryofresidence_brazil: "//div[@id='residenceCountryCode']//div[text()='Brazil']",
-    residencystatus: "//div[contains(text(),'Permanent Resident')]/parent::div/following-sibling::div",
+    residencystatus: "//div[@id='residencyStatusCodeQuotation']//img[@class='sc-afc5380d-0 ekTQMr']",
     residencystatus_permanent: "//div[contains(text(),'Permanent Resident')]",
     next_btn: "//button[text()='Next']"
 

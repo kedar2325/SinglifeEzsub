@@ -11,7 +11,8 @@ BeforeAll(async function() {
     const browserName = process.env.BrowserName; 
     switch (browserName.toLowerCase()) {
         case 'chromium':
-            browser = await chromium.launch({ headless: false });
+            browser = await chromium.launch({ headless: false, args: ["--start-maximized"] });
+            
             break;
         case 'firefox':
             browser = await firefox.launch({ headless: false });
@@ -23,9 +24,11 @@ BeforeAll(async function() {
             throw new Error(`Unsupported browser: ${browserName}`);
     }
     setDefaultTimeout(60 * 1000); 
-    const context = await browser.newContext();
+    const context = await browser.newContext({viewport: null});
+    
     pages = await context.newPage();
     pageObject.page = pages;
+    
 });
 
 // AfterAll(async function(scenario) {
