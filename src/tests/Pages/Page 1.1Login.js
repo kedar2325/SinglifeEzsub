@@ -9,6 +9,9 @@ const PageLocators={
     homeGreetText:"//p[contains(text(), '👋 Welcome, ')]"
 }
  class Login{
+    constructor(page){
+        pageObject.page=page;
+    }
     async NavigateLoginpage(){
         await launchURL(process.env.url)    
     }

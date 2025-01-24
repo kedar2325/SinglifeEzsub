@@ -9,7 +9,7 @@ const { pageObject } = require('../Hooks/PageObjects');
 
 let loginFunction;
 Given('User launch the login url', async function () {
-  loginFunction=new Login();
+  loginFunction=new Login(pageObject.page);
   await loginFunction.NavigateLoginpage();
 });
 

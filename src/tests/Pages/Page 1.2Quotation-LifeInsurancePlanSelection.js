@@ -1,5 +1,6 @@
 const { clickAndSendkeys,Click, launchURL,  assertParticularText, toClick, GetByText_Click, sleep } = require('../Helper/Action');
 require('dotenv').config();
+const { pageObject } = require('../Hooks/PageObjects');
 
 const PageLocators={
     username:"#okta-signin-username",
@@ -7,44 +8,47 @@ const PageLocators={
     loginButton:"//input[@type='submit']",
     homeGreetText:"//p[contains(text(), '👋 Welcome, ')]",
     NewQuatation:"//p[contains(text(), 'New Quotation')]/following-sibling::button",
+    InsurancePlan:"//p[contains(text(), '",
     startQuatationButton:"//button[contains(text(), 'Start quotation')]",
     yesProceedButton:"//button[contains(text(), 'Yes, proceed')]",
 }
 class PlanSelection{
-    async validLogin(){
-       await launchURL(process.env.url);
-        await clickAndSendkeys(PageLocators.username,process.env.LoginID);
-         await clickAndSendkeys(PageLocators.password,process.env.Password);
-         await Click(PageLocators.loginButton)
-          await assertParticularText(PageLocators.homeGreetText,"👋 Welcome, ")
-          sleep(3000);
-       
+    constructor(page){
+        pageObject.page=page;
     }
+ 
     async  NewQuatation() {
         await toClick(PageLocators.NewQuatation)
     }
     async  InsuranceType(InsurancePlan) {
+        let Element;
         switch (InsurancePlan) {
             case "Life Insurance":
-                await GetByText_Click("Life Insurance");
+                Element="//p[contains(text(), 'Life Insurance')]";
+                await toClick(Element);
                 break;
             case "CareShield":
-                await GetByText_Click("CareShield");
+                Element="//p[contains(text(), 'CareShield')]";
+                await toClick(Element);
                 break;
             case "ElderShield":
-                await GetByText_Click("ElderShield");
+                Element="//p[contains(text(), 'ElderShield')]";
+                await toClick(Element);
                 break;
             case "Medical&Health Insurance":
-                await GetByText_Click("Medical&Health Insurance");
+                Element="//p[contains(text(), 'Medical&Health Insurance')]";
+                await toClick(Element);
                 break;
             case "Accident Guard":
-                await GetByText_Click("Accident Guard");
+                Element="//p[contains(text(), 'Accident Guard')]";
+                await toClick(Element);
                 break;
             case "Dementia Cover":
-                await GetByText_Click("Dementia Cover");
+                Element="//p[contains(text(), 'Dementia Cover')]";
+                await toClick(Element);
                 break;
             default:
-                console.log("Unknown Insurance Plan");
+                console.log(" Unknown Insurance Plan");
         }
     }
     async ClickStartQuatation(){
