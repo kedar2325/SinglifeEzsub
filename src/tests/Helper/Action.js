@@ -5,6 +5,13 @@ async function launchURL(URL) {
     await pageObject.page.goto(URL);
     return pageObject.page;
 }
+async function GetByText_Click(text) {
+    await pageObject.page.getByText(text).click()
+}
+async function GetByText_fill(text,parameterText) {
+    await pageObject.page.getByText(text).fill(parameterText);
+}
+
 
 async function toClick(Webelement) {
     await pageObject.page.locator(Webelement).click();
@@ -157,6 +164,8 @@ async function fileUpload(filepath) {
 
 module.exports = {
     launchURL,
+    GetByText_Click,
+    GetByText_fill,
     toClick,
     sendkeys,
     clickAndSendkeys,

@@ -1,5 +1,5 @@
-const { clickAndSendkeys,Click, launchURL, sleep, toClick, assertText, mouceClick, assertParticularText } = require('../Helper/Action');
-
+const { clickAndSendkeys,Click, launchURL,  assertParticularText } = require('../Helper/Action');
+const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
 const PageLocators={
@@ -10,10 +10,7 @@ const PageLocators={
 }
  class Login{
     async NavigateLoginpage(){
-        await launchURL(process.env.url)
-        
-        
-        
+        await launchURL(process.env.url)    
     }
     async  Enterusername(){
         await clickAndSendkeys(PageLocators.username,process.env.LoginID);
