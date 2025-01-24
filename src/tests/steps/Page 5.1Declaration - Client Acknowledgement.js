@@ -6,9 +6,9 @@ require('dotenv').config();
 const { ClientAcknowledgement } = require('../Pages/Page 5.1Declaration - Client Acknowledgement');
 const { pageObject } = require('../Hooks/PageObjects');
 
-let ClientAcknowledgement;
+let ClientAck;
   Given('user able to view terms', async function () {
-    ClientAcknowledgement=new ClientAcknowledgement(pageObject.page);
+    ClientAck=new ClientAcknowledgement(pageObject.page);
     // Write code here that turns the phrase above into concrete actions
     return 'pending';
   });

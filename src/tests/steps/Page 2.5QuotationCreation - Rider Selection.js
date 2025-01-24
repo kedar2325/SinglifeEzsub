@@ -21,10 +21,7 @@ When('user click the premium calculate button for the selected rider', async fun
   await RiderSelectionPage.calculatePremium();
     
   });
-When('user click the next button', async function () {
-  await RiderSelectionPage.clickNextButton();
-    
-  });
+
 Then('user validate the premium calculated for the selected riders', async function () {
     
   });

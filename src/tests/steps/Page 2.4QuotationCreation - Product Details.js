@@ -11,9 +11,7 @@ When('user enter the sum sssured value in the sum asssured field', async functio
 When('user click the calculate button for the premium calculation', async function () {
     
   });
-When('user click the next button', async function () {
-    
-  });
+
 Then('user should validate the premium amount calculated', async function () {
     
   });
