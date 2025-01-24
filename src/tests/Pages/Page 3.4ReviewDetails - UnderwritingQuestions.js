@@ -5,5 +5,8 @@ require('dotenv').config();
 const PageLocators={
     height: "//input[contains(@data-testid,'height')]",
     weight: "//input[contains(@data-testid,'weight')]",
+    calculate: "//button[normalize-space()='Calculate']",
+    residencystatus_no: "//p[text()='Residency Status']//following-sibling::div//p[text()='No']",
+    
 
 }
