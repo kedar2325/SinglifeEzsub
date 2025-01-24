@@ -1,5 +1,5 @@
 
-const { clickAndSendkeys, sleep, toClick, assertText, Click, select } = require('../Helper/Action');
+const { clickAndSendkeys, sleep, toClick, assertText, Click, select, waitSelector } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -34,8 +34,9 @@ class QuotationSelectNationaliandResidency{
         await toClick(PageLocators.residencystatus_permanent);
     }
     async VerifyResidencyStatus(){
-        await assertText(PageLocators.residencystatus_permanent, "Permanent Resident")
-        await toClick(PageLocators.next_btn)
+        await assertText(PageLocators.residencystatus_permanent, "Permanent Resident");
+        await toClick(PageLocators.next_btn);
+        await toClick(PageLocators.next_btn);
     }
 
 }

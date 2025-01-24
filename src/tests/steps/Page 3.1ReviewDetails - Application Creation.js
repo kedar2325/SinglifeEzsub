@@ -1,4 +1,4 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
+const { Given, When, Then,setDefaultTimeout } = require('@cucumber/cucumber');
 const{ ReviewDetailsApplicationCreation } = require("../Pages/Page 3.1ReviewDetails - Application Creation")
 const { pageObject } = require("../Hooks/PageObjects");
 const { select } = require("../Helper/Action");

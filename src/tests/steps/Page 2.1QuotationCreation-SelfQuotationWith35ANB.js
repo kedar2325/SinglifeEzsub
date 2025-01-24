@@ -1,6 +1,7 @@
-const { Given, Then, When, And } = require("@cucumber/cucumber");
+const { Given, Then, When, setDefaultTimeout  } = require("@cucumber/cucumber");
 const { CustomerSelection } = require("../Pages/Page 2.1QuotationCreation-SelfQuotationWith35ANB");
 const { pageObject } = require("../Hooks/PageObjects");
+setDefaultTimeout(15000); 
 let CustomerselectionFunction;
 Given('user clicks customer selection for quotation', async function () {
   CustomerselectionFunction=new CustomerSelection(pageObject.page)
