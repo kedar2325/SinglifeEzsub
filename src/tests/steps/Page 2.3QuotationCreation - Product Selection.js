@@ -3,7 +3,7 @@ const { setDefaultTimeout } = require('@cucumber/cucumber');
 setDefaultTimeout(15000); 
 require('dotenv').config();
 
-//login import
+//ProductSelection import
 const { ProductSelection } = require('../Pages/Page 2.3QuotationCreation - Product Selection');
 const { pageObject } = require('../Hooks/PageObjects');
 

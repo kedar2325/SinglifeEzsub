@@ -12,10 +12,7 @@ Given('user able to view the selected quotation page', async function () {
     await SelectedQuotation.SelectedQuotationExist()
 
   });
-When('user click the next button', async function () {
-  await SelectedQuotation.ClickNextBtn()
-    
-  });
+
 
 When('user click the proceed to apply button', async function () {
   await SelectedQuotation.ProceedtoApplyBtn()
