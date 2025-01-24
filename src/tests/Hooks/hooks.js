@@ -1,4 +1,4 @@
-const { Before, After, Status, setDefaultTimeout } = require('@cucumber/cucumber');
+const { Before, After, Status, setDefaultTimeout, BeforeAll, AfterAll } = require('@cucumber/cucumber');
 const { chromium,firefox,webkit } = require('@playwright/test');
 const { pageObject } = require('./PageObjects');
 require('dotenv').config();
@@ -6,7 +6,8 @@ require('dotenv').config();
 let browser;
 let pages;
 
-Before(async function() {
+
+BeforeAll(async function() {
     const browserName = process.env.BrowserName; 
     switch (browserName.toLowerCase()) {
         case 'chromium':
@@ -27,10 +28,33 @@ Before(async function() {
     pageObject.page = pages;
 });
 
-After(async function(scenario) {
-    if (scenario.result?.status === Status.FAILED) {
-        const img = await pageObject.page.screenshot({ path: `./test-results/Screenshots/${scenario.pickle.name}`, type: "jpg" });
-        this.attach(img, "image/png");
-    }
-    await browser.close();
+// AfterAll(async function(scenario) {
+//     if (scenario.result?.status === Status.FAILED) {
+//         const img = await pageObject.page.screenshot({ path: `./test-results/Screenshots/${scenario.pickle.name}`, type: "jpg" });
+//         this.attach(img, "image/png");
+//     }
+//     await browser.close();
+// });
+
+After( function(scenario) {
+    try {
+        if (scenario.result?.status === Status.FAILED) {
+            const img =  pageObject.page.screenshot({ 
+                path: `./test-results/Screenshots/${scenario.pickle.name}.jpeg`, 
+                type: "jpeg" 
+            });
+            this.attach(img, "image/png");
+            
+        }
+    } catch (error) {
+        console.error('Error capturing screenshot:', error);
+    } 
 });
+AfterAll(async function(){
+    try {
+       await browser.close();
+   } catch (error) {
+       console.error('Error closing the browser:', error);
+   }
+})
+
