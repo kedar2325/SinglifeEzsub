@@ -6,6 +6,7 @@ const { select } = require("../Helper/Action");
 setDefaultTimeout(15000); 
 
 let SelectedQuotation;
+
 Given('user able to view the selected quotation page', async function () {
     SelectedQuotation = new ReviewDetailsSelectedQuotation(pageObject.page)
     await SelectedQuotation.SelectedQuotationExist()

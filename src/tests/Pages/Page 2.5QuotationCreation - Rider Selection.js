@@ -2,7 +2,7 @@ const { expect } = require('@playwright/test');
 const { clickAndSendkeys, Click, assertText } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
-
+const riderCIPW = 'Critical Illness Premium Waiver II'
 const PageLocators={
     easyTerm: "//p[contains(text(),'EasyTerm')]",
     cancerPremium: "//p[contains(text(),'Cancer Premium Waiver II')]",
@@ -18,10 +18,10 @@ class RiderSelection{
     }
     async selectRiders(){
         // Rider Selection: Check if the 'Critical Illness Premium Waiver II' & 'Easy Term' rider is available and select it
-        const riderCIPW = 'Critical Illness Premium Waiver II'
+
         while(true){
             if(riderCIPW == 'Critical Illness Premium Waiver II'){
-                await page.locator('#tick_icon').first().click()
+                await pageObject.page.locator('#tick_icon').first().click()
                 break
             }
             else{
