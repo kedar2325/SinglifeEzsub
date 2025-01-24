@@ -1,5 +1,5 @@
 
-const { clickAndSendkeys, sleep, toClick, assertText, Click } = require('../Helper/Action');
+const { clickAndSendkeys, sleep, toClick, assertText, Click, select } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -9,7 +9,7 @@ const PageLocators={
     nationality_indonesia: "//div[@id='nationalityCode']//div[contains(text(),'Indonesia')]",
     countryofresidence_click: "//div[@id='residenceCountryCode']//img[@class='sc-afc5380d-0 ekTQMr']",
     countryofresidence_brazil: "//div[@id='residenceCountryCode']//div[text()='Brazil']",
-    residencystatus: "//div[@id='residencyStatusCodeQuotation']//div[contains(@class,'css-1wy0on6')]",
+    residencystatus: "//div[contains(text(),'Permanent Resident')]/parent::div/following-sibling::div",
     residencystatus_permanent: "//div[contains(text(),'Permanent Resident')]",
     next_btn: "//button[text()='Next']"
 
@@ -25,13 +25,13 @@ class QuotationSelectNationaliandResidency{
         await Click(PageLocators.countryofresidence_brazil)
 
     }
-    async SelectResidency(){
-        await Click(PageLocators.residencystatus)
-        await Click(PageLocators.residencystatus_permanent)
-    }
+    // async SelectResidency(){
+    //     await Click(PageLocators.residencystatus)
+    //     await Click(PageLocators.residencystatus_permanent)
+    // }
     async SelectResidencyStatus(){
-        await toClick(PageLocators.residencystatus)
-        await toClick(PageLocators.residencystatus_permanent)
+        await toClick(PageLocators.residencystatus);
+        await toClick(PageLocators.residencystatus_permanent);
     }
     async VerifyResidencyStatus(){
         await assertText(PageLocators.residencystatus_permanent, "Permanent Resident")
