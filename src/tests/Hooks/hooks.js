@@ -40,8 +40,8 @@ After( function(scenario) {
     try {
         if (scenario.result?.status === Status.FAILED) {
             const img =  pageObject.page.screenshot({ 
-                path: `./test-results/Screenshots/${scenario.pickle.name}.jpeg`, 
-                type: "jpeg" 
+                path: `./test-results/Screenshots/${scenario.pickle.name}.png`, 
+                type: "png" 
             });
             this.attach(img, "image/png");
             

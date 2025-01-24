@@ -8,6 +8,9 @@ async function launchURL(URL) {
 async function GetByText_Click(text) {
     await pageObject.page.getByText(text).click()
 }
+async function getByTextIDClick(text,input){
+    await pageObject.page.getByTestId(text).fill(input)
+}
 async function GetByText_fill(text,parameterText) {
     await pageObject.page.getByText(text).fill(parameterText);
 }
@@ -28,6 +31,14 @@ async function clickAndSendkeys(Webelement, text) {
 
 async function Fill(Webelement, text) {
     await pageObject.page.fill(Webelement, text);
+}
+async function fillByText(text, inputValue) {
+    const element = await pageObject.page.getByText(text, { exact: true });
+    await element.fill(inputValue);
+}
+async function clickByText(text, inputValue) {
+    const element = await pageObject.page.getByText(text, { exact: true });
+    await element.click(inputValue);
 }
 
 async function Click(Webelement) {
@@ -161,22 +172,35 @@ async function fileUpload(filepath) {
         console.log(`stdout: ${stdout} - File upload successfully`);
     });
 }
+async function clickByRole(role, options = {}) {
+    const element = await pageObject.page.getByRole(role, options);
+    await element.click();
+};
+async function fillByRole(role, inputValue, options = {}) {
+    const element = await pageObject.page.getByRole(role, options);
+    await element.fill(inputValue);
+};
 
 module.exports = {
     launchURL,
     GetByText_Click,
     GetByText_fill,
+    getByTextIDClick,
     toClick,
     sendkeys,
     clickAndSendkeys,
     Fill,
     Click,
+    fillByText,
+    clickByText,
     select,
     doubleClick,
     Tab,
     mouceClick,
     moucedoubleClick,
     mousedown,
+    fillByRole,
+    clickByRole,
     sleep,
     assertURL,
     waitSelector,
@@ -193,5 +217,6 @@ module.exports = {
     cookieVerification,
     setCookies,
     mouseHoverClick,
-    fileUpload
+    fileUpload,
+    
 };

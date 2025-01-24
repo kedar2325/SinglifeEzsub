@@ -3,12 +3,7 @@ require('dotenv').config();
 const { pageObject } = require('../Hooks/PageObjects');
 
 const PageLocators={
-    username:"#okta-signin-username",
-    password:"#okta-signin-password",
-    loginButton:"//input[@type='submit']",
-    homeGreetText:"//p[contains(text(), '👋 Welcome, ')]",
     NewQuatation:"//p[contains(text(), 'New Quotation')]/following-sibling::button",
-    InsurancePlan:"//p[contains(text(), '",
     startQuatationButton:"//button[contains(text(), 'Start quotation')]",
     yesProceedButton:"//button[contains(text(), 'Yes, proceed')]",
 }
