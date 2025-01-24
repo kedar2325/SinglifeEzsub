@@ -1,36 +1,36 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
+const { setDefaultTimeout } = require('@cucumber/cucumber');
+setDefaultTimeout(15000); 
+require('dotenv').config();
 
-         When('user selects yes option', async function () {
-           // Write code here that turns the phrase above into concrete actions
-           return 'pending';
-         });
+//login import
+const { PayorDetails } = require('../Pages/Page 4.2ReviewDetails - PayorDetails');
+const { pageObject } = require('../Hooks/PageObjects');
 
- 
+let PayerDetails;
 
-         When('user selects source of wealth', async function () {
-           // Write code here that turns the phrase above into concrete actions
-           return 'pending';
-         });
+Given('user able to view ques', async function () {
+  PayerDetails=new PayorDetails(pageObject.page);
+  await PayerDetails.verifyPage();
+  });
 
+When('user selects yes option', async function () {
+  await PayerDetails.payerYes();
+  }); 
+  
+When('user selects source of wealth', async function () {
+  await PayerDetails.sourceWealth();       
+  });
 
+When('user selects source of funds', async function () {
+  await PayerDetails.sourceFunds();
+  });
 
-         When('user selects source of funds', async function () {
-           // Write code here that turns the phrase above into concrete actions
-           return 'pending';
-         });
+When('user click on next', async function () {
+  await PayerDetails.button();
+  });
 
-
-
-         When('user click on next', async function () {
-           // Write code here that turns the phrase above into concrete actions
-           return 'pending';
-         });
-
-
-
-         Then('user validate the initial premium payment text', async function () {
-           // Write code here that turns the phrase above into concrete actions
-           return 'pending';
-   
-         });
+Then('user validate the initial premium payment text', async function () {
+  await PayerDetails.verifyInitialPremiumPage();
+  });
          

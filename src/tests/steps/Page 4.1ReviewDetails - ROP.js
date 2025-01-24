@@ -1,18 +1,28 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
+const { setDefaultTimeout } = require('@cucumber/cucumber');
+setDefaultTimeout(15000); 
+require('dotenv').config();
+
+//login import
+const { ROP } = require('../Pages/Page 4.1ReviewDetails - ROP');
+const { pageObject } = require('../Hooks/PageObjects');
+
+let ROPDetails;
 
 Given('user able to view ques', async function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+  ROPDetails=new ROP(pageObject.page);
+  await ROPDetails.navigationToROP();
   });
-  When('User selects No option', async function () {
-    // Write code here that turns the phrase above into concrete actions     
-    return 'pending';
+
+When('User selects Yes option', async function () {
+  await ROPDetails.yesisexist1();
+  await ROPDetails.yesisexist2();
+    
   });
   When('user clicks next', async function () {
-    // Write code here that turns the phrase above into concrete actions     
-    return 'pending';
+    await ROPDetails.button();
   });
   Then('user validate the payer details text', async function () {
-    // Write code here that turns the phrase above into concrete actions     
-    return 'pending';
+    await ROPDetails.verifyPayerDetails();
+   
   });
