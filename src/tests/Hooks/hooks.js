@@ -1,4 +1,4 @@
-const { Before, After, Status, setDefaultTimeout, BeforeAll, AfterAll, context } = require('@cucumber/cucumber');
+const { Before, After, Status, setDefaultTimeout, BeforeAll, AfterAll } = require('@cucumber/cucumber');
 const { chromium,firefox,webkit } = require('@playwright/test');
 const { pageObject } = require('./PageObjects');
 require('dotenv').config();
@@ -50,11 +50,11 @@ After( function(scenario) {
         console.error('Error capturing screenshot:', error);
     } 
 });
-// AfterAll(function(scenario){
-//     try {
-//         browser.close();
-//    } catch (error) {
-//        console.error('Error closing the browser:', error);
-//    }
-// })
+AfterAll(async function(){
+    try {
+       await browser.close();
+   } catch (error) {
+       console.error('Error closing the browser:', error);
+   }
+})
 
