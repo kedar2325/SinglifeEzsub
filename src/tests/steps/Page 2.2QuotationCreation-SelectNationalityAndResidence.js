@@ -1,16 +1,29 @@
 const { Given, Then, When, And } = require("@cucumber/cucumber");
+const{ QuotationSelectNationaliandResidency } = require("../Pages/Page 2.2QuotationCreation-SelectNationalityAndResidence")
+const { pageObject } = require("../Hooks/PageObjects");
+setDefaultTimeout(15000); 
+
+let CountrySelection;
+
 Given('user selects Nationality from the dropdown', async function () {
+        CountrySelection = new QuotationSelectNationaliandResidency(pageObject.page)
+        await CountrySelection.SelectNationality()
+
+});
+
+When('user selects country of residence', async function () {
+    await CountrySelection.SelectCountryofBirth()
         
 });
 
-When('user selects country of residence and residence status from the dropdown', async function () {
+When('user selects residence status from the dropdown', async function () {
+    await CountrySelection.SelectResidency()
         
 });
 
-When('user clicks next', async function () {
-        
-});
+Then('user verify residency status should be displayed', async function () {
+    await CountrySelection.SelectResidencyStatus()
+    await CountrySelection.VerifyResidencyStatus()
 
-Then('verify the life assured logo changed to green color', async function () {
         
 });

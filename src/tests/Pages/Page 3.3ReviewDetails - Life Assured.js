@@ -57,6 +57,7 @@ class ReviewDetailsLifeAssured{
 
 
 }
+module.exports={ReviewDetailsLifeAssured}
 
 
 
