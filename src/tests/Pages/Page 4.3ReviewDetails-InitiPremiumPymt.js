@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys, launchURL, sleep, Click, assertText } = require('../Helper/Action');
+const { clickAndSendkeys, launchURL, sleep, Click, assertText, toClick } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -33,12 +33,14 @@ const PageLocators={
 }
 
 class ReviewDetailsInitialPremiumPayment{
-
+    constructor(page){
+        pageObject.page=page;
+    }
     async verifyInitialPremiumPage(){ 
         await assertText(PageLocators.verifyInitialPremiumPage, "Initial Premium Payment");
     }
     async InitialPayment(){
-        await Click(PageLocators.initialPremiumPayment);
+        await toClick(PageLocators.initialPremiumPayment);
     }
 
     //Enter Credit Card Details
