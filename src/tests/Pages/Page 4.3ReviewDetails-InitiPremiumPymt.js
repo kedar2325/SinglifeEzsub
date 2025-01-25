@@ -5,25 +5,10 @@ require('dotenv').config();
 
 const PageLocators={
     verifyInitialPremiumPage: "//p[contains(text(),'Initial Premium Payment')]",
-    initialPremiumPayment: "(//p[contains(text(),'Credit Card')])[1]",
-
-    //Credit card details
-    //Payment Details
-    enterCreditCardDetails: "(//button[@type='button'])[5]",
-    cardTypeMaster: "#card_type_002",
-    cardNumber: "#card_number",
-    expirationMonth: "#card_expiry_month",
-    expiryYear: "#card_expiry_year",
-    nextButton: "//input[@name='commit']",
-
-    //Review your order
-    finishButton: "//input[@name='commit']",
-
-    issuingBank: "#react-select-39-placeholder",
-    selectANZ: "(//div[contains(text(),'ANZ')])[2]",
-
-    //Subsequent Premium Payment
-    paymentMethod: "(//p[contains(text(),'Cash/Cheque/Bank Draft')])[2]",
+     cashButton:"(//p[text()='Cash/Cheque/Bank Draft'])[1]",
+    chequeNo:"//p[text()='Cheque No.']//parent::label/following-sibling::div/input",
+    issuingBank:"//p[text()='Issuing Bank']//parent::label/following-sibling::div/input",
+    cashButton2:"(//p[text()='Cash/Cheque/Bank Draft'])[2]",
 
     //Next Button
     nextbtn: "//button[contains(text(),'Next')]",
@@ -39,39 +24,17 @@ class ReviewDetailsInitialPremiumPayment{
     async verifyInitialPremiumPage(){ 
         await assertText(PageLocators.verifyInitialPremiumPage, "Initial Premium Payment");
     }
-    async InitialPayment(){
-        await toClick(PageLocators.initialPremiumPayment);
+    async CashPayment(){
+        await toClick(PageLocators.cashButton);
     }
-
-    //Enter Credit Card Details
-    //Payment details
-    async EnterCardDetails(){
-        await Click(PageLocators.enterCreditCardDetails);
-        sleep(3000);
-        await Click(PageLocators.cardTypeMaster);
-        await clickAndSendkeys(PageLocators.cardNumber,process.env.CardNumberValue);
-
-        await Click(PageLocators.expirationMonth);
-        await expect(dropDownList).toHaveValue('8');
-
-        await Click(PageLocators.expiryYear); 
-        await expect(dropDownList).toHaveValue('2030');
-
-        await Click(PageLocators.nextButton);
-
-        //Review your order
-        await Click(PageLocators.finishButton);
-
-        //Issuing Bank
-        await Click(PageLocators.issuingBank);
-
-        await Click(PageLocators.selectANZ);
-
+    async EnterChequeNo(){
+        await clickAndSendkeys(PageLocators.chequeNo,"64");
     }
-
-    //Subsequent Premium Payment 
-    async ClickCash(){
-        await Click(PageLocators.paymentMethod);
+    async EnterIssuingBank(){
+        await clickAndSendkeys(PageLocators.issuingBank,"SBI");
+    }
+    async CashPayment2(){
+        await toClick(PageLocators.cashButton2);
     }
 
     //Next Button
@@ -81,6 +44,7 @@ class ReviewDetailsInitialPremiumPayment{
 
     //Verify Declaration Page
     async verifyDeclarationPage(){
+        await sleep(5000);
         await assertText(PageLocators.verifyDeclaration, "Let’s stay in touch - on your terms");
     }
 

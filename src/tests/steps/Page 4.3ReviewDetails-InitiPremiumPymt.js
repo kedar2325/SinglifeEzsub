@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
-setDefaultTimeout(15000); 
+setDefaultTimeout(20000); 
 require('dotenv').config();
 
 //login import
@@ -15,12 +15,13 @@ Given('user able to view payment method', async function () {
 });
 
 When('user selects payment method', async function () {
-  await InitialPremiumPymt.InitialPayment();
-  await InitialPremiumPymt.EnterCardDetails();
+  await InitialPremiumPymt.CashPayment();
+  await InitialPremiumPymt.EnterChequeNo();
 });
 
 When('user selects subsequent premium payment', async function () {
-  await InitialPremiumPymt.ClickCash();
+  await InitialPremiumPymt.EnterIssuingBank();
+  await InitialPremiumPymt.CashPayment2();
 });
 
 When('user click on Next', async function () {
