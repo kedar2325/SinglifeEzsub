@@ -32,6 +32,8 @@ class ReviewDetailsLifeAssured{
     }
     async EnterContactInformation(){
         await assertText(PageLocators.lifeassured_exist,"Life Assured")
+    }
+    async EnterContactInformation(){
         await clickAndSendkeys(PageLocators.email,process.env.email)
         await clickAndSendkeys(PageLocators.mobilecode,process.env.mobilecode)
         await clickAndSendkeys(PageLocators.mobileno,process.env.mobileno)
