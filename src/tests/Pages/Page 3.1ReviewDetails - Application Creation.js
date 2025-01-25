@@ -11,6 +11,9 @@ const PageLocators={
 }
 
 class ReviewDetailsApplicationCreation{
+    constructor(page){
+        pageObject.page=page;
+    }
     async VerifyQuotationSummaryExist(){
         await assertText(PageLocators.quotationsummary_exist,"Quotation Summary" )
     }

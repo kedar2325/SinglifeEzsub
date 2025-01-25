@@ -1,5 +1,5 @@
 Feature: Review Details - Selected Quotation
-@e2e
+@e2e @NewQuatation
   Scenario: enter into the selected quotation 
   Given user able to view the selected quotation page
   When user click the next button
