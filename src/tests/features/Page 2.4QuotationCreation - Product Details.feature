@@ -1,6 +1,6 @@
 Feature: Product Details - Quotation
 
-  @e2e 
+  @e2e  @NewQuatation
   Scenario: Enter the  product details 
 
     Given user able to view the mandatory fields in product details page
