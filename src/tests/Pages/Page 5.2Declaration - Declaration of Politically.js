@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { Click, assertText, clickAndSendkeys } = require('../Helper/Action');
+const { Click, assertText, clickAndSendkeys, assertParticularText } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -21,7 +21,7 @@ const PageLocators={
 class DeclarationPolitically{
 
     async verifyDeclarationPoliticallyTitle(){
-        await assertText(PageLocators.declarationPoliticallyTitle,"Declaration of Politically Exposed Person (PEP) anDeclaration of Politically Exposed Person (PEP) and/or Close Associate");
+        await assertParticularText(PageLocators.declarationPoliticallyTitle,"Declaration of Politically Exposed Person (PEP) and/or Close Associate");
     }
     async clickPoliticallyExposedPersonN(){
         await Click(PageLocators.politicallyExposedPersonN);

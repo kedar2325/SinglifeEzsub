@@ -15,7 +15,7 @@ Given('user able to view the signing method', async function () {
   });
 
   When('user selects the preferred signing method', async function () {
-    await Signing_Method.preferredSigningMethod;
+    await Signing_Method.preferredSigningMethod();
   });
 
   When('user preview the PDF of Product Illustration and Product Summary', async function () {

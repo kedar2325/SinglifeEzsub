@@ -35,16 +35,16 @@ let pageClientAcknowledgement;
     await pageClientAcknowledgement.eDocN();
   });
 
-  When('user enter contact details', async function () {
-    //Enter Contact Details
-    await pageClientAcknowledgement.EnterContactEmailId();
-    await pageClientAcknowledgement.EnterMobileCode();
-    await pageClientAcknowledgement.EnterContactMobileNo();
-  });
-
-
-
-  // Then('user click on next', async function () {
-  //   //To click next button
-  //   await pageClientAcknowledgement.ClickNextButton();
+  // When('user enter contact details', async function () {
+  //   //Enter Contact Details
+  //   await pageClientAcknowledgement.EnterContactEmailId();
+  //   await pageClientAcknowledgement.EnterMobileCode();
+  //   await pageClientAcknowledgement.EnterContactMobileNo();
   // });
+
+
+
+  Then('user click on next in CA', async function () {
+    //To click next button
+    await pageClientAcknowledgement.ClickNextButton();
+  });

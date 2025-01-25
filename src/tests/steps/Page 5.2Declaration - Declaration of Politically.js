@@ -19,7 +19,7 @@ let pageDeclarationPolitically
           //clicks on PEP option as no
          });
 
-         Then('user selects next', async function () {
+         Then('user selects next in Declaration', async function () {
           await pageDeclarationPolitically.clickNextButton();
           //clicks on next button
          });

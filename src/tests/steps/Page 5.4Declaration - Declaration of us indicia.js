@@ -16,6 +16,6 @@ When('user selects declare us indicia no', async function () {
     await pageDeclarationUsIndicia.clickIndiciaOptionN();
   });
   
-Then('user selects next', async function () {
-    await pageDeclarationUsIndicia.clickNextButton();
-  });
+// Then('user selects next', async function () {
+//     await pageDeclarationUsIndicia.clickNextButton();
+//   });
