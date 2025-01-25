@@ -2,8 +2,7 @@ Feature: Declaration - Client Acknowledgement
 @e2e
   Scenario: Valid Payer Details
     Given user able to view terms
-    When user selects terms option
-    And user selects e-documents option
+    When user selects terms option yes
+    And user selects e-documents option no
     And user enter contact details
-    And user click on next
-    Then user validate the text declaration of politically
+    Then user click on next
