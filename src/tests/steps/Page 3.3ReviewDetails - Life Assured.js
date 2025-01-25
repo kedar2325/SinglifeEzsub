@@ -23,8 +23,8 @@ Given('user able to view the values in life assured tab', async function () {
     
   });
 
-  When('user click the next button',async function() {
-    await ReviewDetailsForLifeAssured.GotoUnderwritingpage();
+  // When('user click the next button',async function() {
+  //   await ReviewDetailsForLifeAssured.GotoUnderwritingpage();
     
-  });
+  // });
   

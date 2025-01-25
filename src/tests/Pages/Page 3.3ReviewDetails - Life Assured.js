@@ -30,33 +30,33 @@ class ReviewDetailsLifeAssured{
     constructor(page){
         pageObject.page=page;
     }
-    async EnterContactInformation(){
+    async verifyLifeAssuredPage(){
         await assertText(PageLocators.lifeassured_exist,"Life Assured")
     }
     async EnterContactInformation(){
         await clickAndSendkeys(PageLocators.email,process.env.email)
         await clickAndSendkeys(PageLocators.mobilecode,process.env.mobilecode)
         await clickAndSendkeys(PageLocators.mobileno,process.env.mobileno)
-        await Click(PageLocators.maritalstatus)
-        await Click(PageLocators.maritalstatus_married)
-        await Click(PageLocators.race)
-        await Click(PageLocators.race_indian)
-        await Click(PageLocators.countryofbirth)
-        await Click(PageLocators.countryofbirth_singapore)
+        await toClick(PageLocators.maritalstatus)
+        await toClick(PageLocators.maritalstatus_married)
+        await toClick(PageLocators.race)
+        await toClick(PageLocators.race_indian)
+        await toClick(PageLocators.countryofbirth)
+        await toClick(PageLocators.countryofbirth_singapore)
     }
     async EnterResidentialAddress(){
         await clickAndSendkeys(PageLocators.postalcode,process.env.postalcode)
-        await Click(PageLocators.search)
+        await toClick(PageLocators.search)
         await clickAndSendkeys(PageLocators.unitno,process.env.unitno)
         await clickAndSendkeys(PageLocators.annulaincome,process.env,annulaincome)
         await clickAndSendkeys(PageLocators.employername,process.env.employername)
         await clickAndSendkeys(PageLocators.employmentduties,process.env.employmentduties)
-        await Click(PageLocators.natureofbusiness)
-        await Click(PageLocators.natureofbusiness_accounting)
-        await Click(PageLocators.financialbackgroung_no)
+        await toClick(PageLocators.natureofbusiness)
+        await toClick(PageLocators.natureofbusiness_accounting)
+        await toClick(PageLocators.financialbackgroung_no)
     }
     async GotoUnderwritingpage(){
-        await Click(PageLocators.next_btn)
+        await toClick(PageLocators.next_btn)
 
     }
 
