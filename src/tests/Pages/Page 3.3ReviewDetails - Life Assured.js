@@ -27,8 +27,10 @@ const PageLocators={
     next_btn: "//button[text()='Next']",
 }
 class ReviewDetailsLifeAssured{
-    async EnterContactInformation(){
+    async verifyLifeAssuredPage(){
         await assertText(PageLocators.lifeassured_exist,"Life Assured")
+    }
+    async EnterContactInformation(){
         await clickAndSendkeys(PageLocators.email,process.env.email)
         await clickAndSendkeys(PageLocators.mobilecode,process.env.mobilecode)
         await clickAndSendkeys(PageLocators.mobileno,process.env.mobileno)
