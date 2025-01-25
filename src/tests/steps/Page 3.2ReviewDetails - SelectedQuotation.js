@@ -14,10 +14,10 @@ Given('user able to view the selected quotation page', async function () {
   });
 
 
-// When('user click the proceed to apply button', async function () {
-//   await SelectedQuotation.ProceedtoApplyBtn()
+When('user click the proceed to apply button  for quatation', async function () {
+  await SelectedQuotation.ProceedtoApplyBtn()
       
-//   });
+  });
 Then('user validate the life assured tab', async function () {
   await SelectedQuotation.LifeAssuredExist()
   });
