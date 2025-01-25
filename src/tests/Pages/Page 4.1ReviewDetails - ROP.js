@@ -7,7 +7,9 @@ const PageLocators={
     verifyROPPage: "//p[contains(text(),'Singlife Steadypay Saver')]",
 
     // //1st yes
-    singlifeShieldNo: "(//div[@data-testid='radio-items'])[2]",
+    singlifeShieldNo1: "(//p[text()='No'])[1]",
+    singlifeShieldNo2:"(//p[text()='No'])[2]",
+    singlifeShieldNo:"(//p[text()='Yes'])[2]",
     nameOfCompany1: "#react-select-16-placeholder",
     lifeSumAssured1: "//input[@name='lifeSAAmount']",
     permanentlyDisabledSumAssured1: "//input[@name='TPDSAAmount']",
@@ -37,6 +39,11 @@ class ROP{
     }
     async navigationToROP(){
         await assertText(PageLocators.verifyROPPage, "Singlife Steadypay Saver"); 
+        await sleep(2000);
+    }
+    async NoExist(){
+        await toClick(PageLocators.singlifeShieldNo1);
+        await toClick(PageLocators.singlifeShieldNo2);
     }
 
     //1st yes

@@ -14,9 +14,8 @@ Given('user able to view ques', async function () {
   await ROPDetails.navigationToROP();
   });
 
-When('User selects Yes option', async function () {
-  await ROPDetails.yesisexist1();
-  await ROPDetails.yesisexist2();
+When('User selects No option', async function () {
+  await ROPDetails.NoExist();
     
   });
   When('user clicks next', async function () {

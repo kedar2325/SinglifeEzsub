@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
-setDefaultTimeout(15000); 
+setDefaultTimeout(20000); 
 require('dotenv').config();
 
 //login import
@@ -23,8 +23,8 @@ Given('user able to view the values in life assured tab', async function () {
     
   });
 
-  // When('user click the next button',async function() {
-  //   await ReviewDetailsForLifeAssured.GotoUnderwritingpage();
+  When('user click the next button to go underwriting page',async function() {
+    await ReviewDetailsForLifeAssured.GotoUnderwritingpage();
     
-  // });
+  });
   

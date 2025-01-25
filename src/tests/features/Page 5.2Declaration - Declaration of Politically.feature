@@ -1,5 +1,5 @@
 Feature: Declaration - Declaration of Politically
-@e2e
+@e2e @NewQuatation
   Scenario: Declare Politically
     Given user able to view declaration of polictically
     When user selects declare option no
