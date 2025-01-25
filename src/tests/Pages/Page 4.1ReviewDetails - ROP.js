@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys, launchURL, sleep } = require('../Helper/Action');
+const { clickAndSendkeys,assertText, launchURL, sleep, toClick } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -32,13 +32,16 @@ const PageLocators={
 }
 
 class ROP{
+    constructor(page){
+        pageObject.page=page;
+    }
     async navigationToROP(){
         await assertText(PageLocators.verifyROPPage, "Singlife Steadypay Saver"); 
     }
 
     //1st yes
     async yesisexist1(){
-        await Click(PageLocators.SinglifeShieldNo);
+        await toClick(PageLocators.singlifeShieldNo);
         await clickAndSendkeys(PageLocators.nameOfCompany1,process.env.CompanyName);
         await clickAndSendkeys(PageLocators.lifeSumAssured1,process.env.SumAssured);
         await clickAndSendkeys(PageLocators.permanentlyDisabledSumAssured1,process.env.PermanentlyDisabled);
@@ -49,7 +52,7 @@ class ROP{
 
     //2nd yes
     async yesisexist2(){
-        await Click(PageLocators.singlifeCancerCoverPlus);
+        await toClick(PageLocators.singlifeCancerCoverPlus);
         await clickAndSendkeys(PageLocators.nameOfCompany1,process.env.CompanyName2);
         await clickAndSendkeys(PageLocators.policyNumber,process.env.PolicyNo);
         await clickAndSendkeys(PageLocators.lifeSumAssured1,process.env.SumAssured2);
@@ -60,7 +63,7 @@ class ROP{
     
     //Next button
     async button(){
-        await Click(PageLocators.nextButton);
+        await toClick(PageLocators.nextButton);
     }
 
     //Verification of Payer Detail

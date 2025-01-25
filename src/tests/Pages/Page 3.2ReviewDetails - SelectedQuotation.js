@@ -17,12 +17,14 @@ class ReviewDetailsSelectedQuotation{
     }
     async SelectedQuotationExist(){
         await assertText(PageLocators.selectedquotation_exist,"Selected Quotations")
+        await toClick(PageLocators.next_btn);
     }
     async ClickNextBtn(){
         await toClick(PageLocators.next_btn)
     }
     async ProceedtoApplyBtn(){
-        await assertText(PageLocators.quotationoverview_exist,"Quotation Overview")
+        await assertText(PageLocators.quotationoverview_exist,"Quotation Overview");
+        await toClick(PageLocators.next_btn)
         await toClick(PageLocators.proceedtoapply_btn)
     }
 

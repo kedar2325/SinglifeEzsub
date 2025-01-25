@@ -35,7 +35,8 @@ class RiderSelection{
     async calculatePremium(){
         // await page.getByText('Term*')
         // await page.getByText('Sum assured', { exact: true })
-        await pageObject.page.getByRole('button', { name: 'Calculate premium' }).click()
+        await pageObject.page.getByRole('button', { name: 'Calculate premium' }).click();
+        await sleep(2000);
     }
     async clickNextButton(){
         await toClick(PageLocators.nextButton);

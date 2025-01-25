@@ -9,19 +9,18 @@ let ApplicationCreation;
 
 Given('user able to view the quotation summary page', async function () {
     ApplicationCreation = new ReviewDetailsApplicationCreation(pageObject.page)
-    ApplicationCreation.VerifyQuotationSummaryExist()
+    await ApplicationCreation.VerifyQuotationSummaryExist()
 
     
 });
 When('user click the save quotation button', async function () {
-    ApplicationCreation.ClickSaveQuotationBtn()
-    
+    await ApplicationCreation.ClickSaveQuotationBtn()
 });
 When('user click the proceed to apply button', async function () {
-    ApplicationCreation.ProceedtoApplyBtn()
+    await ApplicationCreation.ProceedtoApplyBtn()
     
 });
 Then('user should view the review details page', async function () {
-    ApplicationCreation.ReviewDetailsExist()
+    await ApplicationCreation.ReviewDetailsExist()
     
 });
