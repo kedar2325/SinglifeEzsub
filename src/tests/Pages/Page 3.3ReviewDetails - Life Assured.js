@@ -27,6 +27,9 @@ const PageLocators={
     next_btn: "//button[text()='Next']",
 }
 class ReviewDetailsLifeAssured{
+    constructor(page){
+        pageObject.page=page;
+    }
     async EnterContactInformation(){
         await assertText(PageLocators.lifeassured_exist,"Life Assured")
         await clickAndSendkeys(PageLocators.email,process.env.email)

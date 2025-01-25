@@ -9,10 +9,10 @@ const { pageObject } = require('../Hooks/PageObjects');
 
 let PayerDetails;
 
-Given('user able to view ques', async function () {
-  PayerDetails=new PayorDetails(pageObject.page);
-  await PayerDetails.verifyPage();
-  });
+// Given('user able to view ques', async function () {
+//   PayerDetails=new PayorDetails(pageObject.page);
+//   await PayerDetails.verifyPage();
+//   });
 
 When('user selects yes option', async function () {
   await PayerDetails.payerYes();
