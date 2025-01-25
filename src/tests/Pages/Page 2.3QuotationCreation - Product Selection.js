@@ -5,15 +5,16 @@ require('dotenv').config();
 
 const PageLocators={
     verifyProductSelectionPage: "//p[contains(text(),'Product selection for')]",
-    searchTab: "#search",
+    searchTab: "(//input[@id='search'])[1]",
     clickSelect: "//button[contains(text(),'Select')]",
     nextButton: "//button[contains(text(),'Next')]",
-    verifyProductSelected: "//p[contains(text(),'Singlife Steadypay Saver')]"
-
-
+    verifyProductSelected: "(//p[contains(text(),'Singlife Steadypay Saver')])[1]"
 }
 
 class ProductSelection{
+    constructor(page){
+        pageObject.page=page;
+    }
     async navigationToProductSelection(){
         await assertText(PageLocators.verifyProductSelectionPage, "Product selection for"); 
     }

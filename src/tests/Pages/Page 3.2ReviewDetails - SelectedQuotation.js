@@ -12,15 +12,20 @@ const PageLocators={
 
 }
 class ReviewDetailsSelectedQuotation{
+    constructor(page){
+        pageObject.page=page;
+    }
     async SelectedQuotationExist(){
         await assertText(PageLocators.selectedquotation_exist,"Selected Quotations")
+        await toClick(PageLocators.next_btn);
     }
     async ClickNextBtn(){
-        await Click(PageLocators.next_btn)
+        await toClick(PageLocators.next_btn)
     }
     async ProceedtoApplyBtn(){
-        await assertText(PageLocators.quotationoverview_exist,"Quotation Overview")
-        await click(PageLocators.proceedtoapply_btn)
+        await assertText(PageLocators.quotationoverview_exist,"Quotation Overview");
+        await toClick(PageLocators.next_btn)
+        await toClick(PageLocators.proceedtoapply_btn)
     }
 
     async LifeAssuredExist(){

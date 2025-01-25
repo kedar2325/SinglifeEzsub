@@ -6,36 +6,45 @@ require('dotenv').config();
 const { ClientAcknowledgement } = require('../Pages/Page 5.1Declaration - Client Acknowledgement');
 const { pageObject } = require('../Hooks/PageObjects');
 
-let ClientAcknowledgement;
+let pageClientAcknowledgement;
   Given('user able to view terms', async function () {
-    ClientAcknowledgement=new ClientAcknowledgement(pageObject.page);
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    pageClientAcknowledgement = new ClientAcknowledgement(pageObject.page);
+    await pageClientAcknowledgement.verifyClientAcknowledgement();
+    // To check Title exists
   });
 
 
 
-  When('user selects terms option', async function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+  When('user selects terms option yes', async function () {
+    //To select option yes
+    await pageClientAcknowledgement.clickMarketingConsentY();
   });
 
-
-
-  When('user selects e-documents option', async function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+  When('user selects terms option no', async function () {
+    //To select option no
+    await pageClientAcknowledgement.clickMarketingConsentN();
   });
 
+  When('user selects e-documents option yes', async function () {
+    //To select Doc Yes
+    await pageClientAcknowledgement.eDocY();
+  });
+
+  When('user selects e-documents option no', async function () {
+    //To select Doc No
+    await pageClientAcknowledgement.eDocN();
+  });
 
   When('user enter contact details', async function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    //Enter Contact Details
+    await pageClientAcknowledgement.EnterContactEmailId();
+    await pageClientAcknowledgement.EnterMobileCode();
+    await pageClientAcknowledgement.EnterContactMobileNo();
   });
 
 
 
-  Then('user validate the text declaration of politically', async function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+  Then('user click on next', async function () {
+    //To click next button
+    await pageClientAcknowledgement.ClickNextButton();
   });

@@ -1,11 +1,11 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-const { setDefaultTimeout } = require('@cucumber/cucumber');
-setDefaultTimeout(15000); 
+const { Given, When, Then,setDefaultTimeout } = require('@cucumber/cucumber');
+setDefaultTimeout(20000); 
 require('dotenv').config();
 
 //login import
 const { RiderSelection } = require('../Pages/Page 2.5QuotationCreation - Rider Selection');
 const { pageObject } = require('../Hooks/PageObjects');
+const { sleep } = require('../Helper/Action');
 
 let RiderSelectionPage;
 Given('user able to view the available riders', async function () {
@@ -19,12 +19,8 @@ When('user select the riders in the rider selection page', async function () {
   });
 When('user click the premium calculate button for the selected rider', async function () {
   await RiderSelectionPage.calculatePremium();
-    
   });
-When('user click the next button', async function () {
-  await RiderSelectionPage.clickNextButton();
-    
-  });
-Then('user validate the premium calculated for the selected riders', async function () {
-    
-  });
+
+// Then('user validate the premium calculated for the selected riders', async function () {
+//     await RiderSelectionPage.clickNextButton();
+//   });

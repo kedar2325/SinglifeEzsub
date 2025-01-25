@@ -16,6 +16,9 @@ const PageLocators={
 }
 
 class QuotationSelectNationaliandResidency{
+    constructor(page){
+        pageObject.page=page;
+    }
     async SelectNationality(){
         await Click(PageLocators.nationality_click)
         await Click(PageLocators.nationality_indonesia)
