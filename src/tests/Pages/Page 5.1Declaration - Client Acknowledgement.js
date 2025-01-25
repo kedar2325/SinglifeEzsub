@@ -25,7 +25,7 @@ nextButton:"//button[normalize-space()='Next']"
 }
 class ClientAcknowledgement{
 async verifyClientAcknowledgement(){ 
-        await assertText(PageLocators.verifyClientAcknowledgement, "Lets stay in touch - on your terms");
+        await assertText(PageLocators.clientAcknowledgementTitle, "Let’s stay in touch - on your terms");
     }
 
 async clickMarketingConsentY(){

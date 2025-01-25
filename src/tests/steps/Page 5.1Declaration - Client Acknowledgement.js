@@ -44,7 +44,7 @@ let pageClientAcknowledgement;
 
 
 
-  Then('user click on next', async function () {
-    //To click next button
-    await pageClientAcknowledgement.ClickNextButton();
-  });
+  // Then('user click on next', async function () {
+  //   //To click next button
+  //   await pageClientAcknowledgement.ClickNextButton();
+  // });

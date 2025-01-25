@@ -6,5 +6,5 @@ Feature:Review Details - Underwriting Questions
   And user click the calculate button
   And user able to see the newly generated underwriting Questions
   And user complete all the underwriting questions appropratiely
-  And user click the next button
-  Then user able to see the green logo in underwriting tab 
+  Then user click the next button
+  

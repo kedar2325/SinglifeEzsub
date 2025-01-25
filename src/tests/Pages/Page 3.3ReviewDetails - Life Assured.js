@@ -8,22 +8,21 @@ const PageLocators={
     email: "//input[@name='email']",
     mobilecode: "//input[contains(@name,'mobileCC')]",
     mobileno: "//input[@name='mobileNo']",
-    maritalstatus: "//div[@id='react-select-11-placeholder']",
+    maritalstatus: "//div[@id='maritalStatusCode']",
     maritalstatus_married: "//div[contains(text(),'Married')]",
     race: "//div[@id='raceCode']//div[@class='css-1wy0on6']",
     race_indian: "//div[contains(text(),'Indian')]",
-    countryofbirth:" //div[@id='birthCountryCode']//img[contains(@class,'sc-afc5380d-0 ekTQMr')] ",
+    countryofbirth:"//div[@id='birthCountryCode']//img[contains(@class,'sc-afc5380d-0 ekTQMr')]",
     countryofbirth_singapore: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
-
     postalcode: "//input[@name='resAddress.postalCode']",
     search: "//button[text()='Search']",
     unitno: "//input[@name='resAddress.unitNo']",
-    annulaincome: "//input[@name='employment.annualIncome']",
+    annualincome: "//input[@name='employment.annualIncome']",
     employername: "//input[@name='employment.companyName']",
     employmentduties: "//input[@name='employment.duties']",
     natureofbusiness: "//div[@id='employment.natureOfBusiness']//img[@class='sc-afc5380d-0 ekTQMr']",
     natureofbusiness_accounting: "//div[contains(text(),'Accounting/Finance')]",
-    financialbackgroung_no: "//div[contains(@class,'w-full bg-transparent')]//div[contains(@class,'sc-7997bd10-5 cnYUNw active')]",
+    financialbackgroung_no: "(//p[text()='No'])[2]",
     next_btn: "//button[text()='Next']",
 }
 class ReviewDetailsLifeAssured{
@@ -44,19 +43,20 @@ class ReviewDetailsLifeAssured{
         await toClick(PageLocators.countryofbirth)
         await toClick(PageLocators.countryofbirth_singapore)
     }
-    async EnterResidentialAddress(){
+    async EnterResidentialAddress(){   
         await clickAndSendkeys(PageLocators.postalcode,process.env.postalcode)
-        await toClick(PageLocators.search)
+        await toClick(PageLocators.search)   
         await clickAndSendkeys(PageLocators.unitno,process.env.unitno)
-        await clickAndSendkeys(PageLocators.annulaincome,process.env,annulaincome)
+        await clickAndSendkeys(PageLocators.annualincome,process.env.annualincome);
         await clickAndSendkeys(PageLocators.employername,process.env.employername)
-        await clickAndSendkeys(PageLocators.employmentduties,process.env.employmentduties)
+        await clickAndSendkeys(PageLocators.employmentduties,process.env.exactduties)  
         await toClick(PageLocators.natureofbusiness)
         await toClick(PageLocators.natureofbusiness_accounting)
         await toClick(PageLocators.financialbackgroung_no)
     }
     async GotoUnderwritingpage(){
         await toClick(PageLocators.next_btn)
+        await sleep(5000);
 
     }
 

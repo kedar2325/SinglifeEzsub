@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys, launchURL, sleep } = require('../Helper/Action');
+const { clickAndSendkeys, launchURL, sleep,assertText, toClick, } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -14,20 +14,23 @@ const PageLocators={
 }
 
 class PayorDetails{
+    constructor(page){
+        pageObject.page=page;
+    }
     async verifyPage(){
         await assertText(PageLocators.verifyPayerDetails, "Are you paying for this policy?"); 
     }
     async payerYes(){
-        await Click(PageLocators.payerDetails);
+        await toClick(PageLocators.payerDetails);
     }
     async sourceWealth(){
-        await Click(PageLocators.sourceOfWealth);
+        await toClick(PageLocators.sourceOfWealth);
     }
     async sourceFunds(){
-        await Click(PageLocators.sourceOfFunds);
+        await toClick(PageLocators.sourceOfFunds);
     }
     async button(){
-        await Click(PageLocators.nextBtn);
+        await toClick(PageLocators.nextBtn);
     }
     async verifyInitialPremiumPage(){ 
         await assertText(PageLocators.verifyInitialPremiumPage, "Initial Premium Payment");
