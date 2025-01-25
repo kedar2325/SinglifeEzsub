@@ -13,7 +13,7 @@ Given('user able to view declaration of beneficial ownership', async function ()
 
 
 
-  Then('user validate the text us indicia', async function () {
+  Then('user selects next', async function () {
     // Write code here that turns the phrase above into concrete actions
     return 'pending';
   });
