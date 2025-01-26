@@ -7,21 +7,34 @@ require('dotenv').config();
 const { SigningMethod } = require('../Pages/Page 6.1Confirmation - Signing Method and Product Illustration');
 const { pageObject } = require('../Hooks/PageObjects');
 
-let Signing_Method;
+let pageSigningMethod;
 
 Given('user able to view the signing method', async function () {
-    Signing_Method=new SigningMethod(pageObject.page);
-    await Signing_Method.verifyDocumentSigningPage();
+    pageSigningMethod=new SigningMethod(pageObject.page);
+    await pageSigningMethod.verifyDocumentSigningPage();
   });
 
   When('user selects the preferred signing method', async function () {
-    await Signing_Method.preferredSigningMethod();
+    await pageSigningMethod.preferredSigningMethod();
   });
 
-  When('user preview the PDF of Product Illustration and Product Summary', async function () {
-    await Signing_Method.productIllustrationAndSummary();
+  When('user preview the PDF of Product and success', async function () {
+    await pageSigningMethod.productIllustrationAndSummary();
+    await pageSigningMethod.successMessage();
   });
 
-  Then('user verify the success message', async function () {
-    await Signing_Method.successMessage();
+  When('user preview the PDF of App and success', async function () {
+    await pageSigningMethod.appFormClickandSummary();
+  });
+
+  When('user preview the PDF of Assured Signature and success', async function () {
+    await pageSigningMethod.signatureClickandSummary();
+  });
+
+  When('user preview the PDF of Credit Signature and success', async function () {
+    await pageSigningMethod.creditCardClickandSummary();
+  });
+
+  Then('user click on next btn', async function () {
+    await pageSigningMethod.clickNextButton();
   });
