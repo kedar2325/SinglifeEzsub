@@ -6,11 +6,11 @@ require('dotenv').config();
 
 const PageLocators={
     nationality_click: "//div[@id='nationalityCode']//img[@class='sc-afc5380d-0 ekTQMr']",
-    nationality_indonesia: "//div[@id='nationalityCode']//div[contains(text(),'Indonesia')]",
+    nationality_indonesia: "//div[@id='nationalityCode']//div[contains(text(),'Singapore')]",
     countryofresidence_click: "//div[@id='residenceCountryCode']//img[@class='sc-afc5380d-0 ekTQMr']",
-    countryofresidence_brazil: "//div[@id='residenceCountryCode']//div[text()='Brazil']",
+    countryofresidence_brazil: "//div[@id='residenceCountryCode']//div[text()='Singapore']",
     residencystatus: "//div[@id='residencyStatusCodeQuotation']//img[@class='sc-afc5380d-0 ekTQMr']",
-    residencystatus_permanent: "//div[contains(text(),'Permanent Resident')]",
+    residencystatus_permanent: "//div[contains(text(),'Citizen')]",
     next_btn: "//button[text()='Next']"
 
 }
@@ -37,7 +37,7 @@ class QuotationSelectNationaliandResidency{
         await toClick(PageLocators.residencystatus_permanent);
     }
     async VerifyResidencyStatus(){
-        await assertText(PageLocators.residencystatus_permanent, "Permanent Resident");
+        await assertText(PageLocators.residencystatus_permanent, "Citizen");
         await toClick(PageLocators.next_btn);
         await toClick(PageLocators.next_btn);
     }
