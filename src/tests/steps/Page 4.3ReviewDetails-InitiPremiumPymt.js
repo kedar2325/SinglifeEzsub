@@ -6,11 +6,13 @@ require('dotenv').config();
 //login import
 const { ReviewDetailsInitialPremiumPayment } = require('../Pages/Page 4.3ReviewDetails-InitiPremiumPymt');
 const { pageObject } = require('../Hooks/PageObjects');
+const { sleep } = require('../Helper/Action');
 
 let InitialPremiumPymt;
 
 Given('user able to view payment method', async function () {
   InitialPremiumPymt=new ReviewDetailsInitialPremiumPayment(pageObject.page);
+  await sleep(2000);
   await InitialPremiumPymt.verifyInitialPremiumPage();
 });
 

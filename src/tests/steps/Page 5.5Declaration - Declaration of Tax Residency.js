@@ -21,13 +21,12 @@ When('user enters tin number', async function () {
 When('user selects tax resident in other jurisdiction no', async function () {
     await pageTaxDeclaration.clickOtherJurisdictionsN();
   });
-When('user selects tax resident in other jurisdiction no', async function () {
-    await pageTaxDeclaration.clickOtherJurisdictionsN();
-  }); 
+// When('user selects tax resident in other jurisdiction no', async function () {
+//     await pageTaxDeclaration.clickOtherJurisdictionsN();
+//   }); 
 When('user checks the declaration', async function () {
     await pageTaxDeclaration.checkTaxResidence();
   });
-
-Then('user selects next', async function () {
-    await pageDeclarationUsIndicia.clickNextButton();
+  Then('user selects next', async function () {
+    await pageTaxDeclaration.clickNextButton();
   });

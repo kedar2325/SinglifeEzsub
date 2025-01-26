@@ -27,19 +27,20 @@ class underwritingQuestions{
         await sleep(8000);
     }
     async VerifyUnderwriting() {
+        await toClick("(//p[text()='No'])[1]");
         await assertText(PageLocators.residencystatus_no,'Singlife Steadypay Saver');
         let locator;
         for(let i=1;i<12;i++){
-            await sleep(1000);
             locator="(//p[text()='No'])["+i+"]";
+            await sleep(1000);
             await toClick(locator); 
         }
     }
     async clickNotoUnderwritingQuestions(){
         let locator;
         for(let i=12;i<=22;i++){
-            await sleep(1000);
             locator="(//p[text()='No'])["+i+"]";
+            await sleep(1000);
             await toClick(locator);
         }
     }

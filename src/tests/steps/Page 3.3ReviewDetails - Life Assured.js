@@ -15,7 +15,9 @@ Given('user able to view the values in life assured tab', async function () {
   
     });
   When('user able to fill the values in all mandatory fields', async function () {
-    await ReviewDetailsForLifeAssured.EnterContactInformation();
+    await ReviewDetailsForLifeAssured.enterCityofResistence();
+    await ReviewDetailsForLifeAssured.enterEmailandMobile();
+    await ReviewDetailsForLifeAssured.EnterAdditionalInformation();
     
   });
   When('user able to complete the residential address', async function () {
@@ -25,6 +27,5 @@ Given('user able to view the values in life assured tab', async function () {
 
   When('user click the next button to go underwriting page',async function() {
     await ReviewDetailsForLifeAssured.GotoUnderwritingpage();
-    
   });
   

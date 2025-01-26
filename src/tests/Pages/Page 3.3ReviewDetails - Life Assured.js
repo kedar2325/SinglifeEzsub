@@ -6,7 +6,9 @@ require('dotenv').config();
 const PageLocators={
     lifeassured_exist: "//p[@class='sc-b68ad98c-0 detZbA']",
     email: "//input[@name='email']",
+    cityOfResistence:"//p[text()='City of Residence']//parent::label//following-sibling::div/input",
     mobilecode: "//input[contains(@name,'mobileCC')]",
+    mobileCodeNo:"//li[text()='Singapore (+65)']",
     mobileno: "//input[@name='mobileNo']",
     maritalstatus: "//div[@id='maritalStatusCode']",
     maritalstatus_married: "//div[contains(text(),'Married')]",
@@ -14,6 +16,8 @@ const PageLocators={
     race_indian: "//div[contains(text(),'Indian')]",
     countryofbirth:"//div[@id='birthCountryCode']//img[contains(@class,'sc-afc5380d-0 ekTQMr')]",
     countryofbirth_singapore: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
+    country:"//div[@id='resAddress.countryCode']",
+    selectCountry:"//div[@id='resAddress.countryCode']//div[text()='Brazil']",
     postalcode: "//input[@name='resAddress.postalCode']",
     search: "//button[text()='Search']",
     unitno: "//input[@name='resAddress.unitNo']",
@@ -32,20 +36,30 @@ class ReviewDetailsLifeAssured{
     async verifyLifeAssuredPage(){
         await assertText(PageLocators.lifeassured_exist,"Life Assured")
     }
-    async EnterContactInformation(){
+    async enterCityofResistence(){
+        await clickAndSendkeys(PageLocators.cityOfResistence,"Singapore");
+    }
+    async enterEmailandMobile(){
         await clickAndSendkeys(PageLocators.email,process.env.email)
         await clickAndSendkeys(PageLocators.mobilecode,process.env.mobilecode)
+        await toClick(PageLocators.mobileCodeNo);
         await clickAndSendkeys(PageLocators.mobileno,process.env.mobileno)
+        console.log("2");
+    }
+    async EnterAdditionalInformation(){  
         await toClick(PageLocators.maritalstatus)
         await toClick(PageLocators.maritalstatus_married)
         await toClick(PageLocators.race)
         await toClick(PageLocators.race_indian)
         await toClick(PageLocators.countryofbirth)
         await toClick(PageLocators.countryofbirth_singapore)
+        console.log("3");
     }
     async EnterResidentialAddress(){   
         await clickAndSendkeys(PageLocators.postalcode,process.env.postalcode)
         await toClick(PageLocators.search)   
+        await clickAndSendkeys(PageLocators.country,"Brazil");
+        await toClick(PageLocators.selectCountry);
         await clickAndSendkeys(PageLocators.unitno,process.env.unitno)
         await clickAndSendkeys(PageLocators.annualincome,process.env.annualincome);
         await clickAndSendkeys(PageLocators.employername,process.env.employername)
@@ -53,7 +67,12 @@ class ReviewDetailsLifeAssured{
         await toClick(PageLocators.natureofbusiness)
         await toClick(PageLocators.natureofbusiness_accounting)
         await toClick(PageLocators.financialbackgroung_no)
+        console.log("4");
+        await sleep(8000);
     }
+    //coutryof birth
+// country
+// yes or no
     async GotoUnderwritingpage(){
         await toClick(PageLocators.next_btn)
         await sleep(5000);
