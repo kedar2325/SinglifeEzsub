@@ -3,4 +3,4 @@ Feature: Declaration - Declaration of us indicia
   Scenario: Declare us indicia
     Given user able to view declaration of us indicia
     When user selects declare us indicia no
-    Then user selects next
+    Then user selects next on usIndico

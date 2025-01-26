@@ -21,7 +21,7 @@ Given('user able to view declaration of beneficial ownership', async function ()
 
 
 
-//   Then('user selects next', async function () {
-//           await pageBeneficialOwnership.clickNextButton();
-//           //Click on next button
-//   });
+  Then('user selects next on BO', async function () {
+          await pageBeneficialOwnership.clickNextButton();
+          //Click on next button
+  });
