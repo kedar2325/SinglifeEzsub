@@ -1,5 +1,5 @@
 
-const { clickAndSendkeys, sleep, toClick, assertText, Click, sendkeys } = require('../Helper/Action');
+const { clickAndSendkeys, sleep, toClick, assertText, Click, sendkeys, HiddenDropdown } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -16,8 +16,10 @@ const PageLocators={
     race_indian: "//div[contains(text(),'Indian')]",
     countryofbirth:"//div[@id='birthCountryCode']//img[contains(@class,'sc-afc5380d-0 ekTQMr')]",
     countryofbirth_singapore: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
-    country:"//div[@id='resAddress.countryCode']",
-    selectCountry:"//div[@id='resAddress.countryCode']//div[text()='Brazil']",
+   
+    country:"(//div[@id='resAddress.countryCode']/div/div)[2]",
+    selectCountry:"(//div[text()='Brazil'])[3]",
+
     postalcode: "//input[@name='resAddress.postalCode']",
     search: "//button[text()='Search']",
     unitno: "//input[@name='resAddress.unitNo']",
@@ -37,7 +39,7 @@ class ReviewDetailsLifeAssured{
         await assertText(PageLocators.lifeassured_exist,"Life Assured")
     }
     async enterCityofResistence(){
-        await clickAndSendkeys(PageLocators.cityOfResistence,"Singapore");
+        await clickAndSendkeys(PageLocators.cityOfResistence,"Brazil");
     }
     async enterEmailandMobile(){
         await clickAndSendkeys(PageLocators.email,process.env.email)
@@ -51,15 +53,28 @@ class ReviewDetailsLifeAssured{
         await toClick(PageLocators.maritalstatus_married)
         await toClick(PageLocators.race)
         await toClick(PageLocators.race_indian)
-        await toClick(PageLocators.countryofbirth)
-        await toClick(PageLocators.countryofbirth_singapore)
+        // await toClick(PageLocators.countryofbirth)
+        // await toClick(PageLocators.countryofbirth_singapore)
+
+
+
+
+
+
+
+        //hidden dropdown for singapore country section
+        await HiddenDropdown(PageLocators.countryofbirth,PageLocators.countryofbirth_singapore,"Singapore")
         console.log("3");
     }
     async EnterResidentialAddress(){   
+       // await HiddenDropdown(PageLocators.country,PageLocators.selectCountry,"Singapore")
+        await sleep(1000);
         await clickAndSendkeys(PageLocators.postalcode,process.env.postalcode)
         await toClick(PageLocators.search)   
-        await clickAndSendkeys(PageLocators.country,"Brazil");
-        await toClick(PageLocators.selectCountry);
+       // await clickAndSendkeys(PageLocators.country,"Brazil");
+        // await toClick(PageLocators.selectCountry);
+
+       
         await clickAndSendkeys(PageLocators.unitno,process.env.unitno)
         await clickAndSendkeys(PageLocators.annualincome,process.env.annualincome);
         await clickAndSendkeys(PageLocators.employername,process.env.employername)
