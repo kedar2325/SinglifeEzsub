@@ -180,6 +180,12 @@ async function fillByRole(role, inputValue, options = {}) {
     const element = await pageObject.page.getByRole(role, options);
     await element.fill(inputValue);
 };
+async function pressEnter(Webelement){
+    const element= await pageObject.page.locator(Webelement)
+    await element.press('Enter');
+};
+
+
 
 module.exports = {
     launchURL,
@@ -218,5 +224,5 @@ module.exports = {
     setCookies,
     mouseHoverClick,
     fileUpload,
-    
+    pressEnter,
 };

@@ -3,21 +3,19 @@ const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
 const PageLocators={
-    username:"#okta-signin-username",
-    password:"#okta-signin-password",
-    loginButton:"//input[@type='submit']",
-    homeGreetText:"//p[contains(text(), '👋 Welcome, ')]"
+    elementLocator:"//canvas[@id='signature-pad']",
+    url:"https://onlinesignature.com/draw-a-signature-online"
 }
  class Test{
     constructor(page){
         pageObject.page=page;
     }
     async NavigateLoginpage(){
-        await launchURL("https://www.iobit.com/en/keyboard-test.php")    
+        await launchURL(PageLocators.url)    
     }
     async Enter(){
         await sleep(2000);
-        await pressEnter();
+        await pressEnter(PageLocators.elementLocator);
     }
     async Sleep(){
         await sleep(8000);
