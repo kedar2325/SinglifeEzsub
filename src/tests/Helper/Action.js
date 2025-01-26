@@ -180,15 +180,35 @@ async function fillByRole(role, inputValue, options = {}) {
     const element = await pageObject.page.getByRole(role, options);
     await element.fill(inputValue);
 };
-async function pressEnter(Webelement){
-    const element= await pageObject.page.locator(Webelement)
-    await element.press('Enter');
-};
-
-
+async function uploadFile(Webelement,filepath) {
+    await sleep(2000);
+    await pageObject.page.locator(Webelement).setInputFiles(filepath);
+    await sleep(2000);
+}
+async function uploadMultipleFile(Webelement,filepath1,filepath2) {
+    await sleep(2000);
+    await pageObject.page.locator(Webelement).setInputFiles([filepath1,filepath2]);
+    await sleep(2000);
+}
+async function HiddenDropdown(Webelement,optionElement,text) {
+    await pageObject.page.locator(Webelement).click();
+    await sleep(1000);
+    const options=await pageObject.page.$$(optionElement);
+    console.log(options);
+    for(let option of options){
+        const value=await option.textContent();
+        if(value.includes(text)){
+            console.log(await option.textContent())
+            await option.click();
+        }
+    }
+}
 
 module.exports = {
     launchURL,
+    HiddenDropdown,
+    uploadFile,
+    uploadMultipleFile,
     GetByText_Click,
     GetByText_fill,
     getByTextIDClick,
