@@ -203,6 +203,10 @@ async function HiddenDropdown(Webelement,optionElement,text) {
         }
     }
 }
+async function pressEnter(Webelement){
+    const element= await pageObject.page.locator(Webelement)
+    await element.press('Enter');
+};
 
 module.exports = {
     launchURL,
@@ -244,5 +248,5 @@ module.exports = {
     setCookies,
     mouseHoverClick,
     fileUpload,
-    
+    pressEnter,
 };
