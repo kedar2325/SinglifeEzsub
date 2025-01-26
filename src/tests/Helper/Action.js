@@ -194,7 +194,7 @@ async function HiddenDropdown(Webelement,optionElement,text) {
     await pageObject.page.locator(Webelement).click();
     await sleep(1000);
     const options=await pageObject.page.$$(optionElement);
-    console.log(options);
+    console.log(`Found ${options.length} options.`);
     for(let option of options){
         const value=await option.textContent();
         if(value.includes(text)){
