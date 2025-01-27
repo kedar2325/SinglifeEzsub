@@ -2,7 +2,7 @@ const { clickAndSendkeys,Click, launchURL,  assertParticularText, pressEnter, sl
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 const { chromium } = require('playwright');
-const {filePath} = require('../fileUpload')
+const {filePath} = require('../fileUpload/Sample.txt')
 
 const PageLocators={
     //elementLocator:"//canvas[@id='signature-pad']",

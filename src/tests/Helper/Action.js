@@ -265,6 +265,5 @@ module.exports = {
     mouseDown,
     mouseMove,
     locator,
-    boundingBox,
 
 };
