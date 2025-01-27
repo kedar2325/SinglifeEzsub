@@ -1,5 +1,5 @@
 Feature: Review Details - Application Creation
-@e2e @NewQuatation
+@e2e
   Scenario: Enter into the Application page
   Given user able to view the quotation summary page
   When user click the save quotation button

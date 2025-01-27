@@ -1,5 +1,5 @@
 Feature: Review Details - Life Assured
-@e2e @NewQuatation
+@e2e
   Scenario: enter into the life assured
   Given user able to view the values in life assured tab
   When user able to fill the values in all mandatory fields

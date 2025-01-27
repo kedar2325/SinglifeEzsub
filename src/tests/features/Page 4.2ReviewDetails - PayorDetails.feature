@@ -1,5 +1,5 @@
 Feature: Review Details - Payer Details
-@e2e @NewQuatation
+@e2e
   Scenario: Valid Payer Details
   Given user able to view questions
     When user selects yes option

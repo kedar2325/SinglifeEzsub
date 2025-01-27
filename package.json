@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test --tags @NewQuatation",
+    "test": "cucumber-js test --tags @e2e",
     "allure:generate": "allure generate ./allure-results -o ./allure-report",
     "allure:open": "allure open ./allure-report",
     "report-test": "npm run test && npm run allure:generate"
