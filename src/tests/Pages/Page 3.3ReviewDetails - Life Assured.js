@@ -15,7 +15,10 @@ const PageLocators={
     race: "//div[@id='raceCode']//div[@class='css-1wy0on6']",
     race_indian: "//div[contains(text(),'Indian')]",
     countryofbirth:"//div[@id='birthCountryCode']//img[contains(@class,'sc-afc5380d-0 ekTQMr')]",
-    countryofbirth_singapore: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
+    //countryofbirth: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
+    countryofbirth: "//div[@id='birthCountryCode']",
+    countryofbirth_singapore: "//div[@id='birthCountryCode']//div[text()='Singapore']",
+    //countryofbirth_singapore: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
     country:"//div[@id='resAddress.countryCode']",
     selectCountry:"//div[@id='resAddress.countryCode']//div[text()='Brazil']",
     postalcode: "//input[@name='resAddress.postalCode']",
@@ -51,8 +54,8 @@ class ReviewDetailsLifeAssured{
         await toClick(PageLocators.maritalstatus_married)
         await toClick(PageLocators.race)
         await toClick(PageLocators.race_indian)
-        // await toClick(PageLocators.countryofbirth)
-        // await toClick(PageLocators.countryofbirth_singapore)
+        await toClick(PageLocators.countryofbirth)
+        await toClick(PageLocators.countryofbirth_singapore)
 
 
 

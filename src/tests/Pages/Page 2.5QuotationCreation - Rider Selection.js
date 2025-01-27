@@ -28,7 +28,7 @@ class RiderSelection{
                 break
             }
             else{
-                await page.locator('//p[normalize-space()="Cancer Premium Waiver II"]').check()
+                await pageObject.page.locator('//p[normalize-space()="Cancer Premium Waiver II"]').check()
             }
         }
     }
