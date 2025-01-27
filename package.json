@@ -4,18 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test --tags @NewQuatation"
+    "test": "cucumber-js test --tags @NewQuatation",
+    "allure:generate": "allure generate ./allure-results -o ./allure-report",
+    "allure:open": "allure open ./allure-report",
+    "report-test": "npm run test && npm run allure:generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "@cucumber/messages": "^27.0.2",
     "@playwright/test": "^1.49.1",
-    "@types/node": "^22.10.7"
+    "@types/node": "^22.10.7",
+    "allure-cucumberjs": "^3.0.9"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^11.2.0",
-    "dotenv": "^16.4.7"
-    
+    "dotenv": "^16.4.7",
+    "ezsub": "file:"
   }
 }

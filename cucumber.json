@@ -1,5 +1,7 @@
 {
   "default": {
+    
+
       "formatOptions": {
           "snippetInterface": "async-await"
       },
@@ -18,7 +20,8 @@
           "progress-bar",
           "html:test-results/cucumber-report.html",
           "json:test-results/cucumber-report.json",
-          "junit:test-results/report.xml"
+          "junit:test-results/report.xml",
+          "allure-cucumberjs/reporter"
       ]
   }
 }
