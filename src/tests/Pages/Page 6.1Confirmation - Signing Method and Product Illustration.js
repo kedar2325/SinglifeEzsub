@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { mouseMove,mouseUp, mouseDown, sleep, Click, assertText, toClick } = require('../Helper/Action');
+const { mouseHoverClick,mouseMove,mouseUp, mouseDown, sleep, Click, assertText, toClick, windowHandle } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -52,6 +52,7 @@ class SigningMethod {
 
     async productIllustrationAndSummary(){
         await Click(PageLocators.productClickPreviewPDF);
+        await sleep(2000);
         await Click(PageLocators.productDonebutton);
     }
 
@@ -62,34 +63,34 @@ class SigningMethod {
         await Click(PageLocators.appPreviewBtn);
         await Click(PageLocators.productDonebutton);
         await assertText(PageLocators.appSuccessMsg, "Fully read & understood"); 
+        await sleep(2000);
     }
     async signatureClickandSummary(){
         await Click(PageLocators.assuredSignatureForm);        
         await Click(PageLocators.assuredSignatureButton);
         await assertText(PageLocators.signatureFormTitle,"Signature Form");
-        await Click(PageLocators.assuredSignatureButton);
+       // await Click(PageLocators.assuredSignatureButton);
         await sleep(2000);
         await assertText(PageLocators.lifeAssuredSignatureTitle, "Life Assured Signature");
 
-        await toClick(PageLocators.canvaAssured);
+      //  await windowHandle(PageLocators.assuredSignatureButton,PageLocators.canvaAssured);
+  
+       await mouseHoverClick(PageLocators.canvaAssured);
     //    await mouseMove(270, 150);
+      await mouseDown();
         await mouseDown();
-        
         const startY = 150;
-        for (let x = 270; x < 700; x += 5) {
+        for (let x = 270; x < 400; x += 5) {
             await mouseMove(x, startY);
-            await sleep(10);
           }
-        await mouseUp()
-
-
-        //add code for assured signature using canva element
+        await mouseUp();
         await Click(PageLocators.confirmButton);
         await Click(PageLocators.adviserSignatureButton);
         await assertText(PageLocators.financialAssuredSignatureTitle,"Financial Advisor Signature");
         await Click(PageLocators.financialAssuredSignatureCanva);
         //add code for financial advisor signature
         await Click(PageLocators.confirmButton);
+        await sleep(2000);
         await Click(PageLocators.saveSignature);
         await assertText(PageLocators.signatureFormSuccessMsg,"Fully Signed");
     }

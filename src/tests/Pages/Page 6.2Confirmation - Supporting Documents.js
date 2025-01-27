@@ -1,8 +1,8 @@
 const { expect } = require('@playwright/test');
 const { Click, assertText, clickAndSendkeys, uploadFile } = require('../Helper/Action');
-const { pageObject } = require('../Hooks/PageObjects');
+//const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
-
+//const {filePath} = require('C:/Users/msundarraj/Desktop/Ezsub/src/tests/fileUpload\picture.png')
 const PageLocators={
     //Page Title
     SupportingDocsTitle:"//p[contains(text(),'Please upload required documents to support the ap')]",
@@ -12,8 +12,8 @@ const PageLocators={
     SectionUploadBtn:"(//button[@type='button'][normalize-space()='Upload files'])[3]",
     //Upload Docs Window
     UploadDocsTitle:"//p[normalize-space()='Upload Documents']",
-    BrowseToUploadBtn:"//p[normalize-space()='browse to upload']",
-    UploadAnywayBtn:"//button[normalize-space()='Upload anyway']",
+    BrowseToUploadBtn:"//input[@type='file']",
+    UploadAnywayBtn:"//button[contains(text(),'Upload any')]",
     FurtherVerficationTitle:"//p[normalize-space()='We may reach out to you for verification']",
     FurtherVerificationProceedBtn:"//button[normalize-space()='Proceed']",
     UploadBtn:"//button[normalize-space()='Upload']",
@@ -32,7 +32,7 @@ class ConfirmSupportingDocs{
         await Click(PageLocators.ProofOfIdUploadBtn);
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
        // await Click(PageLocators.BrowseToUploadBtn);
-        await uploadFile(PageLocators.BrowseToUploadBtn,"../src/tests/fileUpload/Code Stages Developer Guide.pdf")
+        await uploadFile(PageLocators.BrowseToUploadBtn,"C:/Users/msundarraj/Desktop/Ezsub/src/tests/fileUpload/picture.png")
         //Upload PDF code need to add
         await Click(PageLocators.UploadAnywayBtn);
         await assertText(PageLocators.FurtherVerficationTitle,"We may reach out to you for verification");
@@ -44,7 +44,7 @@ class ConfirmSupportingDocs{
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
      //   await Click(PageLocators.BrowseToUploadBtn);
         //Upload PDF code need to add
-        await uploadFile(PageLocators.BrowseToUploadBtn,"../src/tests/fileUpload/Code Stages Developer Guide.pdf")
+        await uploadFile(PageLocators.BrowseToUploadBtn,"C:/Users/msundarraj/Desktop/Ezsub/src/tests/fileUpload/picture.png")
         await Click(PageLocators.UploadBtn);
         await assertText(PageLocators.ProofAddressSuccess,"Uploaded")
     }
@@ -52,7 +52,7 @@ class ConfirmSupportingDocs{
         await Click(PageLocators.SectionUploadBtn);
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
       //  await Click(PageLocators.BrowseToUploadBtn);
-        await uploadFile(PageLocators.BrowseToUploadBtn,"../src/tests/fileUpload/Code Stages Developer Guide.pdf")
+        await uploadFile(PageLocators.BrowseToUploadBtn,"C:/Users/msundarraj/Desktop/Ezsub/src/tests/fileUpload/picture.png");
         //Upload PDF code need to add
         await Click(PageLocators.UploadBtn);
         await assertText(PageLocators.ProofMasSuccess,"Uploaded")

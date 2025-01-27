@@ -1,5 +1,6 @@
+const { context } = require("@cucumber/cucumber");
 const { pageObject } = require("../Hooks/PageObjects");
-const { expect, selectors } = require("@playwright/test");
+const { expect,chromium } = require("@playwright/test");
 
 async function launchURL(URL) {
     await pageObject.page.goto(URL);
@@ -220,9 +221,25 @@ async function pressEnter(Webelement){
     const element= await pageObject.page.locator(Webelement)
     await element.press('Enter');
 };
+async function windowHandle(Webelement,Webelement2){
+    const browser=await chromium.launch();
+    const context=await browser.newContext();
+const pagePromise=context.waitForEvent('page');
+await pageObject.page.locator(Webelement).click();
+const newPage=await pagePromise;
+await newPage.locator(Webelement2).click();
+await newPage.mouse.down();
+const startY = 150;
+for (let x = 270; x < 700; x += 5) {
+    await newPage.mouse.move(x, startY);
+    await newPage.waitForTimeout(time);
+  }
+  await newPage.mouse.up();
+}
 
 module.exports = {
     launchURL,
+    windowHandle,
     HiddenDropdown,
     uploadFile,
     uploadMultipleFile,

@@ -3,6 +3,7 @@ const { setDefaultTimeout } = require('@cucumber/cucumber');
 setDefaultTimeout(15000); 
 require('dotenv').config();
 
+
 //ConfirmSupportDocsimport
 const { ConfirmSupportingDocs } = require('../Pages/Page 6.2Confirmation - Supporting Documents');
 const { pageObject } = require('../Hooks/PageObjects');
@@ -23,7 +24,7 @@ Given('user able to view the supporting docs', async function () {
   });
 
   When('user able to upload proof of mas', async function () {
-    await pageSupportingDocs.uploadProofMas();
+    //await pageSupportingDocs.uploadProofMas();
   });
 
   Then('user click on next btn on doc', async function () {

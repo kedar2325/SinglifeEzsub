@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { Click, assertText, clickAndSendkeys } = require('../Helper/Action');
+const { Click, assertText, sleep } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -16,8 +16,10 @@ class SubmitDocuments{
         }
     async clickSubmitApplicationButton(){
             await Click(PageLocators.SubmitApplicationBtn);
+            await sleep(2000);
     }
     async verifySubmitSuccessfully(){
+        await sleep(2000);
             await assertText(PageLocators.SuccessMessage,"Success! Your application has been submitted");
     }
 
