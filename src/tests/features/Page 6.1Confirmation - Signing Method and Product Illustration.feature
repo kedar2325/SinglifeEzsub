@@ -7,4 +7,4 @@ Feature: Confirmation - Signing Method - Product Illustration and Product Summar
     And user preview the PDF of App and success
     And user preview the PDF of Assured Signature and success
     And user preview the PDF of Credit Signature and success
-    Then user click on next btn
+    Then user click on next btn on signing

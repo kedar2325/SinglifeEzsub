@@ -26,6 +26,6 @@ Given('user able to view the supporting docs', async function () {
     await pageSupportingDocs.uploadProofMas();
   });
 
-  Then('user click on next btn', async function () {
+  Then('user click on next btn on doc', async function () {
     await pageSupportingDocs.clickNextButton();
   });

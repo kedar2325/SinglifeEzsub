@@ -5,4 +5,4 @@ Feature: Confirmation - Supporting Documents
     When user able to upload proof of id
     And user able to upload proof of address
     And user able to upload proof of mas
-    Then user clicks next button
+    Then user click on next btn on doc

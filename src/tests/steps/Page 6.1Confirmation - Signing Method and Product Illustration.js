@@ -35,6 +35,6 @@ Given('user able to view the signing method', async function () {
     await pageSigningMethod.creditCardClickandSummary();
   });
 
-  Then('user click on next btn', async function () {
+  Then('user click on next btn on signing', async function () {
     await pageSigningMethod.clickNextButton();
   });
