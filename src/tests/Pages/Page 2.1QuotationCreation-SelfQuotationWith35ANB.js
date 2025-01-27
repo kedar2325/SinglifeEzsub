@@ -41,10 +41,10 @@ class CustomerSelection{
         await clickByRole('option',{ name: 'Mr', exact: true })
     }
     async EnterlastName(){
-        await getByTextIDClick('lastName',"Magesh");
+        await getByTextIDClick('lastName',"Auto");
     }
     async EnterfirstName(){
-        await clickAndSendkeys(PageLocators.firstName,"poopathi")
+        await clickAndSendkeys(PageLocators.firstName,"Robot")
     }
     async EnterDOB(){
         await toClick(PageLocators.DOBfield);

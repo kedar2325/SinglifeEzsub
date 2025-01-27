@@ -1,5 +1,5 @@
 Feature: Confirmation - Supporting Documents
-@e2e @NewQuatation
+@e2e
   Scenario: Complete the E-Signature in others field
     Given user able to view the supporting docs
     When user able to upload proof of id

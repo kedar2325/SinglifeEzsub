@@ -47,7 +47,6 @@ class ReviewDetailsLifeAssured{
         await clickAndSendkeys(PageLocators.mobilecode,process.env.mobilecode)
         await toClick(PageLocators.mobileCodeNo);
         await clickAndSendkeys(PageLocators.mobileno,process.env.mobileno)
-        console.log("2");
     }
     async EnterAdditionalInformation(){  
         await toClick(PageLocators.maritalstatus)
@@ -65,7 +64,7 @@ class ReviewDetailsLifeAssured{
 
         //hidden dropdown for singapore country section
      //   await HiddenDropdown(PageLocators.countryofbirth,PageLocators.countryofbirth_singapore,"Singapore")
-        console.log("3");
+      
     }
     async EnterResidentialAddress(){   
         await clickAndSendkeys(PageLocators.postalcode,process.env.postalcode)
@@ -79,7 +78,6 @@ class ReviewDetailsLifeAssured{
         await toClick(PageLocators.natureofbusiness)
         await toClick(PageLocators.natureofbusiness_accounting)
         await toClick(PageLocators.financialbackgroung_no)
-        console.log("4");
         await sleep(8000);
     }
     //coutryof birth
