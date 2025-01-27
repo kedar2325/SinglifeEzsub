@@ -29,7 +29,6 @@ class ProductSelection{
     }
     async verifyProductsSelected(){
         await assertText(PageLocators.verifyProductSelected, "Singlife Steadypay Saver");
-        await pageObject.page.pause()
     }
 }
 module.exports={ProductSelection}

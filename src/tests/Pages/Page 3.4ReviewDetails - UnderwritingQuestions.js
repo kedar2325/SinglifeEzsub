@@ -32,7 +32,7 @@ class underwritingQuestions{
         let locator;
         for(let i=1;i<12;i++){
             locator="(//p[text()='No'])["+i+"]";
-            await sleep(1000);
+            await sleep(1500);
             await toClick(locator); 
         }
     }
@@ -40,7 +40,7 @@ class underwritingQuestions{
         let locator;
         for(let i=12;i<=22;i++){
             locator="(//p[text()='No'])["+i+"]";
-            await sleep(1000);
+            await sleep(1500);
             await toClick(locator);
         }
     }

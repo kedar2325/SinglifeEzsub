@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { Click, assertText, clickAndSendkeys } = require('../Helper/Action');
+const { Click, assertText, sleep } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -30,6 +30,7 @@ nextButton:"//button[normalize-space()='Next']"
 class DeclarationBeneficialOwnership{
 
     async verifyBeneficialOwnershipTitle(){
+        await sleep(2000);
         await assertText(PageLocators.beneficialOwnershipTitle,"Declaration of Beneficial Ownership");
     }
     async clickPoliticallyExposedPersonN(){

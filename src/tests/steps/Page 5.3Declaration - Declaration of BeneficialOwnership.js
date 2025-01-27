@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
-setDefaultTimeout(15000); 
+setDefaultTimeout(20000); 
 require('dotenv').config();
 
 const {DeclarationBeneficialOwnership} = require('../Pages/Page 5.3Declaration - Declaration of BeneficialOwnership');

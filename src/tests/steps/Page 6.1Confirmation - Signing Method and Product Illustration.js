@@ -20,7 +20,7 @@ Given('user able to view the signing method', async function () {
 
   When('user preview the PDF of Product and success', async function () {
     await pageSigningMethod.productIllustrationAndSummary();
-    await pageSigningMethod.successMessage();
+    await pageSigningMethod.productsuccessMessage();
   });
 
   When('user preview the PDF of App and success', async function () {

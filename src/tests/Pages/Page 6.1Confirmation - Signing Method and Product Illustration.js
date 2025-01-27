@@ -69,6 +69,8 @@ class SigningMethod {
         await Click(PageLocators.assuredSignatureButton);
         await assertText(PageLocators.lifeAssuredSignatureTitle, "Life Assured Signature");
         
+
+        
         //add code for assured signature using canva element
         await Click(PageLocators.confirmButton);
         await Click(PageLocators.adviserSignatureButton);
