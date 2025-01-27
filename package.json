@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js test --tags @NewQuatation",
-    "allure:generate": "allure generate ./allure-results -o ./allure-report",
+    "allure:generate": "allure generate ./allure-results -o ./allure-report --clean",
     "allure:open": "allure open ./allure-report",
-    "report-test": "npm run test && npm run allure:generate"
+    "report-test": "npm run test && npm run allure:generate && npm run allure:open"
   },
   "keywords": [],
   "author": "",
