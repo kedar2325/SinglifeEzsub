@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { Click, assertText, clickAndSendkeys } = require('../Helper/Action');
+const { Click, assertText, clickAndSendkeys, uploadFile } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -31,7 +31,8 @@ class ConfirmSupportingDocs{
     async uploadProofOfId(){
         await Click(PageLocators.ProofOfIdUploadBtn);
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
-        await Click(PageLocators.BrowseToUploadBtn);
+       // await Click(PageLocators.BrowseToUploadBtn);
+        await uploadFile(PageLocators.BrowseToUploadBtn,"../src/tests/fileUpload/Code Stages Developer Guide.pdf")
         //Upload PDF code need to add
         await Click(PageLocators.UploadAnywayBtn);
         await assertText(PageLocators.FurtherVerficationTitle,"We may reach out to you for verification");
@@ -41,15 +42,17 @@ class ConfirmSupportingDocs{
     async uploadProofOfAddress(){
         await Click(PageLocators.ProofOfAddressUploadBtn);
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
-        await Click(PageLocators.BrowseToUploadBtn);
+     //   await Click(PageLocators.BrowseToUploadBtn);
         //Upload PDF code need to add
+        await uploadFile(PageLocators.BrowseToUploadBtn,"../src/tests/fileUpload/Code Stages Developer Guide.pdf")
         await Click(PageLocators.UploadBtn);
         await assertText(PageLocators.ProofAddressSuccess,"Uploaded")
     }
     async uploadProofMas(){
         await Click(PageLocators.SectionUploadBtn);
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
-        await Click(PageLocators.BrowseToUploadBtn);
+      //  await Click(PageLocators.BrowseToUploadBtn);
+        await uploadFile(PageLocators.BrowseToUploadBtn,"../src/tests/fileUpload/Code Stages Developer Guide.pdf")
         //Upload PDF code need to add
         await Click(PageLocators.UploadBtn);
         await assertText(PageLocators.ProofMasSuccess,"Uploaded")

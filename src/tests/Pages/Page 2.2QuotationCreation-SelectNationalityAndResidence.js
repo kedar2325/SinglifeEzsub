@@ -20,6 +20,7 @@ class QuotationSelectNationaliandResidency{
         pageObject.page=page;
     }
     async SelectNationality(){
+        await sleep(2000);
         await Click(PageLocators.nationality_click)
         await Click(PageLocators.nationality_indonesia)
     }
