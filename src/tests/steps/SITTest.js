@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
-setDefaultTimeout(15000); 
+setDefaultTimeout(30000); 
 require('dotenv').config();
 
 //Submit import

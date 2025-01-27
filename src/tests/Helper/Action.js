@@ -60,16 +60,29 @@ async function Tab(Webelement) {
     await pageObject.page.tap(Webelement);
 }
 
-async function mouceClick(x, y) {
+async function mouseClick(x, y) {
     await pageObject.page.mouse.click(x, y);
 }
 
-async function moucedoubleClick(x, y) {
+async function mouseDoubleClick(x, y) {
     await pageObject.page.mouse.dblclick(x, y);
 }
 
-async function mousedown() {
+async function mouseMove(endX,endY) {
+    await pageObject.page.mouse.move(endX,endY);
+}
+
+
+async function locator(element) {
+    await pageObject.page.locator(element)
+}
+
+
+async function mouseDown() {
     await pageObject.page.mouse.down();
+}
+async function mouseUp() {
+    await pageObject.page.mouse.up();
 }
 
 async function sleep(time) {
@@ -226,9 +239,6 @@ module.exports = {
     select,
     doubleClick,
     Tab,
-    mouceClick,
-    moucedoubleClick,
-    mousedown,
     fillByRole,
     clickByRole,
     sleep,
@@ -249,4 +259,12 @@ module.exports = {
     mouseHoverClick,
     fileUpload,
     pressEnter,
+    mouseUp,
+    mouseClick,
+    mouseDoubleClick,
+    mouseDown,
+    mouseMove,
+    locator,
+    boundingBox,
+
 };
