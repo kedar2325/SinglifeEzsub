@@ -8,7 +8,6 @@ const PageLocators={
     searchTab: "(//input[@id='search'])[1]",
     clickSelect: "//button[contains(text(),'Select')]",
     nextButton: "//button[contains(text(),'Next')]",
-    verifyProductSelected: "(//p[contains(text(),'Singlife Steadypay Saver')])[1]"
 }
 
 class ProductSelection{
@@ -19,7 +18,7 @@ class ProductSelection{
         await assertText(PageLocators.verifyProductSelectionPage, "Product selection for"); 
     }
     async search(){
-        await clickAndSendkeys(PageLocators.searchTab,process.env.SearchWord); 
+        await clickAndSendkeys(PageLocators.searchTab,process.env.ProductName); 
     }
     async selectInList(){
         await Click(PageLocators.clickSelect);
@@ -28,7 +27,8 @@ class ProductSelection{
         await Click(PageLocators.nextButton);
     }
     async verifyProductsSelected(){
-        await assertText(PageLocators.verifyProductSelected, "Singlife Steadypay Saver");
+        let Productname=process.env.ProductName;
+        await assertText(`(//p[contains(text(),'${Productname}')])[1]`, process.env.ProductName);
     }
 }
 module.exports={ProductSelection}
