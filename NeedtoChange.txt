@@ -1,0 +1,22 @@
+1.Switch to dynamic for input value (toExcel)
+2.Add Screenshot func
+3.UW - 25Ques
+4.Payer Details
+5.Implement SOL
+6.Ez sub verify 
+7.Life400
+9.Dotshpere
+10.Filenet Webservices
+
+
+--------------------
+1.Build 5 Scenarios
+2.Get Input&EV from toExcel <> same product - Jan27
+3.Create a flow chart
+4.Req Software & Licence type
+5.Add validation
+6.Report Generation
+
+Next rel 6th
+3rd
+
