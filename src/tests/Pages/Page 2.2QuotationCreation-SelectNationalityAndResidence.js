@@ -6,9 +6,10 @@ require('dotenv').config();
 
 const PageLocators={
     smokingstatus: " //p[normalize-space()='Non-smoker']",
-    nationality_click: "//div[@id='nationalityCode']//img[@class='sc-afc5380d-0 ekTQMr']",
+    nationality_click: "//div[@id='nationalityCode']//img",
     //nationality_click: "//div[@id='react-select-22-placeholder']",
-    //nationality_indonesia: "//div[@id='nationalityCode']//div[contains(text(),${process.env.nationality})]",
+    //nationality_options: "//div[@id='react-select-11-placeholder']",
+    nationality_indonesia: "//div[@id='nationalityCode']//div[contains(text(),'ALAND ISLANDS')]",
     countryofresidence_click: "//div[@id='residenceCountryCode']//img[@class='sc-afc5380d-0 ekTQMr']",
     //countryofresidence_brazil: "//div[@id='residenceCountryCode']//div[contains(text(),${process.env.countryOfResidence})]",
     residencystatus: "//div[@id='residencyStatusCodeQuotation']//img[@class='sc-afc5380d-0 ekTQMr']",
@@ -23,15 +24,16 @@ class QuotationSelectNationaliandResidency{
     }
 
     async SmokingStatus(){
+        await sleep(2000);
         let smoking_status = process.env.smokingstatus
         await toClick(`//p[normalize-space()='${smoking_status}']`)
+        
     }
     async SelectNationality(){
-        await sleep(2000);
-        await Click(PageLocators,nationality_click);
-        console.log("successfull");
-        await clickAndSendkeys(PageLocators.nationality_click,process.env.nationality);
-        //await Click(PageLocators.nationality_indonesia)
+        await Click(PageLocators.nationality_click);
+        //await clickAndSendkeys(PageLocators.nationality_click,process.env.nationality);
+        let nationality=process.env.nationality;
+        await Click(PageLocators.nationality_indonesia)
     }
     async SelectCountryofBirth(){
         await Click(PageLocators.countryofresidence_click)

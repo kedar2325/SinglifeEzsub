@@ -7,6 +7,7 @@ let CountrySelection;
 
 Given('user selects Nationality from the dropdown', async function () {
         CountrySelection = new QuotationSelectNationaliandResidency(pageObject.page)
+        await CountrySelection.SmokingStatus()
         await CountrySelection.SelectNationality()
 
 });
