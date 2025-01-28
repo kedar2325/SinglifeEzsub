@@ -4,7 +4,8 @@ const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
 const PageLocators={
-    paymentfrequency_exist: "//p[text()='Annual Premium Payable']",
+    productDetailsExist:"//div[text()='Product Details']",
+    paymentfrequency: "//p[text()='Annual Premium Payable']//parent::div//following-sibling::div/input",
     policyterm: "#policyTerm",
     sumassured: "//input[@name='sumAssured']",
     calculatebtn: "//button[text()='Calculate']",
@@ -16,7 +17,7 @@ class ProductDetails{
         pageObject.page=page;
     }
     async ProductDetails_Exist(){
-        await assertText(PageLocators.paymentfrequency_exist,"Annual Premium Payable")
+        await assertText(PageLocators.productDetailsExist,"Product Details")
     }
     async PolicyTerm(){
      //   await toClick(PageLocators.policyterm)
@@ -28,6 +29,11 @@ class ProductDetails{
     async SumAssuredCalculate(){
         await sleep(8000);
         await toClick(PageLocators.calculatebtn);
+    }
+    async PaymentFrequency(){
+        let paymentfrequency=process.env.PaymentFrequency
+        await toClick(`//p[text()='${paymentfrequency}']//parent::div//following-sibling::div/input`);
+        console.log(`User selects payment frequency as ${paymentfrequency}`);
     }
     async ValidatePremiumAmount_Exist(){
         await assertParticularText(PageLocators.amountexist,"SGD")

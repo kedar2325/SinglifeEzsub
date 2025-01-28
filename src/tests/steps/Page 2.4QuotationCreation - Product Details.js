@@ -28,6 +28,7 @@ When('user enter the sum sssured value in the sum asssured field', async functio
   });
 When('user click the calculate button for the premium calculation', async function () {
   await ProductDetailsPage.SumAssuredCalculate()
+  await ProductDetailsPage.PaymentFrequency();
     
   });
 Then('user should validate the premium amount calculated', async function () {
