@@ -6,12 +6,12 @@ require('dotenv').config();
 const PageLocators={
     lifeassured_exist: "//p[@class='sc-b68ad98c-0 detZbA']",
     email: "//input[@name='email']",
-    cityOfResistence:"//p[text()='City of Residence']//parent::label//following-sibling::div/input",
+    cityOfResidence:"//p[text()='City of Residence']//parent::label//following-sibling::div/input",
     mobilecode: "//input[contains(@name,'mobileCC')]",
     mobileCodeNo:"//li[text()='Singapore (+65)']",
     mobileno: "//input[@name='mobileNo']",
     maritalstatus: "//div[@id='maritalStatusCode']",
-    maritalstatus_married: "//div[contains(text(),'Married')]",
+    maritalstatus_married: "//div[contains(text(),'${maritalstatus}')]",
     race: "//div[@id='raceCode']//div[@class='css-1wy0on6']",
     race_indian: "//div[contains(text(),'Indian')]",
     countryofbirth:"//div[@id='birthCountryCode']//img[contains(@class,'sc-afc5380d-0 ekTQMr')]",
@@ -23,6 +23,8 @@ const PageLocators={
     selectCountry:"//div[@id='resAddress.countryCode']//div[text()='Brazil']",
     postalcode: "//input[@name='resAddress.postalCode']",
     search: "//button[text()='Search']",
+    address_landedproperty: "//label[text()='Address is a landed property']/preceding::input[@id='checkbox']",
+    correspondanceaddress_checkbox: "//div[@class='flex flex-start py-4']//img[@id='tick_icon']",
     unitno: "//input[@name='resAddress.unitNo']",
     annualincome: "//input[@name='employment.annualIncome']",
     employername: "//input[@name='employment.companyName']",
@@ -39,8 +41,8 @@ class ReviewDetailsLifeAssured{
     async verifyLifeAssuredPage(){
         await assertText(PageLocators.lifeassured_exist,"Life Assured")
     }
-    async enterCityofResistence(){
-        await clickAndSendkeys(PageLocators.cityOfResistence,"Singapore");
+    async enterCityofResidence(){
+        await clickAndSendkeys(PageLocators.cityOfResidence,process.env.cityofresidence);
     }
     async enterEmailandMobile(){
         await clickAndSendkeys(PageLocators.email,process.env.email)
@@ -49,7 +51,8 @@ class ReviewDetailsLifeAssured{
         await clickAndSendkeys(PageLocators.mobileno,process.env.mobileno)
     }
     async EnterAdditionalInformation(){  
-        await toClick(PageLocators.maritalstatus)
+        
+        await toClick(`//div[text()='Married']`)
         await toClick(PageLocators.maritalstatus_married)
         await toClick(PageLocators.race)
         await toClick(PageLocators.race_indian)

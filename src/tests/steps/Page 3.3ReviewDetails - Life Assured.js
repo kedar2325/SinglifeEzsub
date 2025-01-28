@@ -15,7 +15,7 @@ Given('user able to view the values in life assured tab', async function () {
   
     });
   When('user able to fill the values in all mandatory fields', async function () {
-    await ReviewDetailsForLifeAssured.enterCityofResistence();
+    await ReviewDetailsForLifeAssured.enterCityofResidence();
     await ReviewDetailsForLifeAssured.enterEmailandMobile();
     await ReviewDetailsForLifeAssured.EnterAdditionalInformation();
     

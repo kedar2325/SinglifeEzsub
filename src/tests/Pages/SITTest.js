@@ -20,7 +20,7 @@ const PageLocators={
     }
     async Enter(){
         await sleep(12000);
-        await uploadFile(PageLocators.elementLocator,'C:\\Users\\7821\\Desktop\\Sample.txt')
+       // await uploadFile(PageLocators.elementLocator,'"C:/Users/2194/Desktop/SinglifeEzsub/src/tests\fileUpload\Sample.txt"')
         await Click("//button[@id='fileSubmit']")
     }
     
