@@ -9,7 +9,6 @@ Given('user clicks customer selection for quotation', async function () {
   });
 
 When('user clicks new EzSub profile', async function () {
-        await CustomerselectionFunction.clickNextButton();
         await CustomerselectionFunction.clickNewEzsubButton();
 });
 

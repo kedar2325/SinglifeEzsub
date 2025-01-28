@@ -12,6 +12,16 @@ const fs = require('fs');
 //             console.log(data);  
 // }
 
+ function getCurrentMonthName() {
+    const currentDate = new Date();
+    const months = [
+      "January", "February", "March", "April", "May", "June", 
+      "July", "August", "September", "October", "November", "December"
+    ];
+    return months[currentDate.getMonth()];
+  }
+  
+
 async function launchURL(URL) {
     await pageObject.page.goto(URL);
     return pageObject.page;
@@ -249,6 +259,7 @@ for (let x = 270; x < 700; x += 5) {
 
 module.exports = {
     launchURL,
+    getCurrentMonthName,
     windowHandle,
     HiddenDropdown,
     uploadFile,
