@@ -5,6 +5,7 @@ require('dotenv').config();
 
 
 const PageLocators={
+    smokingstatus: " //p[normalize-space()='Non-smoker']",
     nationality_click: "//div[@id='nationalityCode']//img[@class='sc-afc5380d-0 ekTQMr']",
     //nationality_click: "//div[@id='react-select-22-placeholder']",
     //nationality_indonesia: "//div[@id='nationalityCode']//div[contains(text(),${process.env.nationality})]",
@@ -19,6 +20,11 @@ const PageLocators={
 class QuotationSelectNationaliandResidency{
     constructor(page){
         pageObject.page=page;
+    }
+
+    async SmokingStatus(){
+        let smoking_status = process.env.smokingstatus
+        await toClick(`//p[normalize-space()='${smoking_status}']`)
     }
     async SelectNationality(){
         await sleep(2000);

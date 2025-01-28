@@ -11,13 +11,13 @@ const PageLocators={
     mobileCodeNo:"//li[text()='Singapore (+65)']",
     mobileno: "//input[@name='mobileNo']",
     maritalstatus: "//div[@id='maritalStatusCode']",
-    maritalstatus_married: "//div[contains(text(),'${maritalstatus}')]",
+    //maritalstatus_married: "//div[contains(text(),'${maritalstatus}')]",
     race: "//div[@id='raceCode']//div[@class='css-1wy0on6']",
-    race_indian: "//div[contains(text(),'Indian')]",
+    //race_indian: "//div[contains(text(),'Indian')]",
     countryofbirth:"//div[@id='birthCountryCode']//img[contains(@class,'sc-afc5380d-0 ekTQMr')]",
     //countryofbirth: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
     countryofbirth: "//div[@id='birthCountryCode']",
-    countryofbirth_singapore: "//div[@id='birthCountryCode']//div[text()='Singapore']",
+    //countryofbirth_singapore: "//div[@id='birthCountryCode']//div[text()='Singapore']",
     //countryofbirth_singapore: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
     country:"//div[@id='resAddress.countryCode']",
     selectCountry:"//div[@id='resAddress.countryCode']//div[text()='Brazil']",
@@ -51,13 +51,18 @@ class ReviewDetailsLifeAssured{
         await clickAndSendkeys(PageLocators.mobileno,process.env.mobileno)
     }
     async EnterAdditionalInformation(){  
-        
-        await toClick(`//div[text()='Married']`)
-        await toClick(PageLocators.maritalstatus_married)
+        await toClick(PageLocators.maritalstatus)
+        let marital_status = process.env.maritalstatus
+        let race_code = process.env.racecode
+        let countryof_birth = process.env.countryofbirth
+        await toClick(`//div[text()='${marital_status}']`)
         await toClick(PageLocators.race)
+        
+        await toClick(`//div[contains(text(),'${race_code}']`)
         await toClick(PageLocators.race_indian)
         await toClick(PageLocators.countryofbirth)
-        await toClick(PageLocators.countryofbirth_singapore)
+        await toClick(`//div[@id='birthCountryCode']//div[text()='${countryof_birth}']`)
+       // await toClick(PageLocators.countryofbirth_singapore)
 
 
 
