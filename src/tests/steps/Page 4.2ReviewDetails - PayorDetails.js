@@ -14,8 +14,8 @@ Given('user able to view questions', async function () {
   await PayerDetails.verifyPage();
   });
 
-When('user selects yes option', async function () {
-  await PayerDetails.payerYes();
+When('user selects yes/no option', async function () {
+  await PayerDetails.PayingPolicy();
   }); 
   
 When('user selects source of wealth', async function () {
