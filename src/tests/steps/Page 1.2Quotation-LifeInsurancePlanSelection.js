@@ -10,9 +10,8 @@ Given('user able to view the new quotation', async function () {
         await NewPlanSelection.NewQuatation();
 });
 
-When('user clicks new quotation as {string}', async function (InsurancePlan) {
-  console.log(InsurancePlan);
-  await NewPlanSelection.InsuranceType(InsurancePlan);
+When('user clicks new quotation', async function () {
+  await NewPlanSelection.InsuranceType();
 });
 When('user selects life insurance', async function () {
         await NewPlanSelection.ClickStartQuatation();

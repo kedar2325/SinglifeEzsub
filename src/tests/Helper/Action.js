@@ -1,6 +1,16 @@
 const { context } = require("@cucumber/cucumber");
 const { pageObject } = require("../Hooks/PageObjects");
 const { expect,chromium } = require("@playwright/test");
+//const XLSX = require('xlsx');
+const fs = require('fs');
+
+// async function dataFromExcel() {
+//             const workbook = XLSX.readFile('example.xlsx');
+//             const sheetName = workbook.SheetNames[0];
+//             const worksheet = workbook.Sheets[sheetName];
+//             const data = XLSX.utils.sheet_to_json(worksheet);
+//             console.log(data);  
+// }
 
 async function launchURL(URL) {
     await pageObject.page.goto(URL);

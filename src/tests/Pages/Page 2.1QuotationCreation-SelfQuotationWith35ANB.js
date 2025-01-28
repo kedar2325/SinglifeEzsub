@@ -5,7 +5,7 @@ const { pageObject } = require('../Hooks/PageObjects');
 const PageLocators={
     customerType:"//p[contains(text(), 'Self')]",
     nextButton:"//button[contains(text(), 'Next')]",
-    newEzsubButton:"//p[contains(text(), 'New EzSub Profile')]",
+    newEzsubButton:"//p[text()='New EzSub Profile']",
     NRICfield:"//input[@name='securityNumber']",
     salutationID:"#salutationCode img",
     firstName:"input[name='firstName']",

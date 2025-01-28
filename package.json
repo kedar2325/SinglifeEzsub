@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js test --tags @e2e",
-    "allure:generate": "allure generate ./allure-results -o ./allure-report",
+    "allure:generate": "allure generate ./allure-results -o ./allure-report --clean",
     "allure:open": "allure open ./allure-report",
-    "report-test": "npm run test && npm run allure:generate"
+    "report-test": "npm run test && npm run allure:generate && npm run allure:open"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "@cucumber/messages": "^27.0.2",
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.7",
+    "allure-commandline": "^2.32.0",
     "allure-cucumberjs": "^3.0.9"
   },
   "dependencies": {
