@@ -5,7 +5,7 @@ setDefaultTimeout(15000);
 let CustomerselectionFunction;
 Given('user clicks customer selection for quotation', async function () {
   CustomerselectionFunction=new CustomerSelection(pageObject.page)
-  await CustomerselectionFunction.selectCustomer();
+  await CustomerselectionFunction.QuotationType();
   });
 
 When('user clicks new EzSub profile', async function () {

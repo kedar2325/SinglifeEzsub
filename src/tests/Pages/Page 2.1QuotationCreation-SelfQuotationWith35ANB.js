@@ -22,14 +22,46 @@ class CustomerSelection{
         pageObject.page=page;
     }
  
-    async  selectCustomer() {
-        await GetByText_Click('Self');
+    async  QuotationType() {
+        const quotationType = process.env.quotationType;
+        const InsurancePlan = process.env.InsurancePlan;
+        if (InsurancePlan === "Life Insurance" || InsurancePlan === "Medical & Health Insurance" || InsurancePlan === "Accident Guard") {
+            if (quotationType === "Self" || quotationType === "Third-party") {
+                await toClick(`//p[contains(text(), '${quotationType}')]`);
+                console.log(`${quotationType} quatation is selected`);
+                await toClick(PageLocators.nextButton);
+            }  
+            else if (InsurancePlan === "Life Insurance" && quotationType === "Joint-Life") {
+                    await toClick(`//p[contains(text(), '${quotationType}')]`);
+                    console.log(`${quotationType} quatation is selected`);
+                    await toClick(PageLocators.nextButton);
+                }
+                else if (InsurancePlan === "Medical & Health Insurance" && quotationType === "Family") {
+                    await toClick(`//p[contains(text(), '${quotationType}')]`);
+                    console.log(`${quotationType} quatation is selected`);
+                   await toClick(PageLocators.nextButton);
+               } else {
+                   console.log(`For  ${InsurancePlan} no quatation type is available..`);
+               }
+            }
+        else{
+            console.log(`Unsupported quotation type ${quotationType} for ${InsurancePlan}`);
+        }
     }
-    async clickNextButton(){
-        await toClick(PageLocators.nextButton);
-    }
+    
+
+    // async clickNextButton(){
+    //     await toClick(PageLocators.nextButton);
+    // }
     async clickNewEzsubButton(){
-        await toClick(PageLocators.newEzsubButton)
+        let profileType=process.env.Profile;
+        if(profileType=='New EzSub Profile'){
+            await toClick(`//p[text()='${profileType}']`);
+        }
+        else{
+            console.log(`${profileType} is not yet Implemented`)
+        }
+       
     }
     async fillNRICnumber(){
         await clickAndSendkeys(PageLocators.NRICfield,process.env.NRIC_Number)
