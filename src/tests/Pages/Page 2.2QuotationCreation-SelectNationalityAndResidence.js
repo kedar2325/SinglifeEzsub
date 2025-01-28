@@ -32,20 +32,33 @@ class QuotationSelectNationaliandResidency{
         await Click(`//div[@id='nationalityCode']//div[contains(text(),'${nationality}')]`);
         console.log(`User selected nationality is ${nationality}`)
     }
+    // async SelectCountryofBirth(){
+    //     await Click(PageLocators.countryofresidence_click)
+    //     let CountryOfResidence=process.env.CountryOfResidence;
+    //     await Click(`//div[@id='residenceCountryCode']//div[contains(text(),${CountryOfResidence})]`);
+    //     console.log(`User selected country of residence is ${CountryOfResidence}`)
+
+    // }
     async SelectCountryofBirth(){
+        let countryofresidence = process.env.countryOfResidence
         await Click(PageLocators.countryofresidence_click)
-        let CountryOfResidence=process.env.CountryOfResidence;
-        await Click(`//div[@id='residenceCountryCode']//div[contains(text(),${CountryOfResidence})]`);
-        console.log(`User selected country of residence is ${CountryOfResidence}`)
+        await toClick(`//div[@id='residenceCountryCode']//div[contains(text(),'${countryofresidence}')]`)
+        console.log(`${countryofresidence} is Selected`);
+        
 
     }
    
     async SelectResidencyStatus(){
         await toClick(PageLocators.residencystatus);
-        await toClick(PageLocators.residencystatus_permanent);
+        let residency_status = process.env.residencyStatus
+        await toClick(`//div[@id='residencyStatusCodeQuotation']//div[text()='${residency_status}']`)
+        console.log(`${residency_status} is Selected`);
+
+        //await toClick(PageLocators.residencystatus_permanent);
     }
     async VerifyResidencyStatus(){
-        await assertText(PageLocators.residencystatus_permanent);
+        let residency_status = process.env.residencyStatus
+        await assertText(`//div[contains(text(),'${residency_status}')]`,process.env.residencyStatus);
         await toClick(PageLocators.next_btn);
         await toClick(PageLocators.next_btn);
     }
