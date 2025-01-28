@@ -18,7 +18,6 @@ When('user selects country of residence', async function () {
 });
 
 When('user selects residence status from the dropdown', async function () {
-    //await CountrySelection.SelectResidency()
     await CountrySelection.SelectResidencyStatus()  
 });
 

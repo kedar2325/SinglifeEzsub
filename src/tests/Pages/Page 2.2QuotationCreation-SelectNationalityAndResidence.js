@@ -7,9 +7,6 @@ require('dotenv').config();
 const PageLocators={
     smokingstatus: " //p[normalize-space()='Non-smoker']",
     nationality_click: "//div[@id='nationalityCode']//img",
-    //nationality_click: "//div[@id='react-select-22-placeholder']",
-    //nationality_options: "//div[@id='react-select-11-placeholder']",
-    nationality_indonesia: "//div[@id='nationalityCode']//div[contains(text(),'ALAND ISLANDS')]",
     countryofresidence_click: "//div[@id='residenceCountryCode']//img[@class='sc-afc5380d-0 ekTQMr']",
     //countryofresidence_brazil: "//div[@id='residenceCountryCode']//div[contains(text(),${process.env.countryOfResidence})]",
     residencystatus: "//div[@id='residencyStatusCodeQuotation']//img[@class='sc-afc5380d-0 ekTQMr']",
@@ -31,19 +28,18 @@ class QuotationSelectNationaliandResidency{
     }
     async SelectNationality(){
         await Click(PageLocators.nationality_click);
-        //await clickAndSendkeys(PageLocators.nationality_click,process.env.nationality);
         let nationality=process.env.nationality;
-        await Click(PageLocators.nationality_indonesia)
+        await Click(`//div[@id='nationalityCode']//div[contains(text(),'${nationality}')]`);
+        console.log(`User selected nationality is ${nationality}`)
     }
     async SelectCountryofBirth(){
         await Click(PageLocators.countryofresidence_click)
-        await Click(PageLocators.countryofresidence_brazil)
+        let CountryOfResidence=process.env.CountryOfResidence;
+        await Click(`//div[@id='residenceCountryCode']//div[contains(text(),${CountryOfResidence})]`);
+        console.log(`User selected country of residence is ${CountryOfResidence}`)
 
     }
-    // async SelectResidency(){
-    //     await Click(PageLocators.residencystatus)
-    //     await Click(PageLocators.residencystatus_permanent)
-    // }
+   
     async SelectResidencyStatus(){
         await toClick(PageLocators.residencystatus);
         await toClick(PageLocators.residencystatus_permanent);
