@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "dotenv": "^16.4.7",
-    "ezsub": "file:",
-    "xlsx": "^0.18.5"
+    "ezsub": "file:"
   }
 }
