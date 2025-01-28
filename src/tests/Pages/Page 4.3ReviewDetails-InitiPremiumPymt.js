@@ -24,6 +24,41 @@ class ReviewDetailsInitialPremiumPayment{
     async verifyInitialPremiumPage(){ 
         await assertText(PageLocators.verifyInitialPremiumPage, "Initial Premium Payment");
     }
+
+    async paymentMethod() {
+            let paymentMethod=process.env.PaymentType;
+            await toClick(`//p[text()= '${paymentMethod}']`);
+            console.log(`${paymentMethod} is Selected`);
+        if(paymentMethod.includes("Interbank GIRO")){
+            await InterbankGIROPayment();
+        }
+        else if(paymentMethod.includes("Cash/Cheque/Bank Draft")){
+            await CashOrChequeDraft();
+
+
+        }
+        else if(paymentMethod.includes("Credit Card")){
+            await CreditCardPayment();
+        }
+        else {
+            console.log("No payment method is available");
+        }
+        
+    }
+
+    async InterbankGIROPayment(){
+        
+    }
+    
+
+
+
+
+
+
+
+
+
     async CashPayment(){
         await toClick(PageLocators.cashButton);
     }

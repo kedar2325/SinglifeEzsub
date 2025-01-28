@@ -9,7 +9,14 @@ const PageLocators={
     sourceOfWealth : "(//img[@id='tick_icon'])[1]",
     sourceOfFunds: "(//img[@id='tick_icon'])[7]",
     nextBtn: "//button[contains(text(),'Next')]",
-    verifyPayerDetails: "//span[contains(text(),'Are you paying for this policy?')]"
+    verifyPayerDetails: "//span[contains(text(),'Are you paying for this policy?')]",
+    //ThirdParty Details
+    LastOrFamilyName: "//input[@name='payorFamilyName']",
+    FirstOrGivenName: "//input[@name='payorFirstName']",
+    PayerRelationship: "#react-select-51-placeholder",
+    PayerType: "#react-select-52-placeholder",
+    ReasonForPaying: "#react-select-53-placeholder"
+
     
 }
 
@@ -20,14 +27,76 @@ class PayorDetails{
     async verifyPage(){
         await assertText(PageLocators.verifyPayerDetails, "Are you paying for this policy?"); 
     }
-    async payerYes(){
+    /*async payerYes(){
         await toClick(PageLocators.payerDetails);
+    }*/
+    async  PayingPolicy(SelectPayingPolicy) {
+        let Elements;
+        switch (SelectPayingPolicy) {
+            case "No":
+                Elements="(//div[@data-testid='radio-items'])[1]";
+                await toClick(Elements);
+                break;
+            case "Yes":
+                Elements="(//div[@data-testid='radio-items'])[2]";
+                await toClick(Elements);
+                break;
+            default:
+                console.log("Invalid Selection");
+        }
     }
-    async sourceWealth(){
-        await toClick(PageLocators.sourceOfWealth);
+
+    async  sourceWealth(SelectSourceOfWealth) {
+        let Element;
+        switch (SelectSourceOfWealth) {
+            case "Employment/Trade Income":
+                Element="(//img[@id='tick_icon'])[1]";
+                await toClick(Element);
+                break;
+            case "Rental Income":
+                Element="(//img[@id='tick_icon'])[2]";
+                await toClick(Element);
+                break;
+            case "Investment Income":
+                Element="(//img[@id='tick_icon'])[3]";
+                await toClick(Element);
+                break;
+            case "Rental Income":
+                Element="(//img[@id='tick_icon'])[4]";
+                await toClick(Element);
+                break;
+            default:
+                console.log("Unknown Selection");
+        }
     }
-    async sourceFunds(){
-        await toClick(PageLocators.sourceOfFunds);
+    async sourceFunds(SelectSourceOfFunds){
+        let ElementOfFund
+        switch(SelectSourceOfFunds){
+            case "Employment/Trade Income":
+                ElementOfFund="(//img[@id='tick_icon'])[5]";
+                await toClick(Element);
+                break;
+            case "Sales of Property":
+                ElementOfFund="(//img[@id='tick_icon'])[6]";
+                await toClick(Element);
+                break;
+            case "Savings":
+                ElementOfFund="(//img[@id='tick_icon'])[1]";
+                await toClick(Element);
+                break;
+            case "Maturity or Surrender of Policy":
+                ElementOfFund="(//img[@id='tick_icon'])[1]";
+                await toClick(Element);
+                break;
+            case "Others, please specify":
+                ElementOfFund="(//img[@id='tick_icon'])[1]";
+                await toClick(Element);
+                break;
+            default:
+                console.log("Unknown Selection");
+
+        }
+        
     }
     async button(){
         await toClick(PageLocators.nextBtn);

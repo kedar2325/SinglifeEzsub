@@ -10,7 +10,7 @@ const PageLocators={
     singlifeShieldNo1: "(//p[text()='No'])[1]",
     singlifeShieldNo2:"(//p[text()='No'])[2]",
     singlifeShieldNo:"(//p[text()='Yes'])[2]",
-    nameOfCompany1: "#react-select-16-placeholder",
+    nameOfCompany1: "#react-select-33-placeholder",
     lifeSumAssured1: "//input[@name='lifeSAAmount']",
     permanentlyDisabledSumAssured1: "//input[@name='TPDSAAmount']",
     criticalIllnessSumAssured1: "//input[@name='CISAAmount']",
