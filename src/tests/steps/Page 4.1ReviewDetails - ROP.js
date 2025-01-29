@@ -14,7 +14,7 @@ Given('user able to view ques', async function () {
   await ROPDetails.navigationToROP();
   });
 
-When('User selects No option', async function () {
+When('User selects Yes or No option', async function () {
   await ROPDetails.Select_Yes_No_Ques1();
   await ROPDetails.Select_Yes_No_Ques2();
     

@@ -34,11 +34,11 @@ class PayorDetails{
         await assertText(PageLocators.verifyPayerDetails, "Are you paying for this policy?"); 
     }
     
-    async  PayingPolicy(SelectPayingPolicy) {
+    async  PayingPolicy() {
         let Elements;
-        switch (SelectPayingPolicy) {
+        switch (process.env.SelectPayingPolicy) {
             case "No":
-                Elements="(//div[@data-testid='radio-items'])[1]";
+                Elements="(//p[text()='No'])[1]";
                 await toClick(Elements);
                 
                 await clickAndSendkeys(PageLocators.LastOrFamilyName, process.env.FamilyName);
@@ -72,7 +72,7 @@ class PayorDetails{
                 }
                 break;
             case "Yes":
-                Elements="(//div[@data-testid='radio-items'])[2]";
+                Elements="(//p[text()='Yes'])[1]";
                 await toClick(Elements);
                 break;
             default:
@@ -87,9 +87,9 @@ class PayorDetails{
     }
         */
 
-    async  sourceWealth(SelectSourceOfWealth) {
+    async  sourceWealth() {
         let Element;
-        switch (SelectSourceOfWealth) {
+        switch (process.env.SelectSourceOfWealth) {
             case "Employment/Trade Income":
                 Element="(//img[@id='tick_icon'])[1]";
                 await toClick(Element);
@@ -111,9 +111,9 @@ class PayorDetails{
                 console.log("Unknown Selection");
         }
     }
-    async sourceFunds(SelectSourceOfFunds){
+    async sourceFunds(){
         let ElementOfFund
-        switch(SelectSourceOfFunds){
+        switch(process.env.SelectSourceOfFunds){
             case "Employment/Trade Income":
                 ElementOfFund="(//img[@id='tick_icon'])[5]";
                 await toClick(Element);

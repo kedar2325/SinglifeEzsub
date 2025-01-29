@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys,assertText, launchURL, sleep, toClick } = require('../Helper/Action');
+const { clickAndSendkeys,assertText, launchURL, sleep, toClick, Click } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -47,7 +47,7 @@ class ROP{
         switch (SelectYesOrNo_1) {
             case "No":
                 Element="(//p[text()='No'])[1]";
-                await toClick(Element);
+                await Click(Element);
                 break;
             case "Yes":
                 Element="(//p[text()='Yes'])[1]";
