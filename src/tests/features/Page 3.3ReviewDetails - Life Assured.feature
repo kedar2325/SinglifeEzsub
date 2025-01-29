@@ -1,5 +1,5 @@
 Feature: Review Details - Life Assured
-@e2e @Third-party
+@e2e @2ndAssured
   Scenario: enter into the life assured
   Given user able to view the values in life assured tab
   When user able to fill the values in all mandatory fields

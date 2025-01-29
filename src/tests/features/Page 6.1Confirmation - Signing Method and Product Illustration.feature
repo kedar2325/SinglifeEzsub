@@ -1,5 +1,5 @@
 Feature: Confirmation - Signing Method - Product Illustration and Product Summary
-@e2e @Third-party
+@e2e @2ndAssured
   Scenario: Select Signing method and complete signature
     Given user able to view the signing method
     When user selects the preferred signing method

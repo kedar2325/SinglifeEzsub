@@ -11,12 +11,10 @@ let PayerDetails;
 
 Given('user able to view questions', async function () {
   PayerDetails=new PayorDetails(pageObject.page);
-  await PayerDetails.verifyPage();
+  await PayerDetails.payingpolicyPage();
   });
 
-When('user selects yes/no option', async function () {
-  await PayerDetails.PayingPolicy();
-  }); 
+
   
 When('user selects source of wealth', async function () {
   await PayerDetails.sourceWealth();       

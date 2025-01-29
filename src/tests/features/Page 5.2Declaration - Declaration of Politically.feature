@@ -1,5 +1,5 @@
 Feature: Declaration - Declaration of Politically
-@e2e @Third-party
+@e2e @2ndAssured
   Scenario: Declare Politically
     Given user able to view declaration of polictically
     When user selects declare option no

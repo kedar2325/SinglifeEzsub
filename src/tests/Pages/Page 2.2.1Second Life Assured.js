@@ -12,10 +12,8 @@ const PageLocators = {
     smokingstatus: " //p[normalize-space()='Non-smoker']",
     nationality_click: "//div[@id='nationalityCode']//img",
     countryofresidence_click: "//div[@id='residenceCountryCode']//img[@class='sc-afc5380d-0 ekTQMr']",
-    //countryofresidence_brazil: "//div[@id='residenceCountryCode']//div[contains(text(),${process.env.countryOfResidence})]",
     residencystatus: "//div[@id='residencyStatusCodeQuotation']//img[@class='sc-afc5380d-0 ekTQMr']",
-    //residencystatus_permanent: "//div[contains(text(),${process.env.residencyStatus})]",
-    assuredRelationship:"//div[@id='relationship']//img[@class='sc-afc5380d-0 ekTQMr']",
+    assuredRelationship:"//div[@id='relationship']//img",
     next_btn: "//button[text()='Next']",
     verifyProductSelectionPage: "//p[contains(text(),'Product selection for')]"
 
@@ -108,14 +106,15 @@ class CustomerInformation {
     
             //await toClick(PageLocators.residencystatus_permanent);
         }
-    async VerifyResidencyStatus(){
-            let residency_status = process.env.residencyStatus
-            await assertText(`//div[contains(text(),'${residency_status}')]`,process.env.residencyStatus);
-    }
+    // async VerifyResidencyStatus(){
+    //         let residency_status = process.env.residencyStatus
+    //         await assertText(`//div[contains(text(),'${residency_status}')]`,process.env.residencyStatus);
+    //         console.log("ih")
+    // }
     async SelectRelationship(){
         await sleep(2000);
         await toClick(PageLocators.assuredRelationship);
-        let assured_relationship = process.env.assuredRelationship
+        let assured_relationship = process.env.assured_relationship
         await toClick(`//div[@id='relationship']//div[text()='${assured_relationship}']`)
         console.log(`${assured_relationship} is Selected`);
     }

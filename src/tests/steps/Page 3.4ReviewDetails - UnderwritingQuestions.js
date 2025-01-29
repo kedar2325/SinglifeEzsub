@@ -24,7 +24,7 @@ When('user answer underwriting Questions', async function () {
 
 //   //await   underwritingpage.clickNotoUnderwritingQuestions();
 //   });
-Then('user click the next button on underwriting page', async function () {
+Then('user clicks the next to move from underwriting page', async function () {
     console.log("Entered step file")
     await underwritingpage.clickNextButton();
   });

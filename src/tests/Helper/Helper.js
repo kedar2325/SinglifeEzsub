@@ -67,10 +67,22 @@ async function RiderSelectionMethod(Ridername){
     let Webelement=`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//input`;
     await assertCheckBox(Webelement,Ridername);
 }
+async function Signature(Webelement){
+    await mouseHoverClick(Webelement);
+    //    await mouseMove(270, 150);
+      await mouseDown();
+        await mouseDown();
+        const startY = 150;
+        for (let x = 270; x < 400; x += 5) {
+            await mouseMove(x, startY);
+          }
+        await mouseUp();
+}
 
 module.exports = {
     yearSelection,
     MonthSelection,
     DateSelection,
-    RiderSelectionMethod
+    RiderSelectionMethod,
+    Signature
 }

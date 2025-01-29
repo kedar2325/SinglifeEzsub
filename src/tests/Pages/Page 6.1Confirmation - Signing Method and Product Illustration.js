@@ -1,6 +1,7 @@
 const { expect } = require('@playwright/test');
 const { mouseHoverClick,mouseMove,mouseUp, mouseDown, sleep, Click, assertText, toClick, windowHandle } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
+const { Signature } = require('../Helper/Helper');
 require('dotenv').config();
 
 const PageLocators={
@@ -74,21 +75,22 @@ class SigningMethod {
         await assertText(PageLocators.lifeAssuredSignatureTitle, "Life Assured Signature");
 
       //  await windowHandle(PageLocators.assuredSignatureButton,PageLocators.canvaAssured);
-  
-       await mouseHoverClick(PageLocators.canvaAssured);
-    //    await mouseMove(270, 150);
-      await mouseDown();
-        await mouseDown();
-        const startY = 150;
-        for (let x = 270; x < 400; x += 5) {
-            await mouseMove(x, startY);
-          }
-        await mouseUp();
+        await Signature(PageLocators.canvaAssured)
+    //    await mouseHoverClick(PageLocators.canvaAssured);
+    // //    await mouseMove(270, 150);
+    //   await mouseDown();
+    //     await mouseDown();
+    //     const startY = 150;
+    //     for (let x = 270; x < 400; x += 5) {
+    //         await mouseMove(x, startY);
+    //       }
+    //     await mouseUp();
         await Click(PageLocators.confirmButton);
         await Click(PageLocators.adviserSignatureButton);
         await assertText(PageLocators.financialAssuredSignatureTitle,"Financial Advisor Signature");
         await Click(PageLocators.financialAssuredSignatureCanva);
         //add code for financial advisor signature
+        await Signature(PageLocators.canvaAssured)
         await Click(PageLocators.confirmButton);
         await sleep(2000);
         await Click(PageLocators.saveSignature);
@@ -99,13 +101,7 @@ class SigningMethod {
         await assertText(PageLocators.creditCardSigTitle,"VISA/MasterCard Authorisation Form");
         await Click(PageLocators.creditCardSigPalette);
 
-        await mouseDown();
-        const startY = 159;
-        for (let x = 270; x < 700; x += 5) {
-            await mouseMove(x, startY);
-            await sleep(10);
-          }
-        await mouseUp()
+        await Signature(PageLocators.canvaAssured);
         //add code for sign using Canva
         await Click(PageLocators.creditCardSigConfirmBtn);
         await Click(PageLocators.creditCardSavebtn);

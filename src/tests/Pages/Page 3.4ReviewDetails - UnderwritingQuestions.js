@@ -1,4 +1,3 @@
-const { Console } = require('console');
 const { clickAndSendkeys, sleep, toClick, assertText, Click, sendkeys, isVisible } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -59,13 +58,10 @@ class underwritingQuestions{
                 // }
                 await toClick(path);
                 console.log(path);
-                await sleep(2000);
+                await sleep(1000);
                 path="";
             }
             console.log("loop out")
-    }
-    async selectUnderwritingQA(){
-        console.log("to check if called")
     }
     // async VerifyUnderwriting() {
     //     await toClick("(//p[text()='No'])[1]");
@@ -85,10 +81,10 @@ class underwritingQuestions{
     //         await toClick(locator);
     //     }
     // }
-    async clickNextButton(){
-            console.log("to click next button")
-            await Click(PageLocators.next_btn);
-            console.log("clicked next button")
-        }
+    // async clickNextButton(){
+    //         console.log("to click next button")
+    //         await toClick(PageLocators.next_btn);
+    //         console.log("clicked next button")
+    //     }
 }
 module.exports={underwritingQuestions}

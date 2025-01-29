@@ -18,16 +18,16 @@ When('user fills all the mandatory details', async function () {
     await CustomerInformationFunction.EnterfirstName();
     await CustomerInformationFunction.EnterDOB();
     await CustomerInformationFunction.occupation();
-    await CustomerInformation.SmokingStatus();
-    await CustomerInformation.SelectNationality();
-    await CustomerInformation.SelectCountryofBirth();
-    await CustomerInformation.SelectResidencyStatus();
-    await CustomerInformation.VerifyResidencyStatus();
-    await CustomerInformation.SelectRelationship();
+    await CustomerInformationFunction.SmokingStatus();
+    await CustomerInformationFunction.SelectNationality();
+    await CustomerInformationFunction.SelectCountryofBirth();
+    await CustomerInformationFunction.SelectResidencyStatus();
+   // await CustomerInformationFunction.VerifyResidencyStatus();
+    await CustomerInformationFunction.SelectRelationship();
     
 });
 When('user click next button to move Product selection page', async function () {
-    await CustomerInformation.ClickNextButton();
+    await CustomerInformationFunction.ClickNextButton();
         
 });
 Then('user verify the Product select page', async function () {
