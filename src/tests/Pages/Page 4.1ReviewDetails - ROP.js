@@ -42,9 +42,9 @@ class ROP{
         await sleep(2000);
     }
 
-    async  Select_Yes_No_Ques1(SelectYesOrNo_1) {
+    async  Select_Yes_No_Ques1() {
         let Element;
-        switch (SelectYesOrNo_1) {
+        switch (process.env.SelectYesOrNo_1) {
             case "No":
                 Element="(//p[text()='No'])[1]";
                 await Click(Element);
@@ -68,9 +68,9 @@ class ROP{
         }
     }
 
-    async  Select_Yes_No_Ques2(SelectYesOrNo_2) {
+    async  Select_Yes_No_Ques2() {
         let Element;
-        switch (SelectYesOrNo_2) {
+        switch (process.env.SelectYesOrNo_2) {
             case "No":
                 Element="(//p[text()='No'])[2]";
                 await toClick(Element);
@@ -88,7 +88,6 @@ class ROP{
                 await clickAndSendkeys(PageLocators.permanentlyDisabledSumAssured1,process.env.PermanentlyDisabled2);
                 await clickAndSendkeys(PageLocators.criticalIllnessSumAssured1,process.env.CriticalIllness2);
                 await clickAndSendkeys(PageLocators.disabilityIncomeSumAssured1,process.env.DisabilityIncome2);
-   
                 break;
             default:
                 console.log("Unknown Selection");
