@@ -4,7 +4,7 @@ const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
 const PageLocators={
-    verifyROPPage: "//p[contains(text(),'Singlife Steadypay Saver')]",
+    verifyROPPage: "//p[contains(text(),'')]",
 
     // //1st yes
     singlifeShieldNo1: "(//p[text()='No'])[1]",
@@ -38,7 +38,8 @@ class ROP{
         pageObject.page=page;
     }
     async navigationToROP(){
-        await assertText(PageLocators.verifyROPPage, "Singlife Steadypay Saver"); 
+        let Element = `//p[contains(text(),'${process.env.ProductName}')]`
+        await assertText(Element, process.env.ProductName); 
         await sleep(2000);
     }
 
