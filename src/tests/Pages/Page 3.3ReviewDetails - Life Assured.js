@@ -1,5 +1,5 @@
 
-const { clickAndSendkeys, sleep, toClick, assertText, Click, HiddenDropdown } = require('../Helper/Action');
+const { clickAndSendkeys, sleep, toClick, assertText, Click, HiddenDropdown, toCheck } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -10,15 +10,10 @@ const PageLocators={
     mobilecode: "//input[contains(@name,'mobileCC')]",
     mobileCodeNo:"//li[text()='Singapore (+65)']",
     mobileno: "//input[@name='mobileNo']",
-    maritalstatus: "//div[@id='maritalStatusCode']",
+    maritalstatus: "//div[@id='maritalStatusCode']//img",
     //maritalstatus_married: "//div[contains(text(),'${maritalstatus}')]",
-    race: "//div[@id='raceCode']//div[@class='css-1wy0on6']",
-    //race_indian: "//div[contains(text(),'Indian')]",
-    countryofbirth:"//div[@id='birthCountryCode']//img[contains(@class,'sc-afc5380d-0 ekTQMr')]",
-    //countryofbirth: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
-    countryofbirth: "//div[@id='birthCountryCode']",
-    //countryofbirth_singapore: "//div[@id='birthCountryCode']//div[text()='Singapore']",
-    //countryofbirth_singapore: "//div[@id='birthCountryCode']//div[@class='css-18z52ef']",
+    race: "//div[@id='raceCode']//img",
+    countryofbirth: "//div[@id='birthCountryCode']//div[@class='css-1wy0on6']",
     country:"//div[@id='resAddress.countryCode']",
     selectCountry:"//div[@id='resAddress.countryCode']//div[text()='Brazil']",
     postalcode: "//input[@name='resAddress.postalCode']",
@@ -29,8 +24,8 @@ const PageLocators={
     annualincome: "//input[@name='employment.annualIncome']",
     employername: "//input[@name='employment.companyName']",
     employmentduties: "//input[@name='employment.duties']",
-    natureofbusiness: "//div[@id='employment.natureOfBusiness']//img[@class='sc-afc5380d-0 ekTQMr']",
-    natureofbusiness_accounting: "//div[contains(text(),'Accounting/Finance')]",
+    natureofbusiness: "//div[@id='employment.natureOfBusiness']//img",
+    //natureofbusiness_accounting: "//div[contains(text(),'Accounting/Finance')]",
     financialbackgroung_no: "(//p[text()='No'])[2]",
     next_btn: "//button[text()='Next']",
 }
@@ -51,18 +46,16 @@ class ReviewDetailsLifeAssured{
         await clickAndSendkeys(PageLocators.mobileno,process.env.mobileno)
     }
     async EnterAdditionalInformation(){  
-        await toClick(PageLocators.maritalstatus)
         let marital_status = process.env.maritalstatus
         let race_code = process.env.racecode
         let countryof_birth = process.env.countryofbirth
+        await toClick(PageLocators.maritalstatus)
         await toClick(`//div[text()='${marital_status}']`)
         await toClick(PageLocators.race)
-        
-        await toClick(`//div[contains(text(),'${race_code}']`)
-        await toClick(PageLocators.race_indian)
+        await toClick(`//div[@id='raceCode']//div[contains(text(),'${race_code}')]`)
         await toClick(PageLocators.countryofbirth)
         await toClick(`//div[@id='birthCountryCode']//div[text()='${countryof_birth}']`)
-       // await toClick(PageLocators.countryofbirth_singapore)
+    
 
 
 
@@ -75,18 +68,43 @@ class ReviewDetailsLifeAssured{
       
     }
     async EnterResidentialAddress(){   
+
         await clickAndSendkeys(PageLocators.postalcode,process.env.postalcode)
         await toClick(PageLocators.search)   
-        // await clickAndSendkeys(PageLocators.country,"Brazil");
-        // await toClick(PageLocators.selectCountry);
         await clickAndSendkeys(PageLocators.unitno,process.env.unitno)
+        await sleep(2000);
+    }
+    
+    async FinancialBackground(){
+            let Element;
+            switch (process.env.SelectFinancialBackground) {
+                case "Employed":
+                    Element="//input[@id='radioGroupOtionEmployed']";
+                    await toClick(Element);
+                    break;
+                case "Self-Employed":
+                    Element="//input[@id='radioGroupOtionSelfEmployed']";
+                    await toClick(Element);
+                    await clickAndSendkeys(PageLocators.AnnualIncomeFromPreviousTaxYear, process.env.AnnualIncome_PreviousYear);
+                    break;
+                default:
+                    console.log("Unknown Selection");
+            }
+        }
+    async DefaultFinancialBackground(){
+       
         await clickAndSendkeys(PageLocators.annualincome,process.env.annualincome);
-        await clickAndSendkeys(PageLocators.employername,process.env.employername)
-        await clickAndSendkeys(PageLocators.employmentduties,process.env.exactduties)  
-        await toClick(PageLocators.natureofbusiness)
-        await toClick(PageLocators.natureofbusiness_accounting)
-        await toClick(PageLocators.financialbackgroung_no)
-        await sleep(8000);
+        await clickAndSendkeys(PageLocators.employername,process.env.employername);
+        await clickAndSendkeys(PageLocators.employmentduties,process.env.exactduties);
+        await sleep(2000)
+        let NatureOfBusiness=process.env.Nature_of_Business;
+        await toClick(PageLocators.natureofbusiness);
+        console.log(`${NatureOfBusiness} is Selected`);
+        await toClick(`//div[text()= '${NatureOfBusiness}']`);
+        let yes_no_selection=process.env.Select_yes_no;
+        await toClick(`//p[text()='Financial Background']/following-sibling::div/p/following::div//div//p[text()='${yes_no_selection}']`);
+        console.log(`${yes_no_selection} is Selected`);
+        await sleep(5000);
     }
     //coutryof birth
 // country
