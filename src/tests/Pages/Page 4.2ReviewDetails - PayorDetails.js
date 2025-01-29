@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys, launchURL, sleep,assertText, toClick, } = require('../Helper/Action');
+const { clickAndSendkeys, launchURL, sleep,assertText, toClick, Click, } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -18,8 +18,8 @@ const PageLocators={
     PayerType: "//div[@id='payorType']//img[@class='sc-afc5380d-0 ekTQMr']",
     BusinessRegNo: "//input[@name='businessRegNo']",
     NRICNumber: "//input[@name='payorIdentityCardNo']",
-    ReasonForPaying: "//div[@id='payorReason']//img[@class='sc-afc5380d-0 ekTQMr']",
-    Reason_Others: "//input[@name='payorReasonOth']",
+    ReasonForPaying: "//div[@id='payorReason']//img",
+    Reason_Others: "//input[contains(@name,'payorReasonOth')]",
     Wealth_Others: "(//input[@name='others'])[1]",
     Fund_Others: "(//input[@name='others'])[2]"
 
@@ -30,22 +30,21 @@ class PayorDetails{
     constructor(page){
         pageObject.page=page;
     }
-    async verifyPage(){
+    async payingpolicyPage(){
         await assertText(PageLocators.verifyPayerDetails, "Are you paying for this policy?"); 
-    }
-    
-    async  PayingPolicy() {
-        let Elements;
+        let Element;
         switch (process.env.SelectPayingPolicy) {
             case "No":
-                Elements="(//p[text()='No'])[1]";
-                await toClick(Elements);
+                console.log(process.env.SelectPayingPolicy);
+                Element="//p[text()='Payer Details']/following::p[text()='No']";
+                await toClick(Element);
                 
                 await clickAndSendkeys(PageLocators.LastOrFamilyName, process.env.FamilyName);
                 await clickAndSendkeys(PageLocators.FirstOrGivenName,process.env.GivenName);
 
                 await toClick(PageLocators.PayerRelationship);
                 let payer_relationship = process.env.PayerRelationship
+                
                 await toClick(`//div[@id='relationship']//div[text()='${payer_relationship}']`)
                 console.log(`${payer_relationship} is Selected`);
 
@@ -63,8 +62,8 @@ class PayorDetails{
                     console.log(`Unknown Selection`);
 
                 await toClick(PageLocators.ReasonForPaying);
-                let reason_for_paying = process.env.ReasonForPaying
-                await toClick(`//div[@id='relationship']//div[text()='${reason_for_paying}']`)
+                let reason_for_paying = process.env.ReasonFor_Paying
+                await toClick(`//div[@id='payorReason']//div[text()='${reason_for_paying}']`)
                 console.log(`${reason_for_paying} is Selected`);
                 if(reason_for_paying == 'Others')
                 {
@@ -72,22 +71,15 @@ class PayorDetails{
                 }
                 break;
             case "Yes":
-                Elements="(//p[text()='Yes'])[1]";
-                await toClick(Elements);
+                Element="(//p[text()='Yes'])[1]";
+                await toClick(Element);
                 break;
             default:
                 console.log("Invalid Selection");
         }
     }
-/*
-    async  PayingPolicy() {
-        let PayingPolicy=process.env.SelectPayingPolicy;
-        await toClick(`//p[text()= '${PayingPolicy}']`);
-        console.log(`${PayingPolicy} is Selected`);
-    }
-        */
 
-    async  sourceWealth() {
+    async sourceWealth(){
         let Element;
         switch (process.env.SelectSourceOfWealth) {
             case "Employment/Trade Income":
@@ -116,23 +108,23 @@ class PayorDetails{
         switch(process.env.SelectSourceOfFunds){
             case "Employment/Trade Income":
                 ElementOfFund="(//img[@id='tick_icon'])[5]";
-                await toClick(Element);
+                await toClick(ElementOfFund);
                 break;
             case "Sales of Property":
                 ElementOfFund="(//img[@id='tick_icon'])[6]";
-                await toClick(Element);
+                await toClick(ElementOfFund);
                 break;
             case "Savings":
                 ElementOfFund="(//img[@id='tick_icon'])[1]";
-                await toClick(Element);
+                await toClick(ElementOfFund);
                 break;
             case "Maturity or Surrender of Policy":
                 ElementOfFund="(//img[@id='tick_icon'])[1]";
-                await toClick(Element);
+                await toClick(ElementOfFund);
                 break;
             case "Others, please specify":
                 ElementOfFund="(//img[@id='tick_icon'])[1]";
-                await toClick(Element);
+                await toClick(ElementOfFund);
                 await clickAndSendkeys(PageLocators.Fund_Others, process.env.Fund_Other);
                 break;
             default:

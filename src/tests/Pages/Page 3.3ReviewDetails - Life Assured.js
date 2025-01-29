@@ -18,15 +18,13 @@ const PageLocators={
     selectCountry:"//div[@id='resAddress.countryCode']//div[text()='Brazil']",
     postalcode: "//input[@name='resAddress.postalCode']",
     search: "//button[text()='Search']",
-    address_landedproperty: "//label[text()='Address is a landed property']/preceding::input[@id='checkbox']",
+    address_landedproperty: "//div[contains(@class,'grid gap-6 grid-cols-2 pt-6')]//img[@id='tick_icon']",
     correspondanceaddress_checkbox: "//div[@class='flex flex-start py-4']//img[@id='tick_icon']",
     unitno: "//input[@name='resAddress.unitNo']",
     annualincome: "//input[@name='employment.annualIncome']",
     employername: "//input[@name='employment.companyName']",
     employmentduties: "//input[@name='employment.duties']",
     natureofbusiness: "//div[@id='employment.natureOfBusiness']//img",
-    //natureofbusiness_accounting: "//div[contains(text(),'Accounting/Finance')]",
-    financialbackgroung_no: "(//p[text()='No'])[2]",
     next_btn: "//button[text()='Next']",
 }
 class ReviewDetailsLifeAssured{
@@ -72,7 +70,9 @@ class ReviewDetailsLifeAssured{
         await clickAndSendkeys(PageLocators.postalcode,process.env.postalcode)
         await toClick(PageLocators.search)   
         await clickAndSendkeys(PageLocators.unitno,process.env.unitno)
+        
         await sleep(2000);
+        await toClick(PageLocators.address_landedproperty)
     }
     
     async FinancialBackground(){
