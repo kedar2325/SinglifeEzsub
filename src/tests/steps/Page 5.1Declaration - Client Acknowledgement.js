@@ -15,9 +15,13 @@ let pageClientAcknowledgement;
 
 
 
-  When('user selects terms option yes', async function () {
+  When('user selects terms option', async function () {
     //To select option yes
+    if(process.env.MarketingConsent=="Yes"){
     await pageClientAcknowledgement.clickMarketingConsentY();
+    }else{
+    await pageClientAcknowledgement.clickMarketingConsentN(); 
+    }
   });
 
   When('user selects terms option no', async function () {
