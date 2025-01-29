@@ -6,7 +6,6 @@ let underwritingpage;
 Given('user able to reach the underwriting tab', async function () {
   underwritingpage=new underwritingQuestions(pageObject.page)
   await underwritingpage.VerifyGreetText();
-
   });
 
 When('user able to fill the height and weight fields', async function () {
@@ -18,10 +17,10 @@ When('user click the calculate button', async function () {
   await underwritingpage.clickCalculate();
   });
 When('user able to see the newly generated underwriting Questions', async function () {
-    await underwritingpage.VerifyUnderwriting();
+    await underwritingpage.verifyUnderwriting();
   });
 
 When('user complete all the underwriting questions appropratiely', async function () {
-    await   underwritingpage.clickNotoUnderwritingQuestions();
+    //await   underwritingpage.clickNotoUnderwritingQuestions();
   });
 

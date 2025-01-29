@@ -270,6 +270,11 @@ for (let x = 270; x < 700; x += 5) {
   await newPage.mouse.up();
 }
 
+async function isVisible(Webelement){
+    await pageObject.page.locator(Webelement)
+};
+
+
 module.exports = {
     launchURL,
     getCurrentMonthName,
@@ -318,5 +323,5 @@ module.exports = {
     mouseDown,
     mouseMove,
     locator,
-
+    isVisible,
 };
