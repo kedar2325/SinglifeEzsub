@@ -1,6 +1,6 @@
 Feature: Quotation Creation - Life Insurance Plan Selection
 
-@e2e
+@e2e @Third-party
   Scenario: Select Life Insurance plan selection and Apply
     Given user able to view the new quotation
     And user clicks new quotation

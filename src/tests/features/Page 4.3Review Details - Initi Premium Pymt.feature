@@ -1,5 +1,5 @@
 Feature: Review Details - Quotation
-@e2e
+@e2e @Third-party
   Scenario: Valid Payer Details
     Given user able to view payment method
     When user selects payment method

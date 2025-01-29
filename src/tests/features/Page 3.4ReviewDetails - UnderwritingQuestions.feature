@@ -1,5 +1,5 @@
 Feature:Review Details - Underwriting Questions
-@e2e
+@e2e @Third-party
   Scenario: complete the underwriting tab
   Given user able to reach the underwriting tab
   When user able to fill the height and weight fields

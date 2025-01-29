@@ -21,7 +21,7 @@ class CustomerSelection {
         const quotationType = process.env.quotationType;
         const InsurancePlan = process.env.InsurancePlan;
         if (InsurancePlan === "Life Insurance" || InsurancePlan === "Medical & Health Insurance" || InsurancePlan === "Accident Guard") {
-            if (quotationType === "Self" || quotationType === "Third-party") {
+            if (quotationType === "Self" || quotationType === "Third-Party") {
                 await toClick(`//p[contains(text(), '${quotationType}')]`);
                 console.log(`${quotationType} quatation is selected`);
                 await toClick(PageLocators.nextButton);

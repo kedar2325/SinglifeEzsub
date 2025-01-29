@@ -1,6 +1,6 @@
 Feature: Product Details - Quotation
 
-  @e2e
+  @e2e @Third-party
   Scenario: Enter the  product details 
     Given user able to view the mandatory fields in product details page
     When user able to select the policy term from the policy term dropdown 

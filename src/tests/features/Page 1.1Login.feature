@@ -1,5 +1,5 @@
 Feature: Login functionality
-@e2e 
+@e2e  @Third-party
   Scenario: Valid login
     Given User launch the login url
     When User enters the valid loginID and Password

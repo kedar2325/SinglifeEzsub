@@ -1,5 +1,5 @@
 Feature: Review Details - Payer Details
-@e2e
+@e2e @Third-party
   Scenario: Valid Payer Details
   Given user able to view questions
     When user selects yes/no option

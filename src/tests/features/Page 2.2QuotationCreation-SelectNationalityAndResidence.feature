@@ -1,5 +1,5 @@
 Feature: Quotation Creation - Select Nationality and Residence
-@e2e
+@e2e @Third-party
   Scenario: Select Nationality and Residence 
   Given user selects Nationality from the dropdown
   When user selects country of residence 
