@@ -15,7 +15,8 @@ Given('user able to view ques', async function () {
   });
 
 When('User selects No option', async function () {
-  await ROPDetails.NoExist();
+  await ROPDetails.Select_Yes_No_Ques1();
+  await ROPDetails.Select_Yes_No_Ques2();
     
   });
   When('user clicks next', async function () {

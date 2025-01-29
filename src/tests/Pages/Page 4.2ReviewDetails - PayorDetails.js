@@ -5,7 +5,8 @@ require('dotenv').config();
 
 const PageLocators={
     verifyInitialPremiumPage: "//p[contains(text(),'Initial Premium Payment')]",
-    payerDetails: "(//div[@data-testid='radio-items'])[2]",
+    //payerDetailsYes: "(//div[@data-testid='radio-items'])[2]",
+    //payerDetailsNo: "(//div[@data-testid='radio-items'])[1]",
     sourceOfWealth : "(//img[@id='tick_icon'])[1]",
     sourceOfFunds: "(//img[@id='tick_icon'])[7]",
     nextBtn: "//button[contains(text(),'Next')]",
@@ -13,9 +14,14 @@ const PageLocators={
     //ThirdParty Details
     LastOrFamilyName: "//input[@name='payorFamilyName']",
     FirstOrGivenName: "//input[@name='payorFirstName']",
-    PayerRelationship: "#react-select-51-placeholder",
-    PayerType: "#react-select-52-placeholder",
-    ReasonForPaying: "#react-select-53-placeholder"
+    PayerRelationship: "//div[@id='relationship']//img[@class='sc-afc5380d-0 ekTQMr']",
+    PayerType: "//div[@id='payorType']//img[@class='sc-afc5380d-0 ekTQMr']",
+    BusinessRegNo: "//input[@name='businessRegNo']",
+    NRICNumber: "//input[@name='payorIdentityCardNo']",
+    ReasonForPaying: "//div[@id='payorReason']//img[@class='sc-afc5380d-0 ekTQMr']",
+    Reason_Others: "//input[@name='payorReasonOth']",
+    Wealth_Others: "(//input[@name='others'])[1]",
+    Fund_Others: "(//input[@name='others'])[2]"
 
     
 }
@@ -27,15 +33,43 @@ class PayorDetails{
     async verifyPage(){
         await assertText(PageLocators.verifyPayerDetails, "Are you paying for this policy?"); 
     }
-    /*async payerYes(){
-        await toClick(PageLocators.payerDetails);
-    }*/
+    
     async  PayingPolicy(SelectPayingPolicy) {
         let Elements;
         switch (SelectPayingPolicy) {
             case "No":
                 Elements="(//div[@data-testid='radio-items'])[1]";
                 await toClick(Elements);
+                
+                await clickAndSendkeys(PageLocators.LastOrFamilyName, process.env.FamilyName);
+                await clickAndSendkeys(PageLocators.FirstOrGivenName,process.env.GivenName);
+
+                await toClick(PageLocators.PayerRelationship);
+                let payer_relationship = process.env.PayerRelationship
+                await toClick(`//div[@id='relationship']//div[text()='${payer_relationship}']`)
+                console.log(`${payer_relationship} is Selected`);
+
+                await toClick(PageLocators.PayerType);
+                let payer_type = process.env.PayerType
+                await toClick(`//div[@id='payorType']//div[text()='${payer_type}']`)
+                console.log(`${payer_type} is Selected`);
+                if(payer_type == 'Individual'){
+                    await clickAndSendkeys(PageLocators.NRICNumber, process.env.NRICValue);
+                }
+                else if(payer_type == 'Entity'){
+                    await clickAndSendkeys(PageLocators.BusinessRegNo, process.env.BusinessRegistrationNumber);
+                }
+                else
+                    console.log(`Unknown Selection`);
+
+                await toClick(PageLocators.ReasonForPaying);
+                let reason_for_paying = process.env.ReasonForPaying
+                await toClick(`//div[@id='relationship']//div[text()='${reason_for_paying}']`)
+                console.log(`${reason_for_paying} is Selected`);
+                if(reason_for_paying == 'Others')
+                {
+                    await clickAndSendkeys(PageLocators.Reason_Others, process.env.SpecifyOtherReason);
+                }
                 break;
             case "Yes":
                 Elements="(//div[@data-testid='radio-items'])[2]";
@@ -45,6 +79,13 @@ class PayorDetails{
                 console.log("Invalid Selection");
         }
     }
+/*
+    async  PayingPolicy() {
+        let PayingPolicy=process.env.SelectPayingPolicy;
+        await toClick(`//p[text()= '${PayingPolicy}']`);
+        console.log(`${PayingPolicy} is Selected`);
+    }
+        */
 
     async  sourceWealth(SelectSourceOfWealth) {
         let Element;
@@ -61,9 +102,10 @@ class PayorDetails{
                 Element="(//img[@id='tick_icon'])[3]";
                 await toClick(Element);
                 break;
-            case "Rental Income":
+            case "Others, please specify":
                 Element="(//img[@id='tick_icon'])[4]";
                 await toClick(Element);
+                await clickAndSendkeys(PageLocators.Wealth_Others, process.env.Wealth_Other);
                 break;
             default:
                 console.log("Unknown Selection");
@@ -91,6 +133,7 @@ class PayorDetails{
             case "Others, please specify":
                 ElementOfFund="(//img[@id='tick_icon'])[1]";
                 await toClick(Element);
+                await clickAndSendkeys(PageLocators.Fund_Others, process.env.Fund_Other);
                 break;
             default:
                 console.log("Unknown Selection");
