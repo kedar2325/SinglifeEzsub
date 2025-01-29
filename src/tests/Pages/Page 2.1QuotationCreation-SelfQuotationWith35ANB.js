@@ -5,8 +5,8 @@ const { pageObject } = require('../Hooks/PageObjects');
 
 const PageLocators = {
     nextButton: "//button[contains(text(), 'Next')]",
-    NRICfield: "//input[@name='securityNumber']",
-    salutationID: "#salutationCode img",
+    NRICNumber: "//input[@name='securityNumber']",
+    salutation: "#salutationCode img",
     firstName: "input[name='firstName']",
     DOBfield: "//input[@name='dob']",
     occupationID: "#occupationCode",
@@ -60,10 +60,10 @@ class CustomerSelection {
 
     }
     async fillNRICnumber() {
-        await clickAndSendkeys(PageLocators.NRICfield, process.env.NRIC_Number)
+        await clickAndSendkeys(PageLocators.NRICNumber, process.env.NRIC_Number)
     }
     async fillSalutation() {
-        await toClick(PageLocators.salutationID);
+        await toClick(PageLocators.salutation);
     }
     async selectSalutation() {
         let salutation = process.env.Salutation

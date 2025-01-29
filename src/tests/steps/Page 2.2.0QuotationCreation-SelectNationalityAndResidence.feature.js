@@ -1,5 +1,5 @@
 const { Given, Then, When, setDefaultTimeout } = require("@cucumber/cucumber");
-const{ QuotationSelectNationaliandResidency } = require("../Pages/Page 2.2QuotationCreation-SelectNationalityAndResidence")
+const{ QuotationSelectNationaliandResidency } = require("../Pages/Page 2.2.0QuotationCreation-SelectNationalityAndResidence.feature")
 const { pageObject } = require("../Hooks/PageObjects");
 setDefaultTimeout(20000); 
 
