@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js test --tags @e2e",
+    "test:group": "cucumber-js test --tags @2ndAssured",
     "allure:generate": "allure generate ./allure-results -o ./allure-report --clean",
     "allure:open": "allure open ./allure-report",
     "report-test": "npm run test && npm run allure:generate && npm run allure:open"
