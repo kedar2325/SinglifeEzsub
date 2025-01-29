@@ -5,4 +5,4 @@ Feature:Review Details - Underwriting Questions
   When user able to fill the height and weight fields
   And user click the calculate button
   And user answer underwriting Questions
-  Then user click the next button on underwriting page
+  Then user click the next button to go underwriting page
