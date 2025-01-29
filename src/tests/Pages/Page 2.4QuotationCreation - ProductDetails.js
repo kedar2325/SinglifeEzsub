@@ -21,9 +21,13 @@ class ProductDetails {
     }
     async PolicyTerm() {
         let term = process.env.Term
+        console.log(`User selected term as ${term}`)
         let pay = process.env.Paytype
-        await toClick(`//div[@id='${term}'//img`)
-        await toClick(`//div[@id='${term}']//div[contains(text(),'${pay}')]//input`)
+        console.log(`User selected Pay type as ${pay}`)
+        await sleep(2000);
+        await toClick(`//div[@id='${term}']//img`)
+       // await doubleClick("//div[@id='policyTerm']//img")
+        await toClick(`//div[@id='${term}']//div[contains(text(),'${pay}')]`)
         //   await toClick(PageLocators.policyterm)
         // await clickByRole('option', { name: 'Account Executive' })
     }
