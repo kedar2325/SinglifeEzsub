@@ -40,6 +40,9 @@ async function GetByText_fill(text,parameterText) {
 async function toClick(Webelement) {
     await pageObject.page.locator(Webelement).click();
 }
+async function toCheck(Webelement) {
+    await pageObject.page.locator(Webelement).check();
+}
 
 async function sendkeys(Webelement, text) {
     await pageObject.page.locator(Webelement).fill(text);
@@ -171,6 +174,16 @@ async function responseHeaders(response) {
 async function assertText(Webelement, text) {
     await expect(pageObject.page.locator(Webelement)).toHaveText(text);
 }
+async function assertCheckBox(Webelement,text) {
+    const checkbox = await pageObject.page.locator(Webelement);
+
+    if (!(await checkbox.isChecked())) {
+        console.log(`${text}  is  Unchecked`);
+    }
+    else{
+        console.log(`${text} is  Checked`);
+    }
+}
 async function assertParticularText(Webelement,text) {
     const elementText = await pageObject.page.locator(Webelement).textContent();
   if (!elementText.includes(text)) {
@@ -268,6 +281,7 @@ module.exports = {
     GetByText_fill,
     getByTextIDClick,
     toClick,
+    toCheck,
     sendkeys,
     clickAndSendkeys,
     Fill,
@@ -281,6 +295,7 @@ module.exports = {
     clickByRole,
     sleep,
     assertURL,
+    assertCheckBox,
     waitSelector,
     dropDownValidate,
     takeScreenshot,

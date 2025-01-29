@@ -10,7 +10,7 @@ const { sleep } = require('../Helper/Action');
 let RiderSelectionPage;
 Given('user able to view the available riders', async function () {
   RiderSelectionPage=new RiderSelection(pageObject.page);
-  await RiderSelectionPage.verifyListOfRiders();
+  await RiderSelectionPage.verifyRiderGreetText();
     
   });
 When('user select the riders in the rider selection page', async function () {

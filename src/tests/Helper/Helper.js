@@ -1,4 +1,5 @@
-const {  getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick } = require('../Helper/Action');
+const {  getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, assertCheckBox, toCheck } = require('../Helper/Action');
+const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
 async function yearSelection() {
@@ -55,15 +56,21 @@ async function MonthSelection() {
     await toClick(`//div[text()='${month}']`)
 }
 async function DateSelection() {
-   
     await sleep(2000);
     let DateValue = process.env.Date;
     console.log(`User selected date is : ${DateValue}`)
     await doubleClick(`//p[text()='${DateValue}']`);
 }
+async function RiderSelectionMethod(Ridername){
+    await toClick(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//img`);
+    console.log(`${Ridername} rider has been Selected`)
+    let Webelement=`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//input`;
+    await assertCheckBox(Webelement,Ridername);
+}
 
 module.exports = {
     yearSelection,
     MonthSelection,
-    DateSelection
+    DateSelection,
+    RiderSelectionMethod
 }

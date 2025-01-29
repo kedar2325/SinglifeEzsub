@@ -21,12 +21,13 @@ class QuotationSelectNationaliandResidency{
     }
 
     async SmokingStatus(){
-        await sleep(2000);
+        await sleep(1000);
         let smoking_status = process.env.smokingstatus
         await toClick(`//p[normalize-space()='${smoking_status}']`)
         
     }
     async SelectNationality(){
+        await sleep(1000);
         await Click(PageLocators.nationality_click);
         let nationality=process.env.nationality;
         await Click(`//div[@id='nationalityCode']//div[contains(text(),'${nationality}')]`);
@@ -40,6 +41,7 @@ class QuotationSelectNationaliandResidency{
 
     // }
     async SelectCountryofBirth(){
+        await sleep(1000);
         let countryofresidence = process.env.countryOfResidence
         await Click(PageLocators.countryofresidence_click)
         await toClick(`//div[@id='residenceCountryCode']//div[contains(text(),'${countryofresidence}')]`)
@@ -49,6 +51,7 @@ class QuotationSelectNationaliandResidency{
     }
    
     async SelectResidencyStatus(){
+        await sleep(1000);
         await toClick(PageLocators.residencystatus);
         let residency_status = process.env.residencyStatus
         await toClick(`//div[@id='residencyStatusCodeQuotation']//div[text()='${residency_status}']`)
