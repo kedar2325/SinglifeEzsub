@@ -58,7 +58,7 @@ class underwritingQuestions{
                 // }
                 await toClick(path);
                 console.log(path);
-                await sleep(2000);
+                await sleep(1000);
                 path="";
             }
             console.log("loop out")
