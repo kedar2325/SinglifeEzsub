@@ -18,7 +18,7 @@ Given('user able to view the mandatory fields in product details page', async fu
     
   });
 When('user able to select the policy term from the policy term dropdown', async function () {
-  //ProductDetailsPage.PolicyTerm()
+  ProductDetailsPage.PolicyTerm()
 
     
   });
