@@ -1,5 +1,5 @@
 Feature: Review Details - Payer Details
-@e2e @Third-party
+@e2e @2ndAssured
   Scenario: Valid Payer Details
     Given user able to view questions
     When user selects source of wealth

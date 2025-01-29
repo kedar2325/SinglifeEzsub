@@ -1,6 +1,6 @@
 Feature: Second Life Assured process
 
-@Third-party
+@2ndAssured
   Scenario: Complete second life assured details
     Given user selects profile for second life assured
     And user fills all the mandatory details

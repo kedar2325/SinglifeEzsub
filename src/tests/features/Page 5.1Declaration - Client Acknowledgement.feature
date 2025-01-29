@@ -1,5 +1,5 @@
 Feature: Declaration - Client Acknowledgement
-@e2e @Third-party
+@e2e @2ndAssured
   Scenario: Valid Payer Details
     Given user able to view terms
     When user selects terms option yes
