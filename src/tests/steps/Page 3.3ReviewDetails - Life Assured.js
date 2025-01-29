@@ -20,9 +20,12 @@ Given('user able to view the values in life assured tab', async function () {
     await ReviewDetailsForLifeAssured.EnterAdditionalInformation();
     
   });
-  When('user able to complete the residential address', async function () {
+  
+  When('user able to complete the residential address and financial background', async function () {
     await ReviewDetailsForLifeAssured.EnterResidentialAddress();  
-  });
+    await ReviewDetailsForLifeAssured.FinancialBackground();
+    await ReviewDetailsForLifeAssured.DefaultFinancialBackground();
+  })
 
   When('user click the next button to go underwriting page',async function() {
     await ReviewDetailsForLifeAssured.GotoUnderwritingpage();
