@@ -2,7 +2,7 @@ const { expect } = require('@playwright/test');
 const { Click, assertText, clickAndSendkeys, uploadFile } = require('../Helper/Action');
 //const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
-const path=require('../fileUpload/picture.png');
+const path="../fileUpload/picture.png";
 //const {filePath} = require('C:/Users/msundarraj/Desktop/Ezsub/src/tests/fileUpload\picture.png')
 const PageLocators={
     //Page Title
