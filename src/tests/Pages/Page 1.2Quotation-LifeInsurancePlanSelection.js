@@ -1,5 +1,6 @@
 const { clickAndSendkeys,Click, launchURL,  assertParticularText, toClick, GetByText_Click, sleep } = require('../Helper/Action');
 require('dotenv').config();
+const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 
 const PageLocators={
@@ -16,7 +17,7 @@ class PlanSelection{
         await toClick(PageLocators.NewQuatation)
     }
     async  InsuranceType() {
-        let InsuraceType=process.env.InsurancePlan;
+        let InsuraceType=excelValue()[0].InsurancePlan;
         await toClick(`//p[text()= '${InsuraceType}']`);
         console.log(`${InsuraceType} is Selected`);
     }

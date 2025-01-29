@@ -3,6 +3,7 @@ const { pageObject } = require("../Hooks/PageObjects");
 const { expect,chromium } = require("@playwright/test");
 //const XLSX = require('xlsx');
 const fs = require('fs');
+const xlsx = require('xlsx');
 
 // async function dataFromExcel() {
 //             const workbook = XLSX.readFile('example.xlsx');
@@ -273,9 +274,16 @@ for (let x = 270; x < 700; x += 5) {
 async function isVisible(Webelement){
     await pageObject.page.locator(Webelement)
 };
+function readExcelData(filePath, sheetName) {
+    const workbook = xlsx.readFile(filePath);
+    const sheet = workbook.Sheets[sheetName];
+    const jsonData = xlsx.utils.sheet_to_json(sheet);
+    return jsonData;
+  }
 
 
 module.exports = {
+    readExcelData,
     launchURL,
     getCurrentMonthName,
     windowHandle,

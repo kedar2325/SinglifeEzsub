@@ -1,6 +1,7 @@
 const { clickAndSendkeys, getByTextIDClick, getCurrentMonthName, launchURL, assertParticularText, toClick, GetByText_Click, sleep, clickByRole, doubleClick } = require('../Helper/Action');
 const { yearSelection,MonthSelection,DateSelection } = require('../Helper/Helper');
 require('dotenv').config();
+const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 
 const PageLocators = {
@@ -18,8 +19,8 @@ class CustomerSelection {
     }
 
     async QuotationType() {
-        const quotationType = process.env.quotationType;
-        const InsurancePlan = process.env.InsurancePlan;
+        const quotationType = excelValue()[0].quotationType;
+        const InsurancePlan = excelValue()[0].InsurancePlan;
         if (InsurancePlan === "Life Insurance" || InsurancePlan === "Medical & Health Insurance" || InsurancePlan === "Accident Guard") {
             if (quotationType === "Self" || quotationType === "Third-Party") {
                 await toClick(`//p[contains(text(), '${quotationType}')]`);
@@ -49,7 +50,7 @@ class CustomerSelection {
     //     await toClick(PageLocators.nextButton);
     // }
     async clickNewEzsubButton() {
-        let profileType = process.env.Profile;
+        let profileType = excelValue()[0].Profile;
         if (profileType == 'New EzSub Profile') {
             await toClick(`//p[text()='${profileType}']`);
             console.log(`${profileType} is Selected`);
@@ -60,20 +61,20 @@ class CustomerSelection {
 
     }
     async fillNRICnumber() {
-        await clickAndSendkeys(PageLocators.NRICNumber, process.env.NRIC_Number)
+        await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[0].NRIC_Number)
     }
     async fillSalutation() {
         await toClick(PageLocators.salutation);
     }
     async selectSalutation() {
-        let salutation = process.env.Salutation
+        let salutation = excelValue()[0].Salutation
         await clickByRole('option', { name: salutation, exact: true });
     }
     async EnterlastName() {
-        await getByTextIDClick('lastName', process.env.lastname);
+        await getByTextIDClick('lastName', excelValue()[0].lastname);
     }
     async EnterfirstName() {
-        await clickAndSendkeys(PageLocators.firstName, process.env.firstname)
+        await clickAndSendkeys(PageLocators.firstName, excelValue()[0].firstname)
     }
    
 
@@ -91,7 +92,7 @@ class CustomerSelection {
     }
     async occupation() {
         await toClick(PageLocators.occupationID);
-        let occupationID=process.env.occupationID;
+        let occupationID=excelValue()[0].occupationID;
         await clickByRole('option', { name: occupationID })
         console.log(`Selected occupation ID is ${occupationID}`)
     }

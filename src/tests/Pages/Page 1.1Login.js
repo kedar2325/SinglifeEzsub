@@ -1,4 +1,5 @@
 const { clickAndSendkeys,Click, launchURL,  assertParticularText } = require('../Helper/Action');
+const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -16,10 +17,10 @@ const PageLocators={
         await launchURL(process.env.url)    
     }
     async  Enterusername(){
-        await clickAndSendkeys(PageLocators.username,process.env.LoginID);
+        await clickAndSendkeys(PageLocators.username,excelValue()[0].LoginID);
     }
     async  EnterPassword(){
-        await clickAndSendkeys(PageLocators.password,process.env.Password);
+        await clickAndSendkeys(PageLocators.password,excelValue()[0].Password);
     }
     async  ClickLoginButton(){
         await Click(PageLocators.loginButton)

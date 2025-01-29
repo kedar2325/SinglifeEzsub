@@ -1,5 +1,6 @@
-const {  getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, assertCheckBox, toCheck } = require('../Helper/Action');
+const {  getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, assertCheckBox, toCheck, readExcelData } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
+
 require('dotenv').config();
 
 async function yearSelection() {
@@ -78,8 +79,17 @@ async function Signature(Webelement){
           }
         await mouseUp();
 }
+function excelValue(){
+    const excelData=readExcelData("C:/Users/msundarraj/Desktop/Ezsub/data.xlsx","Sheet1")
+    return excelData;
+}
+
+
+
+
 
 module.exports = {
+    excelValue,
     yearSelection,
     MonthSelection,
     DateSelection,
