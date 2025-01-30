@@ -1,5 +1,6 @@
 const { clickAndSendkeys, getByTextIDClick, getCurrentMonthName, launchURL, assertParticularText, toClick, GetByText_Click, sleep, clickByRole, doubleClick } = require('../Helper/Action');
 const { yearSelection,MonthSelection,DateSelection } = require('../Helper/Helper');
+const { excelValue } = require('../Helper/Helper');
 require('dotenv').config();
 const { pageObject } = require('../Hooks/PageObjects');
 
@@ -25,7 +26,7 @@ class CustomerInformation {
     }
 
     async clickNewEzsubButton() {
-        let profileType = process.env.ProfileTypeSelection;
+        let profileType = excelValue()[0].ProfileTypeSelection;
         if (profileType == 'New EzSub Profile') {
             await toClick(`//p[text()='${profileType}']`);
             console.log(`${profileType} is Selected`);
@@ -37,20 +38,20 @@ class CustomerInformation {
     }
 
     async fillNRICnumber() {
-            await clickAndSendkeys(PageLocators.NRICNumber, process.env.NRICField)
+            await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[0].NRICField)
         }
     async fillSalutation() {
             await toClick(PageLocators.salutationID);
         }
     async selectSalutation() {
-            let salutationID = process.env.SalutationValue
+            let salutationID = excelValue()[0].SalutationValue
             await clickByRole('option', { name: salutationID, exact: true });
         }
     async EnterlastName() {
-            await getByTextIDClick('lastName', process.env.Last_Name);
+            await getByTextIDClick('lastName', excelValue()[0].Last_Name);
         }
     async EnterfirstName() {
-            await clickAndSendkeys(PageLocators.firstName, process.env.First_Name)
+            await clickAndSendkeys(PageLocators.firstName, excelValue()[0].First_Name)
         }
 
     async EnterDOB() {
@@ -67,14 +68,14 @@ class CustomerInformation {
         }
     async occupation() {
             await toClick(PageLocators.occupationID);
-            let occupationID=process.env.occupationID;
+            let occupationID=excelValue()[0].occupationID;
             await clickByRole('option', { name: occupationID })
             console.log(`Selected occupation ID is ${occupationID}`)
         }
 
     async SmokingStatus(){
             await sleep(2000);
-            let smoking_status = process.env.smokingstatus
+            let smoking_status = excelValue()[0].smokingstatus
             await toClick(`//p[normalize-space()='${smoking_status}']`)
             
         }
@@ -82,14 +83,14 @@ class CustomerInformation {
     async SelectNationality(){
             await sleep(2000);
             await toClick(PageLocators.nationality_click);
-            let nationality=process.env.nationality;
+            let nationality=excelValue()[0].nationality;
             await toClick(`//div[@id='nationalityCode']//div[contains(text(),'${nationality}')]`);
             console.log(`User selected nationality is ${nationality}`)
         }
 
     async SelectCountryofBirth(){
         await sleep(2000);
-            let countryofresidence = process.env.countryOfResidence
+            let countryofresidence = excelValue()[0].countryOfResidence
             await toClick(PageLocators.countryofresidence_click)
             await toClick(`//div[@id='residenceCountryCode']//div[contains(text(),'${countryofresidence}')]`)
             console.log(`${countryofresidence} is Selected`);
@@ -100,21 +101,21 @@ class CustomerInformation {
     async SelectResidencyStatus(){
         await sleep(2000);
             await toClick(PageLocators.residencystatus);
-            let residency_status = process.env.residencyStatus
+            let residency_status = excelValue()[0].residencyStatus
             await toClick(`//div[@id='residencyStatusCodeQuotation']//div[text()='${residency_status}']`)
             console.log(`${residency_status} is Selected`);
     
             //await toClick(PageLocators.residencystatus_permanent);
         }
     // async VerifyResidencyStatus(){
-    //         let residency_status = process.env.residencyStatus
-    //         await assertText(`//div[contains(text(),'${residency_status}')]`,process.env.residencyStatus);
+    //         let residency_status = excelValue()[0].residencyStatus
+    //         await assertText(`//div[contains(text(),'${residency_status}')]`,excelValue()[0].residencyStatus);
     //         console.log("ih")
     // }
     async SelectRelationship(){
         await sleep(2000);
         await toClick(PageLocators.assuredRelationship);
-        let assured_relationship = process.env.assured_relationship
+        let assured_relationship = excelValue()[0].assured_relationship
         await toClick(`//div[@id='relationship']//div[text()='${assured_relationship}']`)
         console.log(`${assured_relationship} is Selected`);
     }

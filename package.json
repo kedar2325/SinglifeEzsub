@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test --tags @e2e",
+    "test": "cucumber-js test --tags @Qoutation",
     "test:group": "cucumber-js test --tags @2ndAssured",
     "allure:generate": "allure generate ./allure-results -o ./allure-report --clean",
     "allure:open": "allure open ./allure-report",
@@ -22,6 +22,7 @@
     "allure-cucumberjs": "^3.0.9"
   },
   "dependencies": {
+    "cucumber-html-reporter": "^7.2.0",
     "dotenv": "^16.4.7",
     "ezsub": "file:",
     "xlsx": "^0.18.5"

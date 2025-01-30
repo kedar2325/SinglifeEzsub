@@ -1,6 +1,6 @@
 Feature: Rider Selection - Quotation
 
-  @e2e @2ndAssured
+  @e2e @2ndAssured @Qoutation
   Scenario: select the riders
   Given user able to view the available riders
   When user select the riders in the rider selection page
