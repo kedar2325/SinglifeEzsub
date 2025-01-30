@@ -2,13 +2,16 @@ const { Before, After, Status, setDefaultTimeout, BeforeAll, AfterAll } = requir
 const { chromium,firefox,webkit } = require('@playwright/test');
 const { pageObject } = require('./PageObjects');
 require('dotenv').config();
-
+// const path = require('path');
+// const cucumberHtmlReporter = require('cucumber-html-reporter');
+// const reportPath = path.join(__dirname, 'cucumber-report.html');
 let browser;
 let pages;
 
 
 BeforeAll(async function() {
     const browserName = process.env.BrowserName; 
+         pageObject.case=process.env.NumberOfCases;
     switch (browserName.toLowerCase()) {
         case 'chromium':
             browser = await chromium.launch({ headless: false, args: ["--start-maximized"] });
@@ -29,7 +32,20 @@ BeforeAll(async function() {
     pages = await context.newPage();
     pageObject.page = pages;
     
+    
 });
+
+
+// function generateReport() {
+//     cucumberHtmlReporter.generate({
+//         theme: 'bootstrap',
+//         jsonFile: 'cucumber_report.json',
+//         output: reportPath,
+//         reportSuiteAsScenarios: true,
+//         launchReport: true
+//     });
+// }
+
 // After(function (scenario) {
 //     if (scenario.result?.status === 'failed') {
 //       // Capture the screenshot and attach it to Allure report

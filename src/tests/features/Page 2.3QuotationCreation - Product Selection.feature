@@ -1,6 +1,6 @@
 Feature: Product Selection - Quotation
 
-  @e2e @2ndAssured
+  @e2e @2ndAssured @Qoutation
   Scenario: Select the product 
     Given user search for the product in the product selection search box
     When user select the required product from the product list

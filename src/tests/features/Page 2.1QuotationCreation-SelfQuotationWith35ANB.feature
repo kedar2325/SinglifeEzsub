@@ -1,5 +1,5 @@
 Feature: Quotation Creation - Self Quotation Type with 35 ANB
-@e2e @2ndAssured
+@e2e @2ndAssured @Qoutation
   Scenario: Select Apply for Life Insurance plan selection
   Given user clicks customer selection for quotation
   When user clicks new EzSub profile

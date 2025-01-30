@@ -1,6 +1,5 @@
 const { expect } = require('@playwright/test');
-const { Click, assertText, clickAndSendkeys } = require('../Helper/Action');
-const { excelValue } = require('../Helper/Helper');
+const { Click, assertText, clickAndSendkeys, assertParticularText } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -8,11 +7,9 @@ const PageLocators={
 // Declaration US Indicia Title
 usIndiciaTitle:"//p[normalize-space()='Declaration of US Indicia']",
 //IndiciaOptions
-indiciaOptionN:"(//div[@data-testid='radio-items'])[1]",
-indiciaOptionY:"(//div[@data-testid='radio-items'])[2]",
 
 //Link for OptionY
-indiciaDeclaration:"//u[normalize-space()='https://www.singlife.com/en/fatca/']",
+indiciaDeclaration:"//p[contains(text(),'Please complete the United States of America (US) ')]",
 
 //nextButton
 nextButton:"//button[normalize-space()='Next']"
@@ -23,8 +20,18 @@ class DeclarationUsIndicia{
     async verifyDeclarationUsIndiciaTitle(){
             await assertText(PageLocators.usIndiciaTitle,"Declaration of US Indicia");
         }
-    async clickIndiciaOptionN(){
-        await Click(PageLocators.indiciaOptionN)
+    async clickIndiciaOption(){
+        let indicaoption = process.env.indicaoption
+        if(indicaoption.includes("Yes")){
+            await Click(`//p[normalize-space()='${indicaoption}']`)
+            await assertParticularText(PageLocators.indiciaDeclaration,"Please complete the United States of America (US) ")
+        }
+        else{
+            await Click(`//p[normalize-space()='${indicaoption}']`)
+        }
+        
+        
+
     }
     async clickNextButton(){
             await Click(PageLocators.nextButton);
@@ -32,3 +39,6 @@ class DeclarationUsIndicia{
 
 }
 module.exports={DeclarationUsIndicia}
+
+//p[text()='You are not allowed to buy a product with cash value if you are a US person and have one or more US Indicia']
+//button[normalize-space()='Cancel']
