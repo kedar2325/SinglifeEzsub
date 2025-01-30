@@ -1,4 +1,5 @@
 const { clickAndSendkeys, sleep, toClick, assertText, Click, sendkeys, isVisible } = require('../Helper/Action');
+const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -34,10 +35,10 @@ class underwritingQuestions{
         await assertText(PageLocators.underwritingGreetText,'Underwriting questions for:');
     }
     async fillHeight(){
-        await clickAndSendkeys(PageLocators.height,"0.11");
+        await clickAndSendkeys(PageLocators.height,process.env.Height);
     }
     async fillWeight(){
-        await clickAndSendkeys(PageLocators.weight,"80");
+        await clickAndSendkeys(PageLocators.weight,process.env.Weight);
     }
     async clickCalculate(){
         await toClick(PageLocators.calculate);
