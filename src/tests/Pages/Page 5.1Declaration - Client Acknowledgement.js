@@ -40,12 +40,8 @@ async clickMarketingConsent(){
             break;
         }
 }
+async selectEDocument(){
 
-async clickMarketingConsentY(){
-    await Click(PageLocators.marketingConsentY);
-}
-async clickMarketingConsentN(){
-    await Click(PageLocators.marketingConsentN);
 }
 
 async eDocY(){
