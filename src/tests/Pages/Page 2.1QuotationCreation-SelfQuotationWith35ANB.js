@@ -61,7 +61,7 @@ class CustomerSelection {
 
     }
     async fillNRICnumber() {
-        await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[0].NRIC_Number)
+        await clickAndSendkeys(PageLocators.NRICNumber, process.env.NRIC_Number)
     }
     async fillSalutation() {
         await toClick(PageLocators.salutation);
