@@ -1,5 +1,6 @@
 const { expect } = require('@playwright/test');
 const { Click, assertText, clickAndSendkeys } = require('../Helper/Action');
+const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -27,21 +28,12 @@ class ClientAcknowledgement{
 async verifyClientAcknowledgement(){ 
         await assertText(PageLocators.clientAcknowledgementTitle, "Let’s stay in touch - on your terms");
     }
-async clickMarketingConsent(){
-    let Element;
-    switch (process.env.MarketingConsent) {
-        case "No":
-            Element=process.env.marketingConsentN;
-            await Click(Element);
-            break;
-        case "Yes":
-            Element=process.env.marketingConsentY;
-            await Click(Element);
-            break;
-        }
-}
-async selectEDocument(){
 
+async clickMarketingConsentY(){
+    await Click(PageLocators.marketingConsentY);
+}
+async clickMarketingConsentN(){
+    await Click(PageLocators.marketingConsentN);
 }
 
 async eDocY(){

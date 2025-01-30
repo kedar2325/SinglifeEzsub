@@ -14,8 +14,8 @@ let pageDeclarationPolitically
           //check page exists
          });
 
-         When('user selects declare option no', async function () {
-          await pageDeclarationPolitically.clickPoliticallyExposedPersonN();
+         When('user selects declares option', async function () {
+          await pageDeclarationPolitically.clickPoliticallyExposedPerson();
           //clicks on PEP option as no
          });
 
