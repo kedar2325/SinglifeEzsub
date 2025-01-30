@@ -6,9 +6,17 @@ require('dotenv').config();
 
 const PageLocators={
     verifyInitialPremiumPage: "//p[contains(text(),'Initial Premium Payment')]",
-     cashButton:"(//p[text()='Cash/Cheque/Bank Draft'])[1]",
-    chequeNo:"//p[text()='Cheque No.']//parent::label/following-sibling::div/input",
-    issuingBank:"//p[text()='Issuing Bank']//parent::label/following-sibling::div/input",
+    cashButton:"(//p[text()='Cash/Cheque/Bank Draft'])[1]",
+    giroButton:"(//p[text()='Interbank GIRO'])[1]",
+    creditCardButton:"(//p[text()='Credit Card'])[1]",
+    giro_accountNumber:"(//input[@type='number'])[1]",
+    JointAccount_Name:"",
+    Joint_NRICNumber:"//input[@name='jointAccountHolderId']",
+    Cheque_Number:"//p[text()='Cheque No.']//parent::label/following-sibling::div/input",
+    Issuing_Bank:"//p[text()='Issuing Bank']//parent::label/following-sibling::div/input",
+
+    
+    giroButton2:"(//p[text()='Interbank GIRO'])[2]",
     cashButton2:"(//p[text()='Cash/Cheque/Bank Draft'])[2]",
 
     //Next Button
@@ -26,20 +34,25 @@ class ReviewDetailsInitialPremiumPayment{
         await assertText(PageLocators.verifyInitialPremiumPage, "Initial Premium Payment");
     }
 
-    async paymentMethod() {
+    async InitialPremiumPaymentMethod() {
             let paymentMethod=process.env.PaymentType;
             await toClick(`//p[text()= '${paymentMethod}']`);
             console.log(`${paymentMethod} is Selected`);
         if(paymentMethod.includes("Interbank GIRO")){
-            await InterbankGIROPayment();
+            await Click(PageLocators.giroButton);
+            await clickAndSendkeys(PageLocators.giro_accountNumber,process.env.GIRO_AccountNumber);
+            await clickAndSendkeys(PageLocators.JointAccount_Name,process.env.Joint_Account_Name);
+            await clickAndSendkeys(PageLocators.NRICNumber,process.env.NRIC_Number);
+
         }
         else if(paymentMethod.includes("Cash/Cheque/Bank Draft")){
-            await CashOrChequeDraft();
-
-
+            await Click(PageLocators.cashButton);
+            await clickAndSendkeys(PageLocators.chequeNo, process.env.Cheque_Number);
+            await clickAndSendkeys(PageLocators.Issuing_Bank, process.env.IssuingBank);
+        
         }
         else if(paymentMethod.includes("Credit Card")){
-            await CreditCardPayment();
+            await Click(PageLocators.creditCardButton);
         }
         else {
             console.log("No payment method is available");
@@ -47,9 +60,26 @@ class ReviewDetailsInitialPremiumPayment{
         
     }
 
-    async InterbankGIROPayment(){
-        
+    async SubsequentPremiumPayment(){
+        let Element;
+        switch (process.env.SubsequentPremiumPayment_Type) {
+            case "Interbank GIRO":
+                Element=PageLocators.giroButton2;
+                await Click(Element);
+                break;
+            case "Cash/Cheque/Bank Draft":
+                Element=PageLocators.cashButton2;
+                await toClick(Element);
+            default:
+                console.log('Unknown Selection');
+        }
+
+
+
+
     }
+
+    
     
 
 
