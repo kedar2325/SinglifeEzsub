@@ -80,7 +80,7 @@ async function Signature(Webelement){
         await mouseUp();
 }
 function excelValue(){
-    const excelData=readExcelData("C:/Users/12129.ARDIANET.000/Desktop/SinglifeEzsub/data.xlsx","Sheet1")
+    const excelData=readExcelData("C:/Users/7821/Documents/Ezsubautomation/SinglifeEzsub/data.xlsx","Sheet1")
     return excelData;
 }
 

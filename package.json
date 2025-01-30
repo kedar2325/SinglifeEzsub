@@ -20,7 +20,8 @@
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.7",
     "allure-commandline": "^2.32.0",
-    "allure-cucumberjs": "^3.0.9"
+    "allure-cucumberjs": "^3.0.9",
+    "playwright": "^1.50.0"
   },
   "dependencies": {
     "cucumber-html-reporter": "^7.2.0",
