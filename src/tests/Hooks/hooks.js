@@ -2,9 +2,9 @@ const { Before, After, Status, setDefaultTimeout, BeforeAll, AfterAll } = requir
 const { chromium,firefox,webkit } = require('@playwright/test');
 const { pageObject } = require('./PageObjects');
 require('dotenv').config();
-const path = require('path');
-const cucumberHtmlReporter = require('cucumber-html-reporter');
-const reportPath = path.join(__dirname, 'cucumber-report.html');
+// const path = require('path');
+// const cucumberHtmlReporter = require('cucumber-html-reporter');
+// const reportPath = path.join(__dirname, 'cucumber-report.html');
 let browser;
 let pages;
 
@@ -36,15 +36,15 @@ BeforeAll(async function() {
 });
 
 
-function generateReport() {
-    cucumberHtmlReporter.generate({
-        theme: 'bootstrap',
-        jsonFile: 'cucumber_report.json',
-        output: reportPath,
-        reportSuiteAsScenarios: true,
-        launchReport: true
-    });
-}
+// function generateReport() {
+//     cucumberHtmlReporter.generate({
+//         theme: 'bootstrap',
+//         jsonFile: 'cucumber_report.json',
+//         output: reportPath,
+//         reportSuiteAsScenarios: true,
+//         launchReport: true
+//     });
+// }
 
 // After(function (scenario) {
 //     if (scenario.result?.status === 'failed') {
@@ -75,6 +75,5 @@ AfterAll(async function(){
    } catch (error) {
        console.error('Error closing the browser:', error);
    }
-   generateReport();
 })
 

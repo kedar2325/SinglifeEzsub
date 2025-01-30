@@ -24,7 +24,9 @@ Given('user able to view the supporting docs', async function () {
   });
 
   When('user able to upload proof of mas', async function () {
-    //await pageSupportingDocs.uploadProofMas();
+    if(process.env.PaymentType=="CreditCard"){
+    await pageSupportingDocs.uploadProofMas();
+    }
   });
 
   Then('user click on next btn on doc', async function () {
