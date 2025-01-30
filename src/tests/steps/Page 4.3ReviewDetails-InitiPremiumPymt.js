@@ -17,13 +17,11 @@ Given('user able to view payment method', async function () {
 });
 
 When('user selects payment method', async function () {
-  await InitialPremiumPymt.CashPayment();
-  await InitialPremiumPymt.EnterChequeNo();
+  await InitialPremiumPymt.InitialPremiumPaymentMethod();
 });
 
 When('user selects subsequent premium payment', async function () {
-  await InitialPremiumPymt.EnterIssuingBank();
-  await InitialPremiumPymt.CashPayment2();
+  await InitialPremiumPymt.SubsequentPremiumPayment();
 });
 
 When('user click on Next', async function () {

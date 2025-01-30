@@ -59,10 +59,9 @@ class underwritingQuestions{
                 // }
                 await toClick(path);
                 console.log(path);
-                await sleep(1000);
+                await sleep(1100);
                 path="";
             }
-            console.log("loop out")
     }
     // async VerifyUnderwriting() {
     //     await toClick("(//p[text()='No'])[1]");

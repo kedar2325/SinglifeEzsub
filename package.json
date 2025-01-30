@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test --tags @Qoutation",
+    "test": "cucumber-js test --tags @e2e",
     "test:group": "cucumber-js test --tags @2ndAssured",
     "allure:generate": "allure generate ./allure-results -o ./allure-report --clean",
     "allure:open": "allure open ./allure-report",

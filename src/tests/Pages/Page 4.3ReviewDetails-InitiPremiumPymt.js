@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys, launchURL, sleep, Click, assertText, toClick } = require('../Helper/Action');
+const { clickAndSendkeys, launchURL, sleep, Click, assertText, toClick, sendkeys } = require('../Helper/Action');
 const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -32,26 +32,29 @@ class ReviewDetailsInitialPremiumPayment{
     }
     async verifyInitialPremiumPage(){ 
         await assertText(PageLocators.verifyInitialPremiumPage, "Initial Premium Payment");
+        console.log("0");
     }
 
     async InitialPremiumPaymentMethod() {
             let paymentMethod=process.env.PaymentType;
-            await toClick(`//p[text()= '${paymentMethod}']`);
+            console.log("1");
+            //await toClick(`//p[text()= '${paymentMethod}']`);
             console.log(`${paymentMethod} is Selected`);
-        if(paymentMethod.includes("Interbank GIRO")){
+        if(paymentMethod=="Interbank GIRO"){
             await Click(PageLocators.giroButton);
             await clickAndSendkeys(PageLocators.giro_accountNumber,process.env.GIRO_AccountNumber);
             await clickAndSendkeys(PageLocators.JointAccount_Name,process.env.Joint_Account_Name);
             await clickAndSendkeys(PageLocators.NRICNumber,process.env.NRIC_Number);
 
         }
-        else if(paymentMethod.includes("Cash/Cheque/Bank Draft")){
+        else if(paymentMethod=="Cash/Cheque/Bank Draft"){
+            console.log("2");
             await Click(PageLocators.cashButton);
-            await clickAndSendkeys(PageLocators.chequeNo, process.env.Cheque_Number);
+            await clickAndSendkeys(PageLocators.Cheque_Number, process.env.ChequeNumber);
             await clickAndSendkeys(PageLocators.Issuing_Bank, process.env.IssuingBank);
         
         }
-        else if(paymentMethod.includes("Credit Card")){
+        else if(paymentMethod=="Credit Card"){
             await Click(PageLocators.creditCardButton);
         }
         else {
@@ -62,6 +65,7 @@ class ReviewDetailsInitialPremiumPayment{
 
     async SubsequentPremiumPayment(){
         let Element;
+        console.log("3");
         switch (process.env.SubsequentPremiumPayment_Type) {
             case "Interbank GIRO":
                 Element=PageLocators.giroButton2;
@@ -79,29 +83,21 @@ class ReviewDetailsInitialPremiumPayment{
 
     }
 
-    
-    
+   
 
 
-
-
-
-
-
-
-
-    async CashPayment(){
-        await toClick(PageLocators.cashButton);
-    }
-    async EnterChequeNo(){
-        await clickAndSendkeys(PageLocators.chequeNo,"64");
-    }
-    async EnterIssuingBank(){
-        await clickAndSendkeys(PageLocators.issuingBank,"SBI");
-    }
-    async CashPayment2(){
-        await toClick(PageLocators.cashButton2);
-    }
+    // async CashPayment(){
+    //     await toClick(PageLocators.cashButton);
+    // }
+    // async EnterChequeNo(){
+    //     await clickAndSendkeys(PageLocators.chequeNo,"64");
+    // }
+    // async EnterIssuingBank(){
+    //     await clickAndSendkeys(PageLocators.issuingBank,"SBI");
+    // }
+    // async CashPayment2(){
+    //     await toClick(PageLocators.cashButton2);
+    // }
 
     //Next Button
     async ClickNextButton(){
