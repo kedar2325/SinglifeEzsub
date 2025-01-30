@@ -6,10 +6,12 @@ require('dotenv').config();
 
 const PageLocators={
     verifyInitialPremiumPage: "//p[contains(text(),'Initial Premium Payment')]",
-     cashButton:"(//p[text()='Cash/Cheque/Bank Draft'])[1]",
+    cashButton:"(//p[text()='Cash/Cheque/Bank Draft'])[1]",
     chequeNo:"//p[text()='Cheque No.']//parent::label/following-sibling::div/input",
     issuingBank:"//p[text()='Issuing Bank']//parent::label/following-sibling::div/input",
     cashButton2:"(//p[text()='Cash/Cheque/Bank Draft'])[2]",
+    entercreditcarddetailbtn: "//button[normalize-space()='Enter credit card details']",
+
 
     //Next Button
     nextbtn: "//button[contains(text(),'Next')]",
@@ -38,6 +40,8 @@ class ReviewDetailsInitialPremiumPayment{
 
         }
         else if(paymentMethod.includes("Credit Card")){
+            await toClick(PageLocators.entercreditcarddetailbtn)
+
          
         }
         else {
