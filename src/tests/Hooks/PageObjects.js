@@ -1,3 +1,4 @@
 export const pageObject={
-    page: undefined
+    page: undefined,
+    case:undefined
 }

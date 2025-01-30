@@ -14,11 +14,10 @@ Given('user able to view declaration of beneficial ownership', async function ()
   });
 
 
-  When('user selects declare beneficial option no', async function () {
-          await pageBeneficialOwnership.clickPoliticallyExposedPersonN();
+  When('user selects declare beneficial option no or yes', async function () {
+          await pageBeneficialOwnership.clickBeneficialOwnerOption();
           //Select beneficial Ownership N
   });
-
 
 
   Then('user selects next on BO', async function () {
