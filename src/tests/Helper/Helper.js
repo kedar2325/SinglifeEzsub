@@ -1,6 +1,6 @@
+const path = require('path');
 const {  getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, assertCheckBox, toCheck, readExcelData } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
-
 require('dotenv').config();
 
 async function yearSelection() {
@@ -80,7 +80,8 @@ async function Signature(Webelement){
         await mouseUp();
 }
 function excelValue(){
-    const excelData=readExcelData("C:/Users/12129.ARDIANET.000/Desktop/SinglifeEzsub/data.xlsx","Sheet1")
+   // const path1=path.join(__dirname, 'data.xlsx');
+    const excelData=readExcelData("C:/Users/msundarraj/Desktop/Ezsub/data.xlsx","Sheet1")
     return excelData;
 }
 
