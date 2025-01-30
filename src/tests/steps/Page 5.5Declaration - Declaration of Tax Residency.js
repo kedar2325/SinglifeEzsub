@@ -15,6 +15,13 @@ Given('user able to view declaration of tax residency', async function () {
 When('user selects tax resident in singapore yes', async function () {
     await pageTaxDeclaration.clickSingaporeTaxResidentY();
   });
+
+When('user enter tax declaration', async function () {
+    await pageTaxDeclaration.enterDeclarationTabOne();
+    if(process.env.quotationType!="Self"){
+      await pageTaxDeclaration.enterDeclarationTabTwo()
+    }
+  });
 When('user enters tin number', async function () {
     await pageTaxDeclaration.enterNricNumber();
   });

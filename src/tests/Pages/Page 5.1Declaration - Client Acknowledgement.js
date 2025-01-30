@@ -22,6 +22,7 @@ contactMobileNumber: "(//input[@type='normal'])[2]",
 //Next Button
 nextButton:"//button[normalize-space()='Next']"
 
+
 }
 class ClientAcknowledgement{
 async verifyClientAcknowledgement(){ 

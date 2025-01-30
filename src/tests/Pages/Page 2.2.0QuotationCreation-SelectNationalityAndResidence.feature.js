@@ -56,7 +56,7 @@ class QuotationSelectNationaliandResidency{
         let residency_status = process.env.residencyStatus
         await toClick(`//div[@id='residencyStatusCodeQuotation']//div[text()='${residency_status}']`)
         console.log(`${residency_status} is Selected`);
-
+        
         //await toClick(PageLocators.residencystatus_permanent);
     }
     async VerifyResidencyStatus(){
