@@ -33,12 +33,11 @@ class ReviewDetailsInitialPremiumPayment{
             await InterbankGIROPayment();
         }
         else if(paymentMethod.includes("Cash/Cheque/Bank Draft")){
-            await CashOrChequeDraft();
-
+            
 
         }
         else if(paymentMethod.includes("Credit Card")){
-            await CreditCardPayment();
+         
         }
         else {
             console.log("No payment method is available");
@@ -46,9 +45,6 @@ class ReviewDetailsInitialPremiumPayment{
         
     }
 
-    async InterbankGIROPayment(){
-        
-    }
     
 
 

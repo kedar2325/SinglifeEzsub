@@ -13,7 +13,7 @@ Given('user able to view declaration of us indicia', async function () {
   });
 
 When('user selects declare us indicia no', async function () {
-    await pageDeclarationUsIndicia.clickIndiciaOptionN();
+    await pageDeclarationUsIndicia.clickIndiciaOption();
   });
   
 Then('user selects next on usIndico', async function () {
