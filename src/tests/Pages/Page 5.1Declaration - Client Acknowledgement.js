@@ -27,6 +27,19 @@ class ClientAcknowledgement{
 async verifyClientAcknowledgement(){ 
         await assertText(PageLocators.clientAcknowledgementTitle, "Let’s stay in touch - on your terms");
     }
+async clickMarketingConsent(){
+    let Element;
+    switch (process.env.MarketingConsent) {
+        case "No":
+            Element=process.env.marketingConsentN;
+            await Click(Element);
+            break;
+        case "Yes":
+            Element=process.env.marketingConsentY;
+            await Click(Element);
+            break;
+        }
+}
 
 async clickMarketingConsentY(){
     await Click(PageLocators.marketingConsentY);
