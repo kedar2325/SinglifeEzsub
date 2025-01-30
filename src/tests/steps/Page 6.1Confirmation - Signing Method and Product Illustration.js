@@ -32,7 +32,9 @@ Given('user able to view the signing method', async function () {
   });
 
   When('user preview the PDF of Credit Signature and success', async function () {
-   // await pageSigningMethod.creditCardClickandSummary();
+    if(process.env.PaymentType=="CreditCard"){
+      await pageSigningMethod.creditCardClickandSummary();
+    }
   });
 
   Then('user click on next btn on signing', async function () {

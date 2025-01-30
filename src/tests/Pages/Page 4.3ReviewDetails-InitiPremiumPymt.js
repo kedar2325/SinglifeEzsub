@@ -18,6 +18,8 @@ const PageLocators={
     
     giroButton2:"(//p[text()='Interbank GIRO'])[2]",
     cashButton2:"(//p[text()='Cash/Cheque/Bank Draft'])[2]",
+    entercreditcarddetailbtn: "//button[normalize-space()='Enter credit card details']",
+
 
     //Next Button
     nextbtn: "//button[contains(text(),'Next')]",
