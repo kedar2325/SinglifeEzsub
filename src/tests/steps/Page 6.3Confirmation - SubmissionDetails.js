@@ -6,6 +6,7 @@ require('dotenv').config();
 //Submit import
 const { SubmitDocuments } = require('../Pages/Page 6.3Confirmation - SubmissionDetails');
 const { pageObject } = require('../Hooks/PageObjects');
+const { takeScreenshot } = require('../Helper/Action');
 
 let pageSubmitDocuments;
 
@@ -20,4 +21,5 @@ Given('user able to view the app details', async function () {
 
   Then('user verify application successfully', async function () {
     await pageSubmitDocuments.verifySubmitSuccessfully();
+    takeScreenshot("Policy Number generation Completed");
   });

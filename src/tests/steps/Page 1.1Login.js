@@ -6,6 +6,7 @@ require('dotenv').config();
 //login import
 const { Login } = require('../Pages/Page 1.1Login');
 const { pageObject } = require('../Hooks/PageObjects');
+const { takeScreenshot } = require('../Helper/Action');
 
 let loginFunction;
 Given('User launch the login url', async function () {
@@ -27,4 +28,5 @@ When('User clicks the Login button', async function () {
 });
 Then('User validate the home page text', async function () {
       await loginFunction.assertHomeText();
+      takeScreenshot("login completed")
 });
