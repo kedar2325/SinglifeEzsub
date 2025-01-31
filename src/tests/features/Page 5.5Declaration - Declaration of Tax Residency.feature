@@ -1,4 +1,4 @@
-Feature: 19.Declaration - Declaration of Tax Residency
+Feature: Declaration - Declaration of Tax Residency
 @e2e @2ndAssured
   Scenario: Declaration of Tax Residency
     Given user able to view declaration of tax residency

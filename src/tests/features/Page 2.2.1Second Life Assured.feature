@@ -1,4 +1,4 @@
-Feature:4.1Second Life Assured process
+Feature:Second Life Assured process
 
 @2ndAssured
   Scenario: Complete second life assured details

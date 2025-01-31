@@ -1,4 +1,4 @@
-Feature: 13.Review Details - Payer Details
+Feature: Review Details - Payer Details
 @e2e @2ndAssured
   Scenario: Valid Payer Details
     Given user able to view questions

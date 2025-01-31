@@ -1,4 +1,4 @@
-Feature: 9.Review Details - Selected Quotation
+Feature: Review Details - Selected Quotation
 @e2e @2ndAssured
   Scenario: enter into the selected quotation 
   Given user able to view the selected quotation page

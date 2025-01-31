@@ -1,4 +1,4 @@
-Feature: 5.Product Selection - Quotation
+Feature: Product Selection - Quotation
 
   @e2e @2ndAssured @Qoutation
   Scenario: Select the product 

@@ -1,4 +1,4 @@
-Feature: 17.Declaration - Declaration of Beneficial Ownership
+Feature: Declaration - Declaration of Beneficial Ownership
 @e2e @2ndAssured
   Scenario: Declare Beneficial Ownership
     Given user able to view declaration of beneficial ownership
