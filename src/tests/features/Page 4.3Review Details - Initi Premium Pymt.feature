@@ -1,4 +1,4 @@
-Feature: Review Details - Quotation
+Feature: 14.Review Details - Quotation
 @e2e @2ndAssured
   Scenario: Valid Payer Details
     Given user able to view payment method

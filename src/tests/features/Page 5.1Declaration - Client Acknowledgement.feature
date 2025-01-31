@@ -1,4 +1,4 @@
-Feature: Declaration - Client Acknowledgement
+Feature: 15.Declaration - Client Acknowledgement
 @e2e @2ndAssured
   Scenario: Valid Payer Details
     Given user able to view terms

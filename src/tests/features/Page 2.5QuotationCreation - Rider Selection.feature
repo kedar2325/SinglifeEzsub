@@ -1,4 +1,4 @@
-Feature: Rider Selection - Quotation
+Feature: 7.Rider Selection - Quotation
 
   @e2e @2ndAssured @Qoutation
   Scenario: select the riders

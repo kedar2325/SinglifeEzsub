@@ -1,4 +1,4 @@
-Feature: Confirmation - Supporting Documents
+Feature: 21.Confirmation - Supporting Documents
 @e2e @2ndAssured
   Scenario: Complete the E-Signature in others field
     Given user able to view the supporting docs
