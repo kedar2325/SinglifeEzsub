@@ -1,5 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
+const { excelValue } = require('../Helper/Helper');
 setDefaultTimeout(15000); 
 require('dotenv').config();
 
@@ -16,8 +17,9 @@ let pageClientAcknowledgement;
 
 
   When('user selects terms option', async function () {
+    let MarketingConsent=excelValue()[pageObject.case].MarketingConsent;
     //To select option yes
-    if(process.env.MarketingConsent=="Yes"){
+    if(MarketingConsent=="Yes"){
     await pageClientAcknowledgement.clickMarketingConsentY();
     }else{
     await pageClientAcknowledgement.clickMarketingConsentN(); 

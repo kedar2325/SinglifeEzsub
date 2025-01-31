@@ -81,9 +81,9 @@ class CustomerSelection {
     async EnterDOB() {
         await toClick(PageLocators.DOBfield);
         await sleep(2000);
-        await yearSelection();
-        await MonthSelection();
-        await DateSelection();
+        await yearSelection(excelValue()[pageObject.case].year);
+        await MonthSelection(excelValue()[pageObject.case].Month);
+        await DateSelection(excelValue()[pageObject.case].Date);
         // await toClick(PageLocators.yearClick);
         // await doubleClick(PageLocators.leftArrowForData);
         // await doubleClick(PageLocators.leftArrowForData);

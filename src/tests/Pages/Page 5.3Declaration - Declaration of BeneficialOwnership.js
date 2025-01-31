@@ -3,6 +3,7 @@ const { Click, assertText, sleep, clickAndSendkeys, toClick, clickByRole, GetByT
 const { yearSelection,MonthSelection,DateSelection } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
+const { excelValue } = require('../Helper/Helper');
 
 const PageLocators={
 //BeneficialOwnershipTitle
@@ -37,30 +38,34 @@ class DeclarationBeneficialOwnership{
         await assertText(PageLocators.beneficialOwnershipTitle,"Declaration of Beneficial Ownership");
     }
     async clickBeneficialOwnerOption(){
-        let beneficialoption = process.env.beneficial_owner
-        console.log(beneficialoption)
+        let beneficialoption = excelValue()[pageObject.case].beneficial_owner;
+        let beneficialFirstName = excelValue()[pageObject.case].bo1_firstname;
+        let beneficialLastName = excelValue()[pageObject.case].bo1_lastname;
+        let beneficalNRICNum = excelValue()[pageObject.case].bo1_nricno;
         if(beneficialoption.includes("Yes")){
             await Click(`//p[normalize-space()='Declaration of Beneficial Ownership']/following::p[text()='${beneficialoption}']`)
-            await clickAndSendkeys(PageLocators.beneficialLastName1,process.env.bo1_lastname)
-            await clickAndSendkeys(PageLocators.beneficialFirstName1,process.env.bo1_firstname)
+            await clickAndSendkeys(PageLocators.beneficialLastName1,beneficialFirstName)
+            await clickAndSendkeys(PageLocators.beneficialFirstName1,beneficialLastName)
             await Click(PageLocators.beneficialDob1)
             await yearSelection();
             await MonthSelection();
             await DateSelection();
-            await clickAndSendkeys(PageLocators.beneficialNRIC1,process.env.bo1_nricno)
+            await clickAndSendkeys(PageLocators.beneficialNRIC1,beneficalNRICNum)
             await Click(PageLocators.beneficialNationality_Click1)
-            let nationality = process.env.bo1_nationality
+            let nationality = excelValue()[pageObject.case].bo1_nationality;
             await Click(`(//div[text()='${nationality}'])[1]`)
             //await clickByRole('button', { name: 'Yes, proceed' })
             console.log("clicked")
             await Click(PageLocators.beneficialOwnerRelationship1)
-            let relationship = process.env.bo1_relationship
+            let relationship = excelValue()[pageObject.case].bo1_relationship;
             await Click(`//div[contains(text(),'${relationship}')]`)
-            await clickAndSendkeys(PageLocators.beneficialOwnerPostalcode1,process.env.bo1_postalcode)
+            let postalCode = excelValue()[pageObject.case].bo1_postalcode;
+            await clickAndSendkeys(PageLocators.beneficialOwnerPostalcode1,process.env.bo1_postalcode);
            
             await Click(PageLocators.beneficialaddress_searchbtn1)
             await sleep(2000); 
-            await clickAndSendkeys(PageLocators.beneficialUnitNo1,process.env.bo1_unitno)
+            let unitNo = excelValue()[pageObject.case].bo1_unitno;
+            await clickAndSendkeys(PageLocators.beneficialUnitNo1,unitNo)
  }
  else{
     await Click(`//p[normalize-space()='Declaration of Beneficial Ownership']/following::p[text()='${beneficialoption}']`)
