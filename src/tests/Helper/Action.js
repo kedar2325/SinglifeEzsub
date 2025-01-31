@@ -1,8 +1,5 @@
-const { context } = require("@cucumber/cucumber");
 const { pageObject } = require("../Hooks/PageObjects");
 const { expect,chromium } = require("@playwright/test");
-//const XLSX = require('xlsx');
-const fs = require('fs');
 const xlsx = require('xlsx');
 
 // async function dataFromExcel() {
