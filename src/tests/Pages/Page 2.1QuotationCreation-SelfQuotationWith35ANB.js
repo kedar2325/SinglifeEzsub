@@ -19,8 +19,8 @@ class CustomerSelection {
     }
 
     async QuotationType() {
-        const quotationType = excelValue()[0].quotationType;
-        const InsurancePlan = excelValue()[0].InsurancePlan;
+        const quotationType = excelValue()[pageObject.case].quotationType;
+        const InsurancePlan = excelValue()[pageObject.case].InsurancePlan;
         if (InsurancePlan === "Life Insurance" || InsurancePlan === "Medical & Health Insurance" || InsurancePlan === "Accident Guard") {
             if (quotationType === "Self" || quotationType === "Third-Party") {
                 await toClick(`//p[contains(text(), '${quotationType}')]`);
@@ -50,7 +50,7 @@ class CustomerSelection {
     //     await toClick(PageLocators.nextButton);
     // }
     async clickNewEzsubButton() {
-        let profileType = excelValue()[0].Profile;
+        let profileType = excelValue()[pageObject.case].Profile;
         if (profileType == 'New EzSub Profile') {
             await toClick(`//p[text()='${profileType}']`);
             console.log(`${profileType} is Selected`);
@@ -61,20 +61,20 @@ class CustomerSelection {
 
     }
     async fillNRICnumber() {
-        await clickAndSendkeys(PageLocators.NRICNumber, process.env.NRIC_Number)
+        await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[pageObject.case].NRIC_Number)
     }
     async fillSalutation() {
         await toClick(PageLocators.salutation);
     }
     async selectSalutation() {
-        let salutation = excelValue()[0].Salutation
+        let salutation = excelValue()[pageObject.case].Salutation
         await clickByRole('option', { name: salutation, exact: true });
     }
     async EnterlastName() {
-        await getByTextIDClick('lastName', excelValue()[0].lastname);
+        await getByTextIDClick('lastName', excelValue()[pageObject.case].lastname);
     }
     async EnterfirstName() {
-        await clickAndSendkeys(PageLocators.firstName, excelValue()[0].firstname)
+        await clickAndSendkeys(PageLocators.firstName, excelValue()[pageObject.case].firstname)
     }
    
 
@@ -92,7 +92,7 @@ class CustomerSelection {
     }
     async occupation() {
         await toClick(PageLocators.occupationID);
-        let occupationID=excelValue()[0].occupationID;
+        let occupationID=excelValue()[pageObject.case].occupationID;
         await clickByRole('option', { name: occupationID })
         console.log(`Selected occupation ID is ${occupationID}`)
     

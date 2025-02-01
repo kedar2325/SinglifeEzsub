@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys,Click, launchURL,  assertParticularText } = require('../Helper/Action');
+const { clickAndSendkeys,Click, launchURL,  assertParticularText, takeScreenshot } = require('../Helper/Action');
 const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -31,7 +31,7 @@ const PageLocators={
     }
     async assertHomeText(){
         await assertParticularText(PageLocators.homeGreetText,"👋 Welcome, ")
-        
+        await takeScreenshot("Login Completed")
 
         //const screen1 = await PageLocators.page.screenshot({path: '../test-results/screenshot.png',fullPage: true});
  // allure.screenshot('screenShot', screen1, 'image/png');

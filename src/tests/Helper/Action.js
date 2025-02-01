@@ -277,9 +277,93 @@ function readExcelData(filePath, sheetName) {
     const jsonData = xlsx.utils.sheet_to_json(sheet);
     return jsonData;
   }
+  async function assertElementVisible(Webelement,ElementName) {
+    try {
+        await expect(pageObject.page.locator(Webelement)).toBeVisible();
+        console.log(`${ElementName} is visible`);
+    } catch (error) {
+        console.log(`${ElementName} is not visible`);
+    }
+}
+async function assertElementHidden(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).toBeHidden();
+}
+async function assertElementEnabled(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).toBeEnabled();
+}
+async function assertElementDisabled(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).toBeDisabled();
+}
+async function assertElementChecked(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).toBeChecked();
+}
+async function assertElementUnchecked(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).toBeUnchecked();
+}
+async function assertElementContainsClass(Webelement, className) {
+    await expect(pageObject.page.locator(Webelement)).toHaveClass(className);
+}
+async function assertElementAttribute(Webelement, attribute, value) {
+    await expect(pageObject.page.locator(Webelement)).toHaveAttribute(attribute, value);
+}
+async function assertElementCount(Webelement, count) {
+    const elements = await pageObject.page.locator(Webelement).count();
+    if (elements !== count) {
+        throw new Error(`Expected ${count} elements, but found ${elements}`);
+    }
+}
+async function assertElementInViewport(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).toBeInViewport();
+}
+async function assertElementFocused(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).toBeFocused();
+}
+async function assertElementNotPresent(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).toHaveCount(0);
+}
+async function assertTextDoesNotAppear(Webelement, text) {
+    await expect(pageObject.page.locator(Webelement)).not.toHaveText(text);
+}
+async function assertElementValue(Webelement, value) {
+    await expect(pageObject.page.locator(Webelement)).toHaveValue(value);
+}
+async function assertElementSelected(Webelement, value) {
+    await expect(pageObject.page.locator(Webelement)).toHaveValue(value);
+}
+async function assertElementNotChecked(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).not.toBeChecked();
+}
+async function assertElementNotDisabled(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).not.toBeDisabled();
+}
+async function assertElementNotVisible(Webelement) {
+    await expect(pageObject.page.locator(Webelement)).not.toBeVisible();
+}
+
+
+
+
 
 
 module.exports = {
+    assertElementNotVisible,
+    assertElementNotDisabled,
+    assertElementNotChecked,
+    assertElementSelected,
+    assertElementValue,
+    assertTextDoesNotAppear,
+    assertElementNotPresent,
+    assertElementFocused,
+    assertElementInViewport,
+    assertElementCount,
+    assertElementAttribute,
+    assertElementContainsClass,
+    assertElementUnchecked,
+    assertElementChecked,
+    assertElementDisabled,
+    assertElementEnabled,
+    assertElementHidden,
+    assertElementVisible,
     readExcelData,
     launchURL,
     getCurrentMonthName,
