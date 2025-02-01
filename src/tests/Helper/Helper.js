@@ -50,7 +50,7 @@ async function yearSelection(year) {
 }
 async function MonthSelection(Month) {
     let Currentmonth = getCurrentMonthName();
-    await toClick(`//p[text()='${Currentmonth}']`);
+    await toClick(`//p[text()='January']`);
     await sleep(1000);
     let month = Month;
     console.log(`User selected Month is : ${month}`)

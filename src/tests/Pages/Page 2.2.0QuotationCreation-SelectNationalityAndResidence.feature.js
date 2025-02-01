@@ -9,9 +9,7 @@ const PageLocators={
     smokingstatus: " //p[normalize-space()='Non-smoker']",
     nationality_click: "//div[@id='nationalityCode']//img",
     countryofresidence_click: "//div[@id='residenceCountryCode']//img[@class='sc-afc5380d-0 ekTQMr']",
-    //countryofresidence_brazil: "//div[@id='residenceCountryCode']//div[contains(text(),${process.env.countryOfResidence})]",
     residencystatus: "//div[@id='residencyStatusCodeQuotation']//img[@class='sc-afc5380d-0 ekTQMr']",
-    //residencystatus_permanent: "//div[contains(text(),${process.env.residencyStatus})]",
     next_btn: "//button[text()='Next']"
 
 }
