@@ -51,13 +51,13 @@ async function yearSelection(year) {
 async function MonthSelection(Month) {
     let Currentmonth = getCurrentMonthName();
     await toClick(`//p[text()='${Currentmonth}']`);
-    await sleep(2000);
+    await sleep(1000);
     let month = Month;
     console.log(`User selected Month is : ${month}`)
     await toClick(`//div[text()='${month}']`)
 }
 async function DateSelection(Date) {
-    await sleep(2000);
+    await sleep(1000);
     let DateValue = Date;
     console.log(`User selected date is : ${DateValue}`)
     await doubleClick(`//p[text()='${DateValue}']`);
@@ -80,7 +80,7 @@ async function Signature(Webelement){
         await mouseUp();
 }
 function excelValue(){
-    const excelData=readExcelData("C:/Users/7821/Documents/Ezsubautomation/SinglifeEzsub/data.xlsx","Sheet1")
+    const excelData=readExcelData("C:/Users/msundarraj/Desktop/Ezsub/data.xlsx","Sheet1")
     return excelData;
 }
 
