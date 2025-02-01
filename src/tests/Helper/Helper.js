@@ -3,9 +3,9 @@ const {  getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, asse
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
-async function yearSelection() {
+async function yearSelection(year) {
     await toClick("//p[text()='2025']");
-    let year = process.env.year;
+    //let year = process.env.year;
     console.log(`User selected year is : ${year} `)
     if (year >= 2021) {
         await toClick(`//div[text()='${year}']`);
@@ -48,17 +48,17 @@ async function yearSelection() {
         await toClick(`//div[text()='${year}']`);
     }
 }
-async function MonthSelection() {
+async function MonthSelection(Month) {
     let Currentmonth = getCurrentMonthName();
     await toClick(`//p[text()='${Currentmonth}']`);
     await sleep(2000);
-    let month = process.env.Month
+    let month = Month;
     console.log(`User selected Month is : ${month}`)
     await toClick(`//div[text()='${month}']`)
 }
-async function DateSelection() {
+async function DateSelection(Date) {
     await sleep(2000);
-    let DateValue = process.env.Date;
+    let DateValue = Date;
     console.log(`User selected date is : ${DateValue}`)
     await doubleClick(`//p[text()='${DateValue}']`);
 }
@@ -80,7 +80,7 @@ async function Signature(Webelement){
         await mouseUp();
 }
 function excelValue(){
-    const excelData=readExcelData("C:/Users/12194/Desktop/SinglifeEzsub/data.xlsx","Sheet1")
+    const excelData=readExcelData("C:/Users/7821/Documents/Ezsubautomation/SinglifeEzsub/data.xlsx","Sheet1")
     return excelData;
 }
 

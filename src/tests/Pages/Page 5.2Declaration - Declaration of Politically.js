@@ -26,7 +26,10 @@ class DeclarationPolitically{
     }
     async clickPoliticallyExposedPerson(){
         let Element;
-        switch (process.env.PoliticallyExposedPerson) {
+        let PoliticallyExposedPerson=excelValue()[pageObject.case].PoliticallyExposedPerson;
+        let PoliticallyExposedPersonName=excelValue()[pageObject.case].Name_of_PEP;
+        let RelationshipAssured=excelValue()[pageObject.case].RelationshipAssured;
+        switch (PoliticallyExposedPerson) {
             case "No":
                 Element=PageLocators.politicallyExposedPersonN;
                 await toClick(Element);
@@ -35,11 +38,11 @@ class DeclarationPolitically{
                 Element=PageLocators.politicallyExposedPersonY;
                 await toClick(Element);
 
-                await clickAndSendkeys(PageLocators.nameOfPEP, process.env.Name_of_PEP);
+                await clickAndSendkeys(PageLocators.nameOfPEP, PoliticallyExposedPersonName);
 
                 await Click(PageLocators.relationshipToAssured);
 
-                let relationship_Assured=process.env.RelationshipAssured;
+                let relationship_Assured=RelationshipAssured;
                 await toClick(`//div[text()= '${relationship_Assured}']`);
                 console.log(`${relationship_Assured} is Selected`);
                 break;
