@@ -1,4 +1,4 @@
-Feature: Confirmation - Submission Details
+Feature: 6.3.Confirmation - Submission Details
 @e2e @2ndAssured
   Scenario: Complete the E-Signature in others field
     Given user able to view the app details

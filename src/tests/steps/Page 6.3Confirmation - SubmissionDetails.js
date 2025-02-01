@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
-setDefaultTimeout(20000); 
+setDefaultTimeout(20000);
 require('dotenv').config();
 
 //Submit import
@@ -12,14 +12,21 @@ let pageSubmitDocuments;
 
 Given('user able to view the app details', async function () {
     pageSubmitDocuments=new SubmitDocuments(pageObject.page);
-    await pageSubmitDocuments.verifyReviewApplicationDetails();
-  });
+  await pageSubmitDocuments.verifyReviewApplicationDetails();
+});
 
-  When('user able to click submit application', async function () {
-    await pageSubmitDocuments.clickSubmitApplicationButton();
-  });
+When('user able to click submit application', async function () {
+  await pageSubmitDocuments.clickSubmitApplicationButton();
+});
 
-  Then('user verify application successfully', async function () {
-    await pageSubmitDocuments.verifySubmitSuccessfully();
-    takeScreenshot("Policy Number generation Completed");
-  });
+Then('user verify application successfully', async function () {
+  if (pageSubmitDocuments.verifyReviewApplicationDetails) {
+    // Capture screenshot and attach it to Allure
+    
+    const screenshot = await pageObject.page.screenshot();
+    this.attach(screenshot, 'image/png');
+  }
+ 
+  await pageSubmitDocuments.verifySubmitSuccessfully();
+  takeScreenshot("Policy Number generation Completed");
+});

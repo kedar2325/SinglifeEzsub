@@ -8,9 +8,8 @@ const PageLocators={
     //Page title to verify on page
 clientAcknowledgementTitle: "//p[contains(text(),'Let’s stay in touch - on your terms')]",
 //Let’s stay in touch - on your terms options yes and No
-marketingConsentY: "//input[@id='radioGroupOtionY' and @value='Y']",
-marketingConsentN: "//input[@id='radioGroupOtionN' and @value='N']",
-
+marketingConsentY: "//input[@id='radioGroupOtionY']",
+marketingConsentN: "//input[@id='radioGroupOtionN']",
 //edocuments used index path
 eDocN: "(//div[@data-testid='radio-items'])[1]",
 eDocY: "(//p[normalize-space()='Yes'])[1]",

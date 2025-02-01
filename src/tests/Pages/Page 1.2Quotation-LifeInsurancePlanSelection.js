@@ -20,6 +20,7 @@ class PlanSelection{
         let InsuraceType=excelValue()[0].InsurancePlan;
         await toClick(`//p[text()= '${InsuraceType}']`);
         console.log(`${InsuraceType} is Selected`);
+        
     }
     async ClickStartQuatation(){
         await toClick(PageLocators.startQuatationButton);

@@ -3,7 +3,8 @@
     
 
       "formatOptions": {
-          "snippetInterface": "async-await"
+          "snippetInterface": "async-await",
+          "resultsDir": "allure-results"
       },
       "publishQuiet": false,
       "dryRun": false,
@@ -22,7 +23,12 @@
           "json:test-results/cucumber-report.json",
           "junit:test-results/report.xml",
           "allure-cucumberjs/reporter"
-      ]
+      ],
+      "use": {
+        "trace": "on-first-retry",
+        "screenshot": "on",
+        "video": "on"
+      }
   }
 }
   

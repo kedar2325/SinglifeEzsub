@@ -1,4 +1,4 @@
-Feature: Declaration - Declaration of Politically
+Feature: 5.2.Declaration - Declaration of Politically
 @e2e @2ndAssured
   Scenario: Declare Politically
     Given user able to view declaration of polictically

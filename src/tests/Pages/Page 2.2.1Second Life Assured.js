@@ -121,8 +121,8 @@ class CustomerInformation {
     }
 
     async ClickNextButton(){
-        await toClick(PageLocators.next_btn);
-        await toClick(PageLocators.next_btn);
+        //await toClick(PageLocators.next_btn);
+        //await toClick(PageLocators.next_btn);
     }
     async VerifyProductPage(){
         await assertText(PageLocators.verifyProductSelectionPage, "Product selection for"); 

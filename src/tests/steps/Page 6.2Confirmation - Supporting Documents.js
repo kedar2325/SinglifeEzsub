@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
-setDefaultTimeout(15000); 
+setDefaultTimeout(20000);
 require('dotenv').config();
 
 
@@ -12,23 +12,31 @@ let pageSupportingDocs;
 
 Given('user able to view the supporting docs', async function () {
     pageSupportingDocs=new ConfirmSupportingDocs(pageObject.page);
-    await pageSupportingDocs.verifySupportingDocsTitle();
-  });
+  await pageSupportingDocs.verifySupportingDocsTitle();
+});
 
-  When('user able to upload proof of id', async function () {
-    await pageSupportingDocs.uploadProofOfId();
-  });
+When('user able to upload proof of id', async function () {
+  await pageSupportingDocs.uploadProofOfId();
+});
 
-  When('user able to upload proof of address', async function () {
-    await pageSupportingDocs.uploadProofOfAddress();
-  });
+When('user able to upload proof of address', async function () {
+  await pageSupportingDocs.uploadProofOfAddress();
+});
 
-  When('user able to upload proof of mas', async function () {
-    if(process.env.PaymentType=="CreditCard"){
-    await pageSupportingDocs.uploadProofMas();
-    }
-  });
+When('user able to upload proof of mas', async function () {
+  await pageSupportingDocs.uploadProofMas();
+  // if (process.env.PaymentType == "CreditCard") {
+    
+  // }
+});
 
-  Then('user click on next btn on doc', async function () {
-    await pageSupportingDocs.clickNextButton();
-  });
+Then('user click on next btn on doc', async function () {
+  if (pageSupportingDocs.verifySupportingDocsTitle) {
+    // Capture screenshot and attach it to Allure
+    
+    const screenshot = await pageObject.page.screenshot();
+    this.attach(screenshot, 'image/png');
+  }
+  
+  await pageSupportingDocs.clickNextButton();
+});

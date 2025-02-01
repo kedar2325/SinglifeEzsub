@@ -55,25 +55,25 @@ BeforeAll(async function() {
 //   });
 
 
-// After( function(scenario) {
-//     try {
-//         if (scenario.result?.status === Status.FAILED) {
-//             const img =  pageObject.page.screenshot({ 
-//                 path: `./test-results/Screenshots/${scenario.pickle.name}.png`, 
-//                 type: "png" 
-//             });
-//             this.attach(img, "image/png");
-            
-//         }
-//     } catch (error) {
-//         console.error('Error capturing screenshot:', error);
-//     } 
-// });
-AfterAll(async function(){
+After( function(scenario) {
     try {
-       await browser.close();
-   } catch (error) {
-       console.error('Error closing the browser:', error);
-   }
-})
+        if (scenario.result?.status === Status.FAILED) {
+            const img =  pageObject.page.screenshot({ 
+                path: `./test-results/Screenshots/${scenario.pickle.name}.png`, 
+                type: "png" 
+            });
+            this.attach(img, "image/png");
+            
+        }
+    } catch (error) {
+        console.error('Error capturing screenshot:', error);
+    } 
+ });
+// AfterAll(async function(){
+//     try {
+//        await browser.close();
+//    } catch (error) {
+//        console.error('Error closing the browser:', error);
+//    }
+// })
 

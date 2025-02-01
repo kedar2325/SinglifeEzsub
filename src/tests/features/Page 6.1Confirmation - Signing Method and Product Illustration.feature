@@ -1,4 +1,4 @@
-Feature: Confirmation - Signing Method - Product Illustration and Product Summary
+Feature: 6.1.Confirmation - Signing Method - Product Illustration and Product Summary
 @e2e @2ndAssured
   Scenario: Select Signing method and complete signature
     Given user able to view the signing method

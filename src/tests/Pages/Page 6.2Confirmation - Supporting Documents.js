@@ -34,7 +34,7 @@ class ConfirmSupportingDocs{
         await Click(PageLocators.ProofOfIdUploadBtn);
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
        // await Click(PageLocators.BrowseToUploadBtn);
-        await uploadFile(PageLocators.BrowseToUploadBtn,path)
+        await uploadFile(PageLocators.BrowseToUploadBtn,"C:/Users/12194/Desktop/SinglifeEzsub/src/tests/fileUpload/picture.png")
         //Upload PDF code need to add
         await Click(PageLocators.UploadAnywayBtn);
         await assertText(PageLocators.FurtherVerficationTitle,"We may reach out to you for verification");
@@ -46,7 +46,7 @@ class ConfirmSupportingDocs{
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
      //   await Click(PageLocators.BrowseToUploadBtn);
         //Upload PDF code need to add
-        await uploadFile(PageLocators.BrowseToUploadBtn,path)
+        await uploadFile(PageLocators.BrowseToUploadBtn,"C:/Users/12194/Desktop/SinglifeEzsub/src/tests/fileUpload/picture.png")
         await Click(PageLocators.UploadBtn);
         await assertText(PageLocators.ProofAddressSuccess,"Uploaded")
     }
@@ -54,7 +54,7 @@ class ConfirmSupportingDocs{
         await Click(PageLocators.SectionUploadBtn);
         await assertText(PageLocators.UploadDocsTitle,"Upload Documents")
       //  await Click(PageLocators.BrowseToUploadBtn);
-        await uploadFile(PageLocators.BrowseToUploadBtn,path);
+        await uploadFile(PageLocators.BrowseToUploadBtn,"C:/Users/12194/Desktop/SinglifeEzsub/src/tests/fileUpload/picture.png");
         //Upload PDF code need to add
         await Click(PageLocators.UploadBtn);
         await assertText(PageLocators.ProofMasSuccess,"Uploaded")

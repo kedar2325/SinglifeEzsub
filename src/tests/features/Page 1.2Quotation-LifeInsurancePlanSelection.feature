@@ -1,4 +1,4 @@
-Feature:Quotation Creation - Life Insurance Plan Selection
+Feature:1.2.Quotation Creation - Life Insurance Plan Selection
 
 @e2e @2ndAssured @Qoutation
   Scenario: Select Life Insurance plan selection and Apply
