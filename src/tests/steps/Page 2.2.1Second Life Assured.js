@@ -1,14 +1,15 @@
-const { Given, Then, When, setDefaultTimeout  } = require("@cucumber/cucumber");
+const { Given, Then, When, setDefaultTimeout} = require("@cucumber/cucumber");
 const { CustomerInformation } = require("../Pages/Page 2.2.1Second Life Assured");
 const { pageObject } = require("../Hooks/PageObjects");
-setDefaultTimeout(15000); 
+setDefaultTimeout(15000);
+const { sleep } = require('../Helper/Action');
 let CustomerInformationFunction;
 
 
 Given('user selects profile for second life assured', async function () {
-    CustomerInformationFunction=new CustomerInformation(pageObject.page)
+    CustomerInformationFunction = new CustomerInformation(pageObject.page)
     await CustomerInformationFunction.clickNewEzsubButton();
-        
+
 });
 When('user fills all the mandatory details', async function () {
     await CustomerInformationFunction.fillNRICnumber();
@@ -22,14 +23,20 @@ When('user fills all the mandatory details', async function () {
     await CustomerInformationFunction.SelectNationality();
     await CustomerInformationFunction.SelectCountryofBirth();
     await CustomerInformationFunction.SelectResidencyStatus();
-   // await CustomerInformationFunction.VerifyResidencyStatus();
+    // await CustomerInformationFunction.VerifyResidencyStatus();
     await CustomerInformationFunction.SelectRelationship();
-    
+
 });
 When('user click next button to move Product selection page', async function () {
     await CustomerInformationFunction.ClickNextButton();
-        
+
 });
 Then('user verify the Product select page', async function () {
-        
+    if (CustomerInformationFunction.SelectRelationship) {
+        // Capture screenshot and attach it to Allure
+        await sleep(1000);
+        const screenshot = await pageObject.page.screenshot();
+        this.attach(screenshot, 'image/png');
+    }
+
 });

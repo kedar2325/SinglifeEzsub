@@ -1,4 +1,4 @@
-Feature: 8.Review Details - Application Creation
+Feature: 3.1.Review Details - Application Creation
 @e2e @2ndAssured @Qoutation
   Scenario: Enter into the Application page
   Given user able to view the quotation summary page

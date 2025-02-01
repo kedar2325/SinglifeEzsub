@@ -24,6 +24,7 @@
     "playwright": "^1.50.0"
   },
   "dependencies": {
+    "allure-js-commons": "^3.1.0",
     "cucumber-html-reporter": "^7.2.0",
     "dotenv": "^16.4.7",
     "ezsub": "file:",

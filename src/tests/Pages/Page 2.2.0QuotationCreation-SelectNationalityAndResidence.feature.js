@@ -64,7 +64,10 @@ class QuotationSelectNationaliandResidency{
         let residency_status = excelValue()[0].residencyStatus
         await assertText(`//div[contains(text(),'${residency_status}')]`,excelValue()[0].residencyStatus);
         await toClick(PageLocators.next_btn);
-        await toClick(PageLocators.next_btn);
+        //await sleep(3000)
+        console.log("0")
+        
+        
     }
 
 }

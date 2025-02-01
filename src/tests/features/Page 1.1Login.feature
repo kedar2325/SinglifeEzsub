@@ -1,4 +1,4 @@
-Feature: 1.Login functionality
+Feature: 1.1.Login functionality
 @e2e  @2ndAssured @Qoutation
   Scenario: Valid login
     Given User launch the login url

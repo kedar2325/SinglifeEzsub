@@ -1,4 +1,4 @@
-Feature: 10.Review Details - Life Assured
+Feature: 3.3.Review Details - Life Assured
 @e2e @2ndAssured
   Scenario: enter into the life assured
   Given user able to view the values in life assured tab

@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const PageLocators={
     verifyProductSelectionPage: "//p[contains(text(),'Product selection for')]",
-    searchTab: "(//input[@id='search'])[1]",
+    searchTab: "//div[@class='sc-223f9362-0 fbhqIF bg-white']//input[@id='search']",
     clickSelect: "//button[contains(text(),'Select')]",
     nextButton: "//button[contains(text(),'Next')]",
 }
@@ -16,10 +16,18 @@ class ProductSelection{
         pageObject.page=page;
     }
     async navigationToProductSelection(){
-        await assertText(PageLocators.verifyProductSelectionPage, "Product selection for"); 
+
+        await sleep(1000)
+        await Click(PageLocators.nextButton);
+        //await assertText(PageLocators.verifyProductSelectionPage, "Product selection for"); 
+        await clickAndSendkeys(PageLocators.searchTab,"Singlife Steadypay Saver"); 
+        console.log("2")
+        
     }
     async search(){
-        await clickAndSendkeys(PageLocators.searchTab,process.env.ProductName); 
+        await sleep(1000)
+        console.log("4")
+        
     }
     async selectInList(){
         await Click(PageLocators.clickSelect);

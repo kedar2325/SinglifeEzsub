@@ -95,6 +95,7 @@ class CustomerSelection {
         let occupationID=excelValue()[0].occupationID;
         await clickByRole('option', { name: occupationID })
         console.log(`Selected occupation ID is ${occupationID}`)
+    
     }
 }
 module.exports = { CustomerSelection }

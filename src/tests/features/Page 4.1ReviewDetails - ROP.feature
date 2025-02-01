@@ -1,4 +1,4 @@
-Feature: 12.Review Details - Replacement of policies
+Feature: 4.1.Review Details - Replacement of policies
 @e2e @2ndAssured
   Scenario: Valid ROP
     Given user able to view ques

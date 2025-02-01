@@ -1,4 +1,4 @@
-Feature: 3.Quotation Creation - Self Quotation Type with 35 ANB
+Feature: 2.1.Quotation Creation - Self Quotation Type with 35 ANB
 @e2e @2ndAssured @Qoutation
   Scenario: Select Apply for Life Insurance plan selection
   Given user clicks customer selection for quotation
