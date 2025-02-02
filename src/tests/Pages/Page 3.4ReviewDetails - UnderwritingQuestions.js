@@ -45,6 +45,8 @@ class underwritingQuestions{
         await sleep(8000);
     }
     async verifyUnderwriting(){
+        let UnderwritingQuestionsReq = excelValue()[pageObject.case].UnderwitingQuesReq
+        if(UnderwritingQuestionsReq=="Yes"){
         let path=""
             let ListofQA=process.env.UnderwritingQuestions.split('|');
             for (let CombineQA of ListofQA) {
@@ -61,6 +63,7 @@ class underwritingQuestions{
                 console.log(path);
                 await sleep(1100);
                 path="";
+            }
             }
     }
     // async VerifyUnderwriting() {

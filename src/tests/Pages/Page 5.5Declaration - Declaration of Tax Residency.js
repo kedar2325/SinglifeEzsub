@@ -47,76 +47,116 @@ nextButton:"//button[normalize-space()='Next']"
 class DeclarationTaxResidency{
         async verifyDeclarationTaxResidencyTitle(){
                     await assertText(PageLocators.declarationTaxResidencyTitle,"Declaration of Tax Residency under CRS");
+                    console.log("Page 5.5 Declaration Title exists check")
                 }
         async enterDeclarationTabOne(){
-            console.log(PageLocators.singaporeButtonPath);
-            await toClick(PageLocators.singaporeButtonPath);
+            let singaporeButtonPathElement=excelValue()[pageObject.case].ResidentSingapore;
+            let singaporeButtonPath=`//span[contains(text(),'I am a tax resident in Singapore')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${singaporeButtonPathElement}']`;
+
+            console.log(singaporeButtonPath);
+
+            await toClick(singaporeButtonPath);
             await sleep(1000);
-            console.log(process.env.ResidentSingapore)
-            if(process.env.ResidentSingapore=="Yes"){
+            console.log(singaporeButtonPathElement)
+            if(singaporeButtonPathElement=="Yes"){
             console.log("Enter ResidentSingapore loop after click yes")
-            await clickAndSendkeys(PageLocators.tinNumberSingapore,process.env.NRIC_Number);
+            let NRIC_Number=excelValue()[pageObject.case].NRIC_Number
+            //no need application should already populate NRIC
+            //await clickAndSendkeys(PageLocators.tinNumberSingapore,NRIC_Number);
             console.log("Enter Nric worked");
             }else{
             console.log("Enter ResidentSingapore loop after click no")
             }
-            console.log(PageLocators.otherJurisdictionButtonPath);
-            if(process.env.TaxResidentInOtherJurisdictions=="Yes"){
+            let otherJurisdictionButtonPathElement=excelValue()[pageObject.case].TaxResidentInOtherJurisdictions;
+            let otherJurisdictionButtonPath=`//span[contains(text(),'tax resident in other Jurisdictions')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${otherJurisdictionButtonPathElement}']`
+            console.log(otherJurisdictionButtonPath);
+            if(otherJurisdictionButtonPathElement=="Yes"){
             //When singapore resident No button app auto selects Yes no need to click
-            if(process.env.ResidentSingapore=="Yes"){
-            await Click(PageLocators.otherJurisdictionButtonPath); 
-            }    
+            if(singaporeButtonPathElement=="Yes"){
+            await Click(otherJurisdictionButtonPath); 
+            }
+            let countryOfTaxResidenceElement=excelValue()[pageObject.case].CountryOfTaxResidence;
+            let countryOfTaxResidence=`//div[@id=countryOfResidency']//div[text()='${countryOfTaxResidenceElement}']`
             console.log(countryOfTaxResidence);
             await Click(PageLocators.countryOfTaxResidence_click);
-            await Click(PageLocators.countryOfTaxResidence);
-            await Click(PageLocators.otherTaxIdentificationButton);
-            if(process.env.OtherTaxIdentificationNumber=="Yes"){
-            await clickAndSendkeys(PageLocators.tinNumberOtherJudis,process.env.OtherJurisdictionNumber);
+            await Click(countryOfTaxResidence);
+            let otherTaxIdentificationButtonElement=excelValue()[pageObject.case].OtherTaxIdentificationNumber;
+            let otherTaxIdentificationButton=`//span[contains(text(),'have a Tax Identification Number')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${otherTaxIdentificationButtonElement}']`
+            await Click(otherTaxIdentificationButton);
+            if(otherTaxIdentificationButtonElement=="Yes"){
+            let tinNumberOtherJudisElement=excelValue()[pageObject.case].OtherJurisdictionNumber
+            await clickAndSendkeys(PageLocators.tinNumberOtherJudis,tinNumberOtherJudisElement);
             }else{
-            await Click(PageLocators.otherTaxIdentificationButton);
-            await toClick(PageLocators.selectReasonRadio);
+            //already selected yes or no for tax resident
+            // let otherTaxIdentificationButtonElement=excelValue()[pageObject.case].OtherTaxIdentificationNumber
+            // let otherTaxIdentificationButton=`//span[contains(text(),'have a Tax Identification Number')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${otherTaxIdentificationButtonElement}']`    
+            // await Click(otherTaxIdentificationButton);
+
+            let selectReasonRadioElement=excelValue()[pageObject.case].JurisdictionReason
+            let selectReasonRadioPath = `//p[contains(text(),'${selectReasonRadioElement}')]/parent::div/input[@type='radio']`
+            await toClick(selectReasonRadioPath);
             await Click(PageLocators.checkboxTaxResidence);
             }
             }else{
-                console.log("came to click no")
-            await toClick(PageLocators.otherJurisdictionButtonPath); 
+            console.log("came to click no")
+            await Click(otherJurisdictionButtonPath);
             await Click(PageLocators.checkboxTaxResidence);
             } 
 
         }
         async enterDeclarationTabTwo(){
             console.log("21")
-            console.log(PageLocators.singaporeButtonPath);
-            await toClick(PageLocators.secondSingaporeButtonPath);
+            let secondSingaporeButtonPathElement=excelValue()[pageObject.case].SecondResidentSingapore;
+            let secondSingaporeButtonPath=`//span[contains(text(),'I am a tax resident in Singapore')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${process.env.SecondResidentSingapore}']`
+            console.log(secondSingaporeButtonPathElement);
+            await toClick(secondSingaporeButtonPath);
             await sleep(1000);
-            if(process.env.ResidentSingapore=="Yes"){
+
+            if(secondSingaporeButtonPathElement=="Yes"){
                 console.log("22")
             console.log("Enter ResidentSingapore loop after click yes")
-            await clickAndSendkeys(PageLocators.tinNumberSingapore,process.env.SecondOtherJurisdictionNumber);
+            let OtherNRIC_Number=excelValue()[pageObject.case].OtherJurisdictionNumber
+            await clickAndSendkeys(PageLocators.tinNumberSingapore,OtherNRIC_Number);
             console.log("Enter Nric worked");
             }else{
             console.log("Enter ResidentSingapore loop after click no")
             }
-            console.log(PageLocators.secondOtherJurisdictionButtonPath);
-            if(process.env.SecondTaxResidentInOtherJurisdictions=="Yes"){
+            let secondOtherJurisdictionButtonPathElement=excelValue()[pageObject.case].SecondTaxResidentInOtherJurisdictions;
+            let secondOtherJurisdictionButtonPath=`//span[contains(text(),'tax resident in other Jurisdictions')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${process.env.SecondTaxResidentInOtherJurisdictions}']`
+            console.log(secondOtherJurisdictionButtonPath);
+            if(secondOtherJurisdictionButtonPathElement=="Yes"){
             //When singapore resident No button app auto selects Yes no need to click
-            if(process.env.SecondResidentSingapore=="Yes"){
-            await Click(PageLocators.otherSecondTaxIdentificationButton); 
+            if(secondSingaporeButtonPathElement=="Yes"){
+            await Click(secondOtherJurisdictionButtonPath);
             }    
+            let countryOfTaxResidenceElement=excelValue()[pageObject.case].SecondCountryOfTaxResidence;
+            let countryOfTaxResidence=`//div[@id=countryOfResidency']//div[text()='${countryOfTaxResidenceElement}']`
             console.log(countryOfTaxResidence);
             await Click(PageLocators.countryOfTaxResidence_click);
-            await Click(PageLocators.secondCountryOfTaxResidence);
-            await Click(PageLocators.secondOtherTaxIdentificationButton);
-            if(process.env.OtherTaxIdentificationNumber=="Yes"){
-            await clickAndSendkeys(PageLocators.tinNumberOtherJudis,process.env.SecondOtherJurisdictionNumber);
+            await Click(countryOfTaxResidence);
+            let otherTaxIdentificationButtonElement=excelValue()[pageObject.case].SecondOtherTaxIdentificationNumber;
+            let otherTaxIdentificationButton=`//span[contains(text(),'have a Tax Identification Number')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${otherTaxIdentificationButtonElement}']`
+            await Click(otherTaxIdentificationButton);
+            if(otherTaxIdentificationButtonElement=="Yes"){
+            let tinNumberOtherJudisElement=excelValue()[pageObject.case].SecondOtherJurisdictionNumber
+            await clickAndSendkeys(PageLocators.tinNumberOtherJudis,tinNumberOtherJudisElement);
             }else{
-            await Click(PageLocators.secondOtherTaxIdentificationButton);
-            await toClick(PageLocators.secondSelectReasonRadio);
+            //already selected yes or no for tax resident
+            // let otherTaxIdentificationButtonElement=excelValue()[pageObject.case].OtherTaxIdentificationNumber
+            // let otherTaxIdentificationButton=`//span[contains(text(),'have a Tax Identification Number')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${otherTaxIdentificationButtonElement}']`    
+            // await Click(otherTaxIdentificationButton);
+
+            let selectReasonRadioElement=excelValue()[pageObject.case].SecondJurisdictionReason
+            let selectReasonRadioPath = `//p[contains(text(),'${selectReasonRadioElement}')]/parent::div/input[@type='radio']`
+            await toClick(selectReasonRadioPath);
+            await Click(PageLocators.checkboxTaxResidence);
             }
             }else{
-            await Click(PageLocators.secondOtherTaxIdentificationButton);
-            await toClick(PageLocators.secondSelectReasonRadio);   
+            console.log("came to click no")
+            await Click(secondOtherJurisdictionButtonPath);
+            await Click(PageLocators.checkboxTaxResidence);
             } 
+
         }
 
 

@@ -1,5 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
+const { excelValue } = require('../Helper/Helper');
 setDefaultTimeout(15000);
 require('dotenv').config();
 
@@ -18,7 +19,8 @@ When('user selects tax resident in singapore yes', async function () {
 
 When('user enter tax declaration', async function () {
   await pageTaxDeclaration.enterDeclarationTabOne();
-    if(process.env.quotationType!="Self"){
+  let QuotationType = excelValue()[pageObject.case].quotationType
+    if(QuotationType!="Self"){
     await pageTaxDeclaration.enterDeclarationTabTwo()
   }
 });

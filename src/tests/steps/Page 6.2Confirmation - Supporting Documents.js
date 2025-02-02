@@ -1,6 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
 setDefaultTimeout(20000);
+const { excelValue } = require('../Helper/Helper');
 require('dotenv').config();
 
 
@@ -24,7 +25,9 @@ When('user able to upload proof of address', async function () {
 });
 
 When('user able to upload proof of mas', async function () {
+  //let PaymentType = excelValue()[pageObject.case].PaymentType
   await pageSupportingDocs.uploadProofMas();
+  
   // if (process.env.PaymentType == "CreditCard") {
     
   // }

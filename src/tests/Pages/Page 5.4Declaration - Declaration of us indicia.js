@@ -2,6 +2,7 @@ const { expect } = require('@playwright/test');
 const { Click, assertText, clickAndSendkeys, assertParticularText } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
+const { excelValue } = require('../Helper/Helper');
 
 const PageLocators={
 // Declaration US Indicia Title
@@ -18,9 +19,12 @@ nextButton:"//button[normalize-space()='Next']"
 class DeclarationUsIndicia{
 
     async verifyDeclarationUsIndiciaTitle(){
+        console.log("now declaration title check")
             await assertText(PageLocators.usIndiciaTitle,"Declaration of US Indicia");
         }
     async clickIndiciaOption(){
+        console.log("click indicia func")
+        console.log(excelValue()[pageObject.case].indicaoption)
         let indicaoption = excelValue()[pageObject.case].indicaoption
         if(indicaoption.includes("Yes")){
             await Click(`//p[normalize-space()='${indicaoption}']`)
