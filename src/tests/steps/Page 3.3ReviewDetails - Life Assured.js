@@ -26,14 +26,17 @@ When('user able to complete the residential address and financial background', a
   await ReviewDetailsForLifeAssured.EnterResidentialAddress();
   await ReviewDetailsForLifeAssured.FinancialBackground();
   await ReviewDetailsForLifeAssured.DefaultFinancialBackground();
+
 })
 
 When('user click the next button to go underwriting page', async function () {
   await ReviewDetailsForLifeAssured.GotoUnderwritingpage();
-  if (ReviewDetailsForLifeAssured.GotoUnderwritingpage) {
-    // Capture screenshot and attach it to Allure
-    await sleep(1000);
-    const screenshot = await pageObject.page.screenshot();
-    this.attach(screenshot, 'image/png');
-  }
+ // await sleep(2000);
+  await ReviewDetailsForLifeAssured.secondLifeAssuredDetails();
+  // if (ReviewDetailsForLifeAssured.GotoUnderwritingpage()) {
+  //   // Capture screenshot and attach it to Allure
+  //   await sleep(1000);
+  //   const screenshot = await pageObject.page.screenshot();
+  //   this.attach(screenshot, 'image/png');
+  // }
 });

@@ -27,6 +27,7 @@ class ProductDetails {
                 // await toClick(`//div[@id='policyTerm']//img`);
                 await PolicyTerm();
                 await EnterSumAssured(PageLocators.sumassured);
+                await sleep(2000);
                 await SumAssuredCalculate(PageLocators.calculatebtn);
                 await PaymentFrequency();
                 break;  

@@ -1,6 +1,6 @@
 const { expect } = require('@playwright/test');
 const { clickAndSendkeys, Click, assertText, assertParticularText, toClick, sleep } = require('../Helper/Action');
-const { excelValue } = require('../Helper/Helper');
+const { excelValue, UncheckRiders } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 const { RiderSelectionMethod } = require('../Helper/Helper');
 require('dotenv').config();
@@ -21,18 +21,25 @@ class RiderSelection{
         await assertText(PageLocators.RiderGreetText,"Rider(s) Selection");
     }
     async selectRiders(){
-        let ListofRider=process.env.Rider.split(',');
-        for (let rider of ListofRider) {
-            await RiderSelectionMethod(rider);
-        }
-    }
-    async calculatePremium(){
-        // await page.getByText('Term*')
-        // await page.getByText('Sum assured', { exact: true })
-        await pageObject.page.getByRole('button', { name: 'Calculate premium' }).click();
-        await sleep(2000);
+        let ListofUncheckRider=excelValue()[process.env.caseID].UncheckRider.split(',');
+            for(let rider of ListofUncheckRider){
+                await UncheckRiders(rider);
+                await sleep(1000);
+            }
+
+        let ListofRider=excelValue()[process.env.caseID].Rider.split(',');
+        for (let riderWithValue of ListofRider) {
+            let list=riderWithValue.split('|'); 
+                let rider=list[0];
+                console.log(rider);
+                let sumAssured=list[1];
+                await RiderSelectionMethod(rider,sumAssured);
+                await sleep(2000);
+            }
+        
     }
     async clickNextButton(){
+        await sleep(2000);
         await toClick(PageLocators.nextButton);
     }
 

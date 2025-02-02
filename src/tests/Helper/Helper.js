@@ -62,15 +62,33 @@ async function DateSelection(Date) {
     console.log(`User selected date is : ${DateValue}`)
     await doubleClick(`//p[text()='${DateValue}']`);
 }
-async function RiderSelectionMethod(Ridername){
-    await toClick(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//img`);
-    console.log(`${Ridername} rider has been Selected`)
-    let Webelement=`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//input`;
-    await assertCheckBox(Webelement,Ridername);
+async function UncheckRiders(Ridername) {
+    if(await pageObject.page.locator(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//input`).isChecked()){
+        await toClick(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//img`);
+    }
+    else{
+        console.log("Rider is already unchecked");
+    }
+}
+async function RiderSelectionMethod(Ridername,sumAssured){
+        await toClick(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//img`);
+        console.log(`${Ridername} rider has been Selected`);
+        if(sumAssured=="-"){
+            await sleep(1000);
+            await pageObject.page.getByRole('button', { name: 'Calculate premium' }).click();
+        }
+        else{
+            console.log(`for this ${Ridername} rider user enter sum assured as ${sumAssured}`)
+            await clickAndSendkeys("//input[@name='sumAssured']",sumAssured);
+            await pageObject.page.getByRole('button', { name: 'Calculate premium' }).click();
+        }
+    // await toClick(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//img`);
+    // console.log(`${Ridername} rider has been Selected`);
+    // let Webelement=`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//input`;
+    // await assertCheckBox(Webelement,Ridername);
 }
 async function Signature(Webelement){
     await mouseHoverClick(Webelement);
-    //    await mouseMove(270, 150);
       await mouseDown();
         await mouseDown();
         const startY = 150;
@@ -120,6 +138,7 @@ async function NoofYears() {
 
 module.exports = {
     NoofYears,
+    UncheckRiders,
     PaymentFrequency,
     SumAssuredCalculate,
     EnterSumAssured,

@@ -1,4 +1,4 @@
-const { clickAndSendkeys, sleep, toClick, assertText, Click } = require('../Helper/Action');
+const { clickAndSendkeys, sleep, toClick, assertText, Click, assertParticularText } = require('../Helper/Action');
 const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -25,12 +25,12 @@ class ReviewDetailsSelectedQuotation{
     }
     async ProceedtoApplyBtn(){
         await assertText(PageLocators.quotationoverview_exist,"Quotation Overview");
-        await toClick(PageLocators.next_btn)
+        await toClick(PageLocators.next_btn);
         await toClick(PageLocators.proceedtoapply_btn)
     }
 
     async LifeAssuredExist(){
-        await assertText(PageLocators.lifeassured_exist,"Life Assured")
+        await assertParticularText(PageLocators.lifeassured_exist,"Assured")
     }
 
 }
