@@ -29,7 +29,9 @@ const PageLocators={
     financialAssuredSignaturePalette:"//div[@id='clickable-box_1']//img",
     financialAssuredSignatureCanva:"(//canvas)[2]",
     confirmButton:"//button[normalize-space()='Confirm']",
-    signatureFormSuccessMsg:"(//p[contains(text(),'Fully Signed')])[2]",
+    signatureFormSuccessMsg:"(//p[contains(text(),'Fully Signed')])[1]",
+    thirdPartyLifeAssuredButton:"//div[@id='clickable-box_1']//img",
+    thirdPartyFinancialSignatureButton:"//div[@id='clickable-box_2']",
     //signaturePrevBtn:"(//button[@type='button'][normalize-space()='Preview PDF & sign'])[1]",
     //Credit Cards
     creditCardPrevBtn:"(//button[@type='button'][normalize-space()='Preview PDF & sign'])[2]",
@@ -110,6 +112,7 @@ class SigningMethod {
     }
     async clickNextButton(){
         await Click(PageLocators.nextButton);
+        await sleep(2000);
     }
 }
 

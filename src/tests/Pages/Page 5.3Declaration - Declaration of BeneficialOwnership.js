@@ -34,10 +34,16 @@ nextButton:"//button[normalize-space()='Next']"
 class DeclarationBeneficialOwnership{
 
     async verifyBeneficialOwnershipTitle(){
+        console.log("now in page5.3 title exists")
         await sleep(2000);
         await assertText(PageLocators.beneficialOwnershipTitle,"Declaration of Beneficial Ownership");
     }
     async clickBeneficialOwnerOption(){
+        console.log("beneficial option selection exits")
+        console.log(excelValue()[pageObject.case].beneficial_owner);
+        console.log(excelValue()[pageObject.case].bo1_firstname);
+        console.log(excelValue()[pageObject.case].bo1_lastname);
+        console.log(excelValue()[pageObject.case].bo1_nricno);
         let beneficialoption = excelValue()[pageObject.case].beneficial_owner;
         let beneficialFirstName = excelValue()[pageObject.case].bo1_firstname;
         let beneficialLastName = excelValue()[pageObject.case].bo1_lastname;

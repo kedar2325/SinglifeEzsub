@@ -23,8 +23,13 @@ class DeclarationPolitically{
 
     async verifyDeclarationPoliticallyTitle(){
         await assertParticularText(PageLocators.declarationPoliticallyTitle,"Declaration of Politically Exposed Person (PEP) and/or Close Associate");
+        console.log("able to check polically title")
     }
     async clickPoliticallyExposedPerson(){
+        console.log("click politically func in ")
+        console.log(excelValue()[pageObject.case].PoliticallyExposedPerson);
+        console.log(excelValue()[pageObject.case].Name_of_PEP);
+        console.log(excelValue()[pageObject.case].RelationshipAssured);
         let Element;
         let PoliticallyExposedPerson=excelValue()[pageObject.case].PoliticallyExposedPerson;
         let PoliticallyExposedPersonName=excelValue()[pageObject.case].Name_of_PEP;

@@ -2,10 +2,12 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require('@cucumber/cucumber');
 setDefaultTimeout(20000);
 require('dotenv').config();
+const { excelValue } = require('../Helper/Helper');
 
 //login import
 const { SigningMethod } = require('../Pages/Page 6.1Confirmation - Signing Method and Product Illustration');
 const { pageObject } = require('../Hooks/PageObjects');
+const { sleep } = require('../Helper/Action');
 
 let pageSigningMethod;
 
@@ -32,7 +34,8 @@ When('user preview the PDF of Assured Signature and success', async function () 
 });
 
 When('user preview the PDF of Credit Signature and success', async function () {
-    if(process.env.PaymentType=="CreditCard"){
+    let PaymentType = excelValue()[pageObject.case].PaymentType
+    if(PaymentType=="CreditCard"){
     await pageSigningMethod.creditCardClickandSummary();
   }
 });
