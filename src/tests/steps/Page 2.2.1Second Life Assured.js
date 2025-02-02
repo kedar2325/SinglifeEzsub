@@ -29,14 +29,15 @@ When('user fills all the mandatory details', async function () {
 });
 When('user click next button to move Product selection page', async function () {
     await CustomerInformationFunction.ClickNextButton();
-
+    
 });
 Then('user verify the Product select page', async function () {
-    if (CustomerInformationFunction.SelectRelationship) {
+    // if (CustomerInformationFunction.SelectRelationship()) {
         // Capture screenshot and attach it to Allure
+        await CustomerInformationFunction.VerifyProductPage();
         await sleep(1000);
         const screenshot = await pageObject.page.screenshot();
         this.attach(screenshot, 'image/png');
-    }
+    // }
 
 });

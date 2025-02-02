@@ -84,15 +84,15 @@ function excelValue(){
     return excelData;
 }
 async function PolicyTerm(){
-    let term = excelValue()[pageObject.case].Term
+    let term = excelValue()[process.env.caseID].Term
     console.log(`User selected term as ${term}`)
-    let pay = excelValue()[pageObject.case].Paytype
+    let pay = excelValue()[process.env.caseID].Paytype
     console.log(`User selected Pay type as ${pay}`)
     await toClick(`//div[@id='${term}']//img`);
     await toClick(`//div[@id='${term}']//div[contains(text(),'${pay}')]`)
 }
 async function EnterSumAssured(sumassuredElement) {
-    let sumAssured=excelValue()[pageObject.case].SA;
+    let sumAssured=excelValue()[process.env.caseID].SA;
     sumAssured = String(sumAssured);
     console.log(`Sum Assured value is ${sumAssured}`)
     await clickAndSendkeys(sumassuredElement, sumAssured);
@@ -102,13 +102,13 @@ async function SumAssuredCalculate(calculatebtn) {
     await toClick(calculatebtn);
 }
 async function PaymentFrequency() {
-    let paymentfrequency = excelValue()[pageObject.case].PaymentFrequency
+    let paymentfrequency = excelValue()[process.env.caseID].PaymentFrequency
     await toClick(`//p[text()='${paymentfrequency}']//parent::div//following-sibling::div/input`);
     console.log(`User selects payment frequency as ${paymentfrequency}`);
 }
 async function NoofYears() {
-    let yearText=excelValue()[pageObject.case].ProductYear
-     let years=excelValue()[pageObject.case].NoofYears;
+    let yearText=excelValue()[process.env.caseID].ProductYear
+     let years=excelValue()[process.env.caseID].NoofYears;
      years = String(years);
     await clickAndSendkeys(`//p[text()='${yearText}']//parent::label//parent::div/div/input`,years);
 }

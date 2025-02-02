@@ -17,7 +17,7 @@ class PlanSelection{
         await toClick(PageLocators.NewQuatation)
     }
     async  InsuranceType() {
-        let InsuraceType=excelValue()[pageObject.case].InsurancePlan;
+        let InsuraceType=excelValue()[process.env.caseID].InsurancePlan;
         await assertElementVisible(`//p[text()= '${InsuraceType}']`,"Insurance Field");
         await toClick(`//p[text()= '${InsuraceType}']`);
         console.log(`${InsuraceType} is Selected`);

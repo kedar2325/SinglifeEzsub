@@ -17,8 +17,7 @@ class ProductSelection{
     }
     async navigationToProductSelection(){
         await sleep(1000)
-        await Click(PageLocators.nextButton);
-        await clickAndSendkeys(PageLocators.searchTab,excelValue()[pageObject.case].ProductName);   
+        await clickAndSendkeys(PageLocators.searchTab,excelValue()[process.env.caseID].ProductName);   
     }
     async search(){
         await sleep(1000)
@@ -31,8 +30,8 @@ class ProductSelection{
         await Click(PageLocators.nextButton);
     }
     async verifyProductsSelected(){
-        let Productname=excelValue()[pageObject.case].ProductName;
-        await assertText(`(//p[contains(text(),'${Productname}')])[1]`, excelValue()[pageObject.case].ProductName);
+        let Productname=excelValue()[process.env.caseID].ProductName;
+        await assertText(`(//p[contains(text(),'${Productname}')])[1]`, excelValue()[process.env.caseID].ProductName);
     }
 }
 module.exports={ProductSelection}

@@ -18,13 +18,14 @@ const PageLocators={
         pageObject.page=page;
     }
     async NavigateLoginpage(){
+        console.log(`pageObject.case value: ${process.env.caseID}`);
         await launchURL(process.env.url)    
     }
     async  Enterusername(){
-        await clickAndSendkeys(PageLocators.username,excelValue()[pageObject.case].LoginID);
+        await clickAndSendkeys(PageLocators.username,excelValue()[process.env.caseID].LoginID);
     }
     async  EnterPassword(){
-        await clickAndSendkeys(PageLocators.password,excelValue()[pageObject.case].Password);
+        await clickAndSendkeys(PageLocators.password,excelValue()[process.env.caseID].Password);
     }
     async  ClickLoginButton(){
         await Click(PageLocators.loginButton)

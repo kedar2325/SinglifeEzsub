@@ -19,8 +19,8 @@ class CustomerSelection {
     }
 
     async QuotationType() {
-        const quotationType = excelValue()[pageObject.case].quotationType;
-        const InsurancePlan = excelValue()[pageObject.case].InsurancePlan;
+        const quotationType = excelValue()[process.env.caseID].quotationType;
+        const InsurancePlan = excelValue()[process.env.caseID].InsurancePlan;
         if (InsurancePlan === "Life Insurance" || InsurancePlan === "Medical & Health Insurance" || InsurancePlan === "Accident Guard") {
             if (quotationType === "Self" || quotationType === "Third-Party") {
                 await toClick(`//p[contains(text(), '${quotationType}')]`);
@@ -50,7 +50,7 @@ class CustomerSelection {
     //     await toClick(PageLocators.nextButton);
     // }
     async clickNewEzsubButton() {
-        let profileType = excelValue()[pageObject.case].Profile;
+        let profileType = excelValue()[process.env.caseID].Profile;
         if (profileType == 'New EzSub Profile') {
             await toClick(`//p[text()='${profileType}']`);
             console.log(`${profileType} is Selected`);
@@ -61,29 +61,29 @@ class CustomerSelection {
 
     }
     async fillNRICnumber() {
-        await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[pageObject.case].NRIC_Number)
+        await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[process.env.caseID].NRIC_Number)
     }
     async fillSalutation() {
         await toClick(PageLocators.salutation);
     }
     async selectSalutation() {
-        let salutation = excelValue()[pageObject.case].Salutation
+        let salutation = excelValue()[process.env.caseID].Salutation
         await clickByRole('option', { name: salutation, exact: true });
     }
     async EnterlastName() {
-        await getByTextIDClick('lastName', excelValue()[pageObject.case].lastname);
+        await getByTextIDClick('lastName', excelValue()[process.env.caseID].lastname);
     }
     async EnterfirstName() {
-        await clickAndSendkeys(PageLocators.firstName, excelValue()[pageObject.case].firstname)
+        await clickAndSendkeys(PageLocators.firstName, excelValue()[process.env.caseID].firstname)
     }
    
 
     async EnterDOB() {
         await toClick(PageLocators.DOBfield);
         await sleep(2000);
-        await yearSelection(excelValue()[pageObject.case].year);
-        await MonthSelection(excelValue()[pageObject.case].Month);
-        await DateSelection(excelValue()[pageObject.case].Date);
+        await yearSelection(excelValue()[process.env.caseID].year);
+        await MonthSelection(excelValue()[process.env.caseID].Month);
+        await DateSelection(excelValue()[process.env.caseID].Date);
         // await toClick(PageLocators.yearClick);
         // await doubleClick(PageLocators.leftArrowForData);
         // await doubleClick(PageLocators.leftArrowForData);
@@ -92,7 +92,7 @@ class CustomerSelection {
     }
     async occupation() {
         await toClick(PageLocators.occupationID);
-        let occupationID=excelValue()[pageObject.case].occupationID;
+        let occupationID=excelValue()[process.env.caseID].occupationID;
         await clickByRole('option', { name: occupationID })
         console.log(`Selected occupation ID is ${occupationID}`)
     

@@ -21,7 +21,7 @@ class ProductDetails {
         await assertText(PageLocators.productDetailsExist, "Product Details")
     }
     async ProductCare() {
-        let productName = excelValue()[pageObject.case].ProductName;
+        let productName = excelValue()[process.env.caseID].ProductName;
         switch (productName) {
             case "Singlife Steadypay Saver":
                 // await toClick(`//div[@id='policyTerm']//img`);

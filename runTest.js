@@ -10,13 +10,12 @@ const readExcelData = (filePath) => {
 const FilePath = 'C:/Users/msundarraj/Desktop/Ezsub/data.xlsx';
 const excelData = readExcelData(FilePath);
 const rowCount = excelData.length;
-console.log(excelData);
+//console.log(excelData);
 console.log(`Found ${rowCount} rows in the Excel file.`);
 
 for (let i = 0; i < rowCount; i++) {
     console.log(`Running test for iteration ${i + 1}`);
-    pageObject.case=i;
-
+    process.env.caseID=i;
     try {
         execSync('npm test', { stdio: 'inherit' });
     } catch (error) {

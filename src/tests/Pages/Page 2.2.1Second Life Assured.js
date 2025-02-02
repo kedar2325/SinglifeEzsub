@@ -57,14 +57,9 @@ class CustomerInformation {
     async EnterDOB() {
             await toClick(PageLocators.DOB);
             await sleep(2000);
-            await yearSelection();
-            await MonthSelection();
-            await DateSelection();
-            // await toClick(PageLocators.yearClick);
-            // await doubleClick(PageLocators.leftArrowForData);
-            // await doubleClick(PageLocators.leftArrowForData);
-            // await Click(PageLocators.selectYear);
-            // await toClick(PageLocators.selectDate);
+            await yearSelection(excelValue()[pageObject.case].SecondLAyear);
+            await MonthSelection(excelValue()[pageObject.case].SecondLAmonth);
+            await DateSelection(excelValue()[pageObject.case].SecondLAdate);
         }
     async occupation() {
             await toClick(PageLocators.occupationID);
@@ -121,8 +116,11 @@ class CustomerInformation {
     }
 
     async ClickNextButton(){
-        //await toClick(PageLocators.next_btn);
-        //await toClick(PageLocators.next_btn);
+        await toClick(PageLocators.next_btn);
+        console.log("Next button is Clicked");
+        await sleep(4000);
+        await toClick(PageLocators.next_btn);
+        console.log("Next button is Clicked");
     }
     async VerifyProductPage(){
         await assertText(PageLocators.verifyProductSelectionPage, "Product selection for"); 

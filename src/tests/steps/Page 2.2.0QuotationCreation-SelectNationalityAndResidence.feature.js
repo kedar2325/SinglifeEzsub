@@ -24,6 +24,7 @@ When('user selects residence status from the dropdown', async function () {
 
 Then('user verify residency status should be displayed', async function () {
     await CountrySelection.VerifyResidencyStatus()
+    await CountrySelection.VerifySecondAssured();
     // if (CountrySelection.VerifyResidencyStatus) {
     //     // Capture screenshot and attach it to Allure
     //     await sleep(1000);
