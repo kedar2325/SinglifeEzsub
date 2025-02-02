@@ -1,6 +1,6 @@
 const { expect } = require('@playwright/test');
 const { clickAndSendkeys, Click, clickByRole, assertText, assertParticularText, toClick, sleep } = require('../Helper/Action');
-const { excelValue } = require('../Helper/Helper');
+const { excelValue, PolicyTerm,NoofYears, EnterSumAssured,SumAssuredCalculate,PaymentFrequency } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -20,30 +20,42 @@ class ProductDetails {
     async ProductDetails_Exist() {
         await assertText(PageLocators.productDetailsExist, "Product Details")
     }
-    async PolicyTerm() {
-        let term = process.env.Term
-        console.log(`User selected term as ${term}`)
-        let pay = process.env.Paytype
-        console.log(`User selected Pay type as ${pay}`)
-        await sleep(2000);
-        await toClick(`//div[@id='${term}']//img`)
-       // await doubleClick("//div[@id='policyTerm']//img")
-        await toClick(`//div[@id='${term}']//div[contains(text(),'${pay}')]`)
-        //   await toClick(PageLocators.policyterm)
-        // await clickByRole('option', { name: 'Account Executive' })
+    async ProductCare() {
+        let productName = excelValue()[pageObject.case].ProductName;
+        switch (productName) {
+            case "Singlife Steadypay Saver":
+                // await toClick(`//div[@id='policyTerm']//img`);
+                await PolicyTerm();
+                await EnterSumAssured(PageLocators.sumassured);
+                await SumAssuredCalculate(PageLocators.calculatebtn);
+                await PaymentFrequency();
+                break;  
+            case "Singlife Choice Saver":
+                await PolicyTerm();
+                await NoofYears();
+                await EnterSumAssured(PageLocators.sumassured);
+                await PaymentFrequency();  
+                await SumAssuredCalculate(PageLocators.calculatebtn);
+                break;
+            case "Singlife Elite Term II":
+                await PolicyTerm();
+                // await NoofYears();
+                await EnterSumAssured(PageLocators.sumassured);
+                await SumAssuredCalculate(PageLocators.calculatebtn);
+                await PaymentFrequency();  
+                break;
+            case "Singlife Comprehensive Critical Illness":
+                await NoofYears();
+                await EnterSumAssured(PageLocators.sumassured);
+                await SumAssuredCalculate(PageLocators.calculatebtn);
+                await PaymentFrequency();  
+                break;   
+            default:
+                console.log(`Error: Unrecognized product name: ${productName}`);
+                break;
+        }
     }
-    async EnterSumAssured() {
-        await clickAndSendkeys(PageLocators.sumassured, process.env.SA)
-    }
-    async SumAssuredCalculate() {
-        await sleep(8000);
-        await toClick(PageLocators.calculatebtn);
-    }
-    async PaymentFrequency() {
-        let paymentfrequency = process.env.PaymentFrequency
-        await toClick(`//p[text()='${paymentfrequency}']//parent::div//following-sibling::div/input`);
-        console.log(`User selects payment frequency as ${paymentfrequency}`);
-    }
+
     async ValidatePremiumAmount_Exist() {
         await assertParticularText(PageLocators.amountexist, "SGD")
         await toClick(PageLocators.nextButton)

@@ -18,26 +18,13 @@ class RiderSelection{
         pageObject.page=page;
     }
     async verifyRiderGreetText(){
-        //await assertText(PageLocators.easyTerm, "EasyTerm"); 
-        //await assertParticularText(PageLocators.cancerPremium, "Cancer Premium Waiver II");
-       // await assertText(PageLocators.criticalIllness, "Critical Illness Premium Waiver II");
         await assertText(PageLocators.RiderGreetText,"Rider(s) Selection");
     }
     async selectRiders(){
-        // Rider Selection: Check if the 'Critical Illness Premium Waiver II' & 'Easy Term' rider is available and select it
         let ListofRider=process.env.Rider.split(',');
         for (let rider of ListofRider) {
             await RiderSelectionMethod(rider);
         }
-        // while(true){
-        //     if(riderCIPW == 'Critical Illness Premium Waiver II'){
-        //         await pageObject.page.locator('#tick_icon').first().click()
-        //         break
-        //     }
-        //     else{
-        //         await pageObject.page.locator('//p[normalize-space()="Cancer Premium Waiver II"]').check()
-        //     }
-        // }
     }
     async calculatePremium(){
         // await page.getByText('Term*')

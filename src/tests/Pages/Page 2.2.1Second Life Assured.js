@@ -26,7 +26,7 @@ class CustomerInformation {
     }
 
     async clickNewEzsubButton() {
-        let profileType = excelValue()[0].ProfileTypeSelection;
+        let profileType = excelValue()[pageObject.case].ProfileTypeSelection;
         if (profileType == 'New EzSub Profile') {
             await toClick(`//p[text()='${profileType}']`);
             console.log(`${profileType} is Selected`);
@@ -38,20 +38,20 @@ class CustomerInformation {
     }
 
     async fillNRICnumber() {
-            await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[0].NRICField)
+            await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[pageObject.case].NRICField)
         }
     async fillSalutation() {
             await toClick(PageLocators.salutationID);
         }
     async selectSalutation() {
-            let salutationID = excelValue()[0].SalutationValue
+            let salutationID = excelValue()[pageObject.case].SalutationValue
             await clickByRole('option', { name: salutationID, exact: true });
         }
     async EnterlastName() {
-            await getByTextIDClick('lastName', excelValue()[0].Last_Name);
+            await getByTextIDClick('lastName', excelValue()[pageObject.case].Last_Name);
         }
     async EnterfirstName() {
-            await clickAndSendkeys(PageLocators.firstName, excelValue()[0].First_Name)
+            await clickAndSendkeys(PageLocators.firstName, excelValue()[pageObject.case].First_Name)
         }
 
     async EnterDOB() {
@@ -68,14 +68,14 @@ class CustomerInformation {
         }
     async occupation() {
             await toClick(PageLocators.occupationID);
-            let occupationID=excelValue()[0].occupationID;
+            let occupationID=excelValue()[pageObject.case].occupationID;
             await clickByRole('option', { name: occupationID })
             console.log(`Selected occupation ID is ${occupationID}`)
         }
 
     async SmokingStatus(){
             await sleep(2000);
-            let smoking_status = excelValue()[0].smokingstatus
+            let smoking_status = excelValue()[pageObject.case].smokingstatus
             await toClick(`//p[normalize-space()='${smoking_status}']`)
             
         }
@@ -83,14 +83,14 @@ class CustomerInformation {
     async SelectNationality(){
             await sleep(2000);
             await toClick(PageLocators.nationality_click);
-            let nationality=excelValue()[0].nationality;
+            let nationality=excelValue()[pageObject.case].nationality;
             await toClick(`//div[@id='nationalityCode']//div[contains(text(),'${nationality}')]`);
             console.log(`User selected nationality is ${nationality}`)
         }
 
     async SelectCountryofBirth(){
         await sleep(2000);
-            let countryofresidence = excelValue()[0].countryOfResidence
+            let countryofresidence = excelValue()[pageObject.case].countryOfResidence
             await toClick(PageLocators.countryofresidence_click)
             await toClick(`//div[@id='residenceCountryCode']//div[contains(text(),'${countryofresidence}')]`)
             console.log(`${countryofresidence} is Selected`);
@@ -101,7 +101,7 @@ class CustomerInformation {
     async SelectResidencyStatus(){
         await sleep(2000);
             await toClick(PageLocators.residencystatus);
-            let residency_status = excelValue()[0].residencyStatus
+            let residency_status = excelValue()[pageObject.case].residencyStatus
             await toClick(`//div[@id='residencyStatusCodeQuotation']//div[text()='${residency_status}']`)
             console.log(`${residency_status} is Selected`);
     
@@ -115,7 +115,7 @@ class CustomerInformation {
     async SelectRelationship(){
         await sleep(2000);
         await toClick(PageLocators.assuredRelationship);
-        let assured_relationship = excelValue()[0].assured_relationship
+        let assured_relationship = excelValue()[pageObject.case].assured_relationship
         await toClick(`//div[@id='relationship']//div[text()='${assured_relationship}']`)
         console.log(`${assured_relationship} is Selected`);
     }

@@ -1,5 +1,5 @@
 const path = require('path');
-const {  getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, assertCheckBox, mouseDown,mouseMove,mouseUp, readExcelData } = require('../Helper/Action');
+const { clickAndSendkeys, getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, assertCheckBox, mouseDown,mouseMove,mouseUp, readExcelData } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
@@ -50,7 +50,7 @@ async function yearSelection(year) {
 }
 async function MonthSelection(Month) {
     let Currentmonth = getCurrentMonthName();
-    await toClick(`//p[text()='January']`);
+    await toClick(`//p[text()='${Currentmonth}']`);
     await sleep(1000);
     let month = Month;
     console.log(`User selected Month is : ${month}`)
@@ -83,12 +83,47 @@ function excelValue(){
     const excelData=readExcelData("C:/Users/msundarraj/Desktop/Ezsub/data.xlsx","Sheet1")
     return excelData;
 }
+async function PolicyTerm(){
+    let term = excelValue()[pageObject.case].Term
+    console.log(`User selected term as ${term}`)
+    let pay = excelValue()[pageObject.case].Paytype
+    console.log(`User selected Pay type as ${pay}`)
+    await toClick(`//div[@id='${term}']//img`);
+    await toClick(`//div[@id='${term}']//div[contains(text(),'${pay}')]`)
+}
+async function EnterSumAssured(sumassuredElement) {
+    let sumAssured=excelValue()[pageObject.case].SA;
+    sumAssured = String(sumAssured);
+    console.log(`Sum Assured value is ${sumAssured}`)
+    await clickAndSendkeys(sumassuredElement, sumAssured);
+}
+async function SumAssuredCalculate(calculatebtn) {
+    await sleep(3000);
+    await toClick(calculatebtn);
+}
+async function PaymentFrequency() {
+    let paymentfrequency = excelValue()[pageObject.case].PaymentFrequency
+    await toClick(`//p[text()='${paymentfrequency}']//parent::div//following-sibling::div/input`);
+    console.log(`User selects payment frequency as ${paymentfrequency}`);
+}
+async function NoofYears() {
+    let yearText=excelValue()[pageObject.case].ProductYear
+     let years=excelValue()[pageObject.case].NoofYears;
+     years = String(years);
+    await clickAndSendkeys(`//p[text()='${yearText}']//parent::label//parent::div/div/input`,years);
+}
+
 
 
 
 
 
 module.exports = {
+    NoofYears,
+    PaymentFrequency,
+    SumAssuredCalculate,
+    EnterSumAssured,
+    PolicyTerm,
     excelValue,
     yearSelection,
     MonthSelection,

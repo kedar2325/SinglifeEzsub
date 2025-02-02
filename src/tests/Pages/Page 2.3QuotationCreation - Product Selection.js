@@ -16,17 +16,12 @@ class ProductSelection{
         pageObject.page=page;
     }
     async navigationToProductSelection(){
-
         await sleep(1000)
         await Click(PageLocators.nextButton);
-        //await assertText(PageLocators.verifyProductSelectionPage, "Product selection for"); 
-        await clickAndSendkeys(PageLocators.searchTab,"Singlife Steadypay Saver"); 
-        console.log("2")
-        
+        await clickAndSendkeys(PageLocators.searchTab,excelValue()[pageObject.case].ProductName);   
     }
     async search(){
         await sleep(1000)
-        console.log("4")
         
     }
     async selectInList(){
@@ -36,8 +31,8 @@ class ProductSelection{
         await Click(PageLocators.nextButton);
     }
     async verifyProductsSelected(){
-        let Productname=process.env.ProductName;
-        await assertText(`(//p[contains(text(),'${Productname}')])[1]`, process.env.ProductName);
+        let Productname=excelValue()[pageObject.case].ProductName;
+        await assertText(`(//p[contains(text(),'${Productname}')])[1]`, excelValue()[pageObject.case].ProductName);
     }
 }
 module.exports={ProductSelection}
