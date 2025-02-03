@@ -21,10 +21,12 @@ class RiderSelection{
         await assertText(PageLocators.RiderGreetText,"Rider(s) Selection");
     }
     async selectRiders(){
+        
         let ListofUncheckRider=excelValue()[process.env.caseID].UncheckRider.split(',');
             for(let rider of ListofUncheckRider){
                 await UncheckRiders(rider);
                 await sleep(1000);
+                console.log("28839 uncheck");
             }
 
         let ListofRider=excelValue()[process.env.caseID].Rider.split(',');
@@ -35,6 +37,7 @@ class RiderSelection{
                 let sumAssured=list[1];
                 await RiderSelectionMethod(rider,sumAssured);
                 await sleep(2000);
+                console.log("28839 check");
             }
         
     }

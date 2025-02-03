@@ -32,7 +32,7 @@ When('User clicks the Login button', async function () {
 });
 Then('User validate the home page text', async function () {
   await loginFunction.assertHomeText();
-  takeScreenshot("login completed")
+  //takeScreenshot("login completed")
   if (loginFunction.assertHomeText) {
     // Capture screenshot and attach it to Allure
     await sleep(1000);

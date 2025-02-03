@@ -63,7 +63,8 @@ async function DateSelection(Date) {
     await doubleClick(`//p[text()='${DateValue}']`);
 }
 async function UncheckRiders(Ridername) {
-    if(await pageObject.page.locator(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//input`).isChecked()){
+    const isRiderChecked=await pageObject.page.locator(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//input`).isChecked();
+    if(isRiderChecked){
         await toClick(`//p[contains(text(),'${Ridername}')]//parent::div//div//div[@id='InputWrapper']//img`);
     }
     else{

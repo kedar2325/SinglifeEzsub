@@ -19,12 +19,12 @@ When('user select the riders in the rider selection page', async function () {
 });
 When('user click the premium calculate button for the selected rider', async function () {
   //await RiderSelectionPage.calculatePremium();
-  if (RiderSelectionPage.selectRiders()) {
-    // Capture screenshot and attach it to Allure
-    await sleep(1000);
-    const screenshot = await pageObject.page.screenshot();
-    this.attach(screenshot, 'image/png');
-  }
+  // if (RiderSelectionPage.selectRiders()) {
+  //   // Capture screenshot and attach it to Allure
+  //   await sleep(1000);
+  //   const screenshot = await pageObject.page.screenshot();
+  //   this.attach(screenshot, 'image/png');
+  // }
 });
 
 // Then('user validate the premium calculated for the selected riders', async function () {

@@ -27,6 +27,8 @@ const PageLocators={
     employmentduties: "//input[@name='employment.duties']",
     natureofbusiness: "//div[@id='employment.natureOfBusiness']//img",
     next_btn: "//button[text()='Next']",
+    streetNo:"//input[@name='resAddress.blockStreetNo']",
+    streetName:"//input[@name='resAddress.streetName']"
 }
 class ReviewDetailsLifeAssured{
     constructor(page){
@@ -61,7 +63,9 @@ class ReviewDetailsLifeAssured{
         let postalCode=excelValue()[process.env.caseID].postalcode;
         postalCode=String(postalCode);
         await clickAndSendkeys(PageLocators.postalcode,postalCode)
-        await toClick(PageLocators.search)   
+        await clickAndSendkeys(PageLocators.streetNo,process.env.streetNo);
+        await clickAndSendkeys(PageLocators.streetName,process.env.streetName);
+        //await toClick(PageLocators.search)   
         let unitNo=String(excelValue()[process.env.caseID].unitno)
         await clickAndSendkeys(PageLocators.unitno,unitNo)  
         await sleep(2000);

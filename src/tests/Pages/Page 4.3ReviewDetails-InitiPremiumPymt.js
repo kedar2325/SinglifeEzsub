@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys, launchURL, sleep, Click, assertText, toClick, sendkeys } = require('../Helper/Action');
+const { clickAndSendkeys, launchURL, sleep, Click, assertText, toClick, sendkeys, windowHandle } = require('../Helper/Action');
 const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -18,7 +18,7 @@ const PageLocators={
     
     giroButton2:"(//p[text()='Interbank GIRO'])[2]",
     cashButton2:"(//p[text()='Cash/Cheque/Bank Draft'])[2]",
-    entercreditcarddetailbtn: "//button[normalize-space()='Enter credit card details']",
+    entercreditcarddetailbtn: "//button[text()='Enter credit card details']",
 
 
     //Next Button
@@ -34,12 +34,10 @@ class ReviewDetailsInitialPremiumPayment{
     }
     async verifyInitialPremiumPage(){ 
         await assertText(PageLocators.verifyInitialPremiumPage, "Initial Premium Payment");
-        console.log("0");
     }
 
     async InitialPremiumPaymentMethod() {
             let paymentMethod=process.env.PaymentType;
-            console.log("1");
             //await toClick(`//p[text()= '${paymentMethod}']`);
             console.log(`${paymentMethod} is Selected`);
         if(paymentMethod=="Interbank GIRO"){
@@ -47,17 +45,22 @@ class ReviewDetailsInitialPremiumPayment{
             await clickAndSendkeys(PageLocators.giro_accountNumber,process.env.GIRO_AccountNumber);
             await clickAndSendkeys(PageLocators.JointAccount_Name,process.env.Joint_Account_Name);
             await clickAndSendkeys(PageLocators.NRICNumber,process.env.NRIC_Number);
-
         }
         else if(paymentMethod=="Cash/Cheque/Bank Draft"){
-            console.log("2");
-            await Click(PageLocators.cashButton);
+            await toClick(`(//p[text()='${paymentMethod}'])[1]`);
             await clickAndSendkeys(PageLocators.Cheque_Number, process.env.ChequeNumber);
             await clickAndSendkeys(PageLocators.Issuing_Bank, process.env.IssuingBank);
-        
+            await toClick(`(//p[text()='${paymentMethod}'])[2]`);
         }
         else if(paymentMethod=="Credit Card"){
-            await Click(PageLocators.creditCardButton);
+            await toClick(`(//p[text()='${paymentMethod}'])[1]`);
+           // await toClick();
+            const page=await windowHandle(PageLocators.entercreditcarddetailbtn);
+            await page.waitForSelector("//label[text()='Mastercard']//parent::div//input");
+            await page.locator("//label[text()='Mastercard']//parent::div//input").click();
+            await page.locator("//input[@id='card_number']").click();
+            await page.locator("//input[@id='card_number']").fill("5123450000000008");
+    
         }
         else {
             console.log("No payment method is available");
@@ -67,7 +70,6 @@ class ReviewDetailsInitialPremiumPayment{
 
     async SubsequentPremiumPayment(){
         let Element;
-        console.log("3");
         switch (process.env.SubsequentPremiumPayment_Type) {
             case "Interbank GIRO":
                 Element=PageLocators.giroButton2;

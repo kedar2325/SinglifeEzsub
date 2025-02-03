@@ -1,6 +1,7 @@
 const { Given, Then, When, setDefaultTimeout } = require("@cucumber/cucumber");
 const { QuotationSelectNationaliandResidency } = require("../Pages/Page 2.2Quotation-AssuredDetails")
 const { pageObject } = require("../Hooks/PageObjects");
+const { sleep } = require("../Helper/Action");
 
 setDefaultTimeout(45000);
 
@@ -8,6 +9,7 @@ let CountrySelection;
 
 Given('user selects Nationality from the dropdown', async function () {
     CountrySelection = new QuotationSelectNationaliandResidency(pageObject.page)
+    await sleep(2000);
     await CountrySelection.SmokingStatus()
     await CountrySelection.SelectNationality()
 
