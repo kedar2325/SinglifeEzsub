@@ -2,7 +2,7 @@ const { Given, Then, When, setDefaultTimeout } = require("@cucumber/cucumber");
 const { QuotationSelectNationaliandResidency } = require("../Pages/Page 2.2Quotation-AssuredDetails")
 const { pageObject } = require("../Hooks/PageObjects");
 
-setDefaultTimeout(20000);
+setDefaultTimeout(45000);
 
 let CountrySelection;
 
@@ -22,8 +22,10 @@ When('user selects residence status from the dropdown', async function () {
     await CountrySelection.SelectResidencyStatus()
 });
 
-Then('user verify residency status should be displayed', async function () {
+When('user verify residency status should be displayed', async function () {
     await CountrySelection.VerifyResidencyStatus()
+});
+Then('user completes the second Assured Details', async function () {
     await CountrySelection.VerifySecondAssured();
     // if (CountrySelection.VerifyResidencyStatus) {
     //     // Capture screenshot and attach it to Allure
@@ -33,3 +35,4 @@ Then('user verify residency status should be displayed', async function () {
     // }
 
 });
+

@@ -32,6 +32,7 @@ class underwritingQuestions{
         pageObject.page=page;
     }
     async VerifyGreetText(){
+        await sleep(3000);
         await assertText(PageLocators.underwritingGreetText,'Underwriting questions for:');
     }
     async fillHeight(){

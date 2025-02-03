@@ -111,6 +111,7 @@ class DeclarationTaxResidency{
         }
         async enterDeclarationTabTwo(){
             console.log("21")
+            await sleep(2000);
             let secondSingaporeButtonPathElement=excelValue()[process.env.caseID].SecondResidentSingapore;
             let secondSingaporeButtonPath=`//span[contains(text(),'I am a tax resident in Singapore')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${process.env.SecondResidentSingapore}']`
             console.log(secondSingaporeButtonPathElement);

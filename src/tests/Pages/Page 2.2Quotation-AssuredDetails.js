@@ -127,6 +127,7 @@ class QuotationSelectNationaliandResidency{
             await toClick(PageLocators.next_btn);
             await sleep(4000);
             await toClick(PageLocators.next_btn);
+            await sleep(2000);
             await assertText(PageLocators.verifyProductSelectionPage, "Product selection for");      
         }
         else{

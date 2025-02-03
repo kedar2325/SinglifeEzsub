@@ -26,7 +26,8 @@ When('user clicks next', async function () {
 });
 When('user selects LA Yes or No option', async function () {
   let QuotationType=excelValue()[process.env.caseID].quotationType
-  if(QuotationType=="ThirdParty"){
+  if(QuotationType=="Third-Party"){
+    await sleep(2000);
   await ROPDetails.SecondLA_Select_Yes_No_Ques1();
   await ROPDetails.SecondLA_Select_Yes_No_Ques2();
   }

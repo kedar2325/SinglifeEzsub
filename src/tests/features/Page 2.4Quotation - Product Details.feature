@@ -1,4 +1,4 @@
-Feature: 2.4.Product Details - Quotation
+Feature: 2.4Quotation - Product Details
 
   @e2e @2ndAssured @Qoutation
   Scenario: Enter the  product details 
