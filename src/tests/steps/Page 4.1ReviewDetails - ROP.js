@@ -17,8 +17,18 @@ Given('user able to view ques', async function () {
 });
 
 When('user selects Yes or No option', async function () {
+  let QuotationType=excelValue()[process.env.caseID].quotationType
+  let NoOfQues = excelValue()[process.env.caseID].NumberOfQues1
+  if(QuotationType=="Self"){
+    if(NoOfQues=="1"){
+      await ROPDetails.Select_Yes_No_Ques1();
+    }else{
   await ROPDetails.Select_Yes_No_Ques1();
   await ROPDetails.Select_Yes_No_Ques2();
+    }
+  }else{
+    await ROPDetails.Select_Yes_No_Ques1();
+  }
 
 });
 When('user clicks next', async function () {
@@ -26,11 +36,16 @@ When('user clicks next', async function () {
 });
 When('user selects LA Yes or No option', async function () {
   let QuotationType=excelValue()[process.env.caseID].quotationType
+  let NoOfQues = excelValue()[process.env.caseID].NumberOfQues2
   if(QuotationType=="Third-Party"){
     await sleep(2000);
-  await ROPDetails.SecondLA_Select_Yes_No_Ques1();
-  await ROPDetails.SecondLA_Select_Yes_No_Ques2();
+    if(NoOfQues=="1"){
+  await ROPDetails.SecondLA_Select_Yes_No_Ques1_1();
+  }else{
+    await ROPDetails.SecondLA_Select_Yes_No_Ques1();
+    await ROPDetails.SecondLA_Select_Yes_No_Ques2();
   }
+}
 });
 
 Then('user validate the payer details text', async function () {

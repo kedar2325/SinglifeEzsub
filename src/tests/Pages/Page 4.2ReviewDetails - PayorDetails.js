@@ -32,6 +32,7 @@ class PayorDetails{
         pageObject.page=page;
     }
     async payingpolicyPage(){
+        await sleep(2000);
         await assertText(PageLocators.verifyPayerDetails, "Are you paying for this policy?"); 
         let Element;
         switch (process.env.SelectPayingPolicy) {

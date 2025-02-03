@@ -42,9 +42,13 @@ class ROP{
         pageObject.page=page;
     }
     async navigationToROP(){
+        await sleep(4000);
+        console.log("P4.1 ROP Title check")
         let productName= excelValue()[process.env.caseID].ProductName
         console.log(productName);
-        let Element = `//p[contains(text(),'${productName}')]`
+        await sleep(2000);
+        let Element = `(//p[contains(text(),'${productName}')])[1]`
+        console.log(Element)
         await assertText(Element, productName); 
         await sleep(2000);
     }
@@ -84,6 +88,7 @@ class ROP{
     }
     
     async  Select_Yes_No_Ques2() {
+        await sleep(2000);
         let Option = excelValue()[process.env.caseID].SelectYesOrNo_2
         let Element;
         switch (Option) {
@@ -161,6 +166,7 @@ class ROP{
     }
 
    async SecondLA_Select_Yes_No_Ques1() {
+    
         let Option = excelValue()[process.env.caseID].SecondLA_Select_Yes_No_Ques1
         console.log(Option);
         let Element;
@@ -209,9 +215,55 @@ class ROP{
                 console.log("Unknown Selection");
         }
     }
-
+    async SecondLA_Select_Yes_No_Ques1_1(){
+        //await toClick(PageLocators.nextButton);
+        await sleep(4000);
+        let NumberofQues = excelValue()[process.env.caseID].NumberOfQues1
+        let Option = excelValue()[process.env.caseID].SelectYesOrNo_1
+        let i=1
+        console.log(Option);
+        if (NumberofQues=="1"){
+            i=2
+        }else{
+            i=3
+        }
+        let Element;
+        switch (Option) {
+            case "No":
+                console.log("LA Q1 No")
+                Element=`(//p[text()='No'])[${i}]`;
+                console.log(Element);
+                await Click(Element);
+                break;
+            case "Yes":
+                console.log("LA Q1 Yes")
+                Element=`(//p[text()='Yes'])[${i}]`;
+                console.log(Element);
+                await toClick(Element);
+                await Click(PageLocators.nameofCompany1Btn);
+                let CompanyName1=excelValue()[process.env.caseID].SelectCompanyName1;
+                await toClick(`//p[text()= '${CompanyName1}']`);
+                console.log(`${CompanyName1} is Selected`);
+                let lifeSumAssured1=excelValue()[process.env.caseID].SumAssured
+                let permanentlyDisabledSumAssured1=excelValue()[process.env.caseID].PermanentlyDisabled
+                let criticalIllnessSumAssured1=excelValue()[process.env.caseID].CriticalIllness
+                let disabilityIncomeSumAssured1=excelValue()[process.env.caseID].DisabilityIncome
+                let personalAccidentSumAssured1=excelValue()[process.env.caseID].PersonalAccident
+                await clickAndSendkeys(PageLocators.lifeSumAssured1,lifeSumAssured1);
+                await clickAndSendkeys(PageLocators.permanentlyDisabledSumAssured1,permanentlyDisabledSumAssured1);
+                await clickAndSendkeys(PageLocators.criticalIllnessSumAssured1,criticalIllnessSumAssured1);
+                await clickAndSendkeys(PageLocators.disabilityIncomeSumAssured1,disabilityIncomeSumAssured1);
+                await clickAndSendkeys(PageLocators.personalAccidentSumAssured1,personalAccidentSumAssured1);
+                break;
+            default:
+                console.log("Unknown Selection");
+        }
+        await toClick(PageLocators.nextButton);
+    }
     async SecondLA_Select_Yes_No_Ques2() {
+        
         let Option=excelValue()[process.env.caseID].SecondLA_Select_Yes_No_Ques2
+        await sleep(4000);
         let Element;
         switch (Option) {
             case "No":
