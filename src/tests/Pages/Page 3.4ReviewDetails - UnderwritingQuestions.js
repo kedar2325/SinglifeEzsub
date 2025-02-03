@@ -5,9 +5,12 @@ require('dotenv').config();
 
 const PageLocators={
     underwritingGreetText:"//p[text()='Underwriting questions for:']",
-    height: "//input[contains(@data-testid,'height')]",
-    weight: "//input[contains(@data-testid,'weight')]",
-    calculate: "//button[normalize-space()='Calculate']",
+    height: "(//input[contains(@data-testid,'height')])[1]",
+    height2: "(//input[contains(@data-testid,'height')])[2]",
+    weight: "(//input[contains(@data-testid,'weight')])[1]",
+    weight2: "(//input[contains(@data-testid,'weight')])[1]",
+    calculate: "(//button[@type='button'][normalize-space()='Calculate'])[1]",
+    calculate2: "(//button[@type='button'][normalize-space()='Calculate'])[1]",
     residencystatus_no: "//div[text()='Singlife Steadypay Saver']",
     underwritingNotReq:"//div[contains(text(),'This section is not required for this application')]",
     //
@@ -33,20 +36,27 @@ class underwritingQuestions{
     }
     async VerifyGreetText(){
         await sleep(3000);
+        console.log("Check UW title exists")
         await assertText(PageLocators.underwritingGreetText,'Underwriting questions for:');
+        console.log("UW Title exists")
     }
     async fillHeight(){
-        await clickAndSendkeys(PageLocators.height,process.env.Height);
+        console.log("Fill Height1")
+        let Height = String(excelValue()[process.env.caseID].Height)
+        await clickAndSendkeys(PageLocators.height,Height);
+        console.log("Filled Height1")
     }
     async fillWeight(){
-        await clickAndSendkeys(PageLocators.weight,process.env.Weight);
+        console.log("Fill Weight1")
+        let Weight = String(excelValue()[process.env.caseID].Weight)
+        await clickAndSendkeys(PageLocators.weight,Weight);
+        console.log("Filled Weight")
     }
     async clickCalculate(){
         await toClick(PageLocators.calculate);
         await sleep(8000);
     }
     async verifyUnderwriting(){
-        let QuotationType = excelValue()[process.env.caseID].quotationType
         let UnderwritingQuestionsReq = excelValue()[process.env.caseID].UnderwitingQuesReq
         if(UnderwritingQuestionsReq=="Yes"){
         let path=""
@@ -57,7 +67,7 @@ class underwritingQuestions{
                 const locatorValue = Answer[1];
                 console.log(locatorText);
                 console.log(locatorValue);
-                path=`//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}']`;
+                path=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[1]`;
                 // for (let QALocator of Answer){ 
                 //     path=path.concat(path,QALocator);
                 // }
@@ -67,16 +77,59 @@ class underwritingQuestions{
                 path="";
             }
             }
+        // let SecondUnderwritingQuestionsReq = excelValue()[process.env.caseID].SecondUnderwritingQuestionsReq;
+        // if(QuotationType!="Self"){
+        //     console.log("P3.4 - quo <> self");
+        //     await Click(PageLocators.next_btn);
+        //     await sleep(4000);
+        //     if(SecondUnderwritingQuestionsReq=="Yes"){
+        //     console.log("UW ques not req")
+        //     let Height2 = String(excelValue()[process.env.caseID].LA_Height);
+        //     let Weight2 = String(excelValue()[process.env.caseID].LA_Weight);
+        //     await clickAndSendkeys(PageLocators.height2,Height2);
+        //     await clickAndSendkeys(PageLocators.weight2,Weight2);
+        //     await toClick(PageLocators.calculate2);
+        //     await sleep(4000);
+        //     let path=""
+        //     let SecondUnderwritingQuestions = excelValue()[process.env.caseID].SecondUnderwritingQuestions
+        //     let ListofQA=SecondUnderwritingQuestions.split('|');
+        //     for (let CombineQA of ListofQA) {
+        //         let Answer = CombineQA.split(',');
+        //         const locatorText = Answer[0];
+        //         const locatorValue = Answer[1];
+        //         console.log(locatorText);
+        //         console.log(locatorValue);
+        //         path=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[2]`;
+        //         // for (let QALocator of Answer){ 
+        //         //     path=path.concat(path,QALocator);
+        //         // }
+        //         await toClick(path);
+        //         console.log(path);
+        //         await sleep(1100);
+        //         path="";
+        //     }
+        //     }
+        //     console.log("p3.4 to click next button")
+        //     await Click(PageLocators.next_btn);
+        //     console.log("clicked next button")
+        // }
+        // await sleep(3000);
+    }
+    async verifyUnderwritingTwo(){
+        let QuotationType = excelValue()[process.env.caseID].quotationType
         let SecondUnderwritingQuestionsReq = excelValue()[process.env.caseID].SecondUnderwritingQuestionsReq;
         if(QuotationType!="Self"){
             console.log("P3.4 - quo <> self");
             await Click(PageLocators.next_btn);
-            await sleep(2000);
+            await sleep(4000);
             if(SecondUnderwritingQuestionsReq=="Yes"){
-            await clickAndSendkeys(PageLocators.height,process.env.Height);
-            await clickAndSendkeys(PageLocators.weight,process.env.Weight);
-            await toClick(PageLocators.calculate);
-            await sleep(8000);
+            console.log("UW ques not req")
+            let Height2 = String(excelValue()[process.env.caseID].LA_Height);
+            let Weight2 = String(excelValue()[process.env.caseID].LA_Weight);
+            await clickAndSendkeys(PageLocators.height2,Height2);
+            await clickAndSendkeys(PageLocators.weight2,Weight2);
+            await toClick(PageLocators.calculate2);
+            await sleep(4000);
             let path=""
             let SecondUnderwritingQuestions = excelValue()[process.env.caseID].SecondUnderwritingQuestions
             let ListofQA=SecondUnderwritingQuestions.split('|');
@@ -86,7 +139,7 @@ class underwritingQuestions{
                 const locatorValue = Answer[1];
                 console.log(locatorText);
                 console.log(locatorValue);
-                path=`//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}']`;
+                path=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[2]`;
                 // for (let QALocator of Answer){ 
                 //     path=path.concat(path,QALocator);
                 // }
@@ -96,7 +149,12 @@ class underwritingQuestions{
                 path="";
             }
             }
+            console.log("p3.4 to click next button")
+            //await Click(PageLocators.next_btn);
+            console.log("clicked next button")
         }
+        await sleep(4000);
+
     }
     // async VerifyUnderwriting() {
     //     await toClick("(//p[text()='No'])[1]");
@@ -116,10 +174,11 @@ class underwritingQuestions{
     //         await toClick(locator);
     //     }
     // }
-    // async clickNextButton(){
-    //         console.log("to click next button")
-    //         await toClick(PageLocators.next_btn);
-    //         console.log("clicked next button")
-    //     }
+    async clickNextButton(){
+            console.log("to click next button")
+            await sleep(2000)
+            await toClick(PageLocators.next_btn);
+            console.log("clicked next button")
+        }
 }
 module.exports={underwritingQuestions}

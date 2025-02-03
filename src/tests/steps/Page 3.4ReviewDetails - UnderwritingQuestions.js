@@ -6,6 +6,7 @@ setDefaultTimeout(20000);
 let underwritingpage;
 Given('user able to reach the underwriting tab', async function () {
   underwritingpage = new underwritingQuestions(pageObject.page)
+  await sleep(3000);
   await underwritingpage.VerifyGreetText();
 });
 
@@ -20,14 +21,18 @@ When('user click the calculate button', async function () {
 When('user answer underwriting Questions', async function () {
   await underwritingpage.verifyUnderwriting();
 });
+When('user answer second underwriting Questions', async function () {
+  console.log("p3.4 UW two")
+  await underwritingpage.verifyUnderwritingTwo();
+});
 
 // When('user complete all the underwriting questions appropratiely', async function () {
 
 //   //await   underwritingpage.clickNotoUnderwritingQuestions();
 //   });
 Then('user clicks the next to move from underwriting page', async function () {
-  console.log("Entered step file")
-  if (underwritingpage.verifyUnderwriting) {
+  console.log("Entered next btn step file in p3.4")
+  if (underwritingpage.verifyUnderwriting()) {
     // Capture screenshot and attach it to Allure
     
     const screenshot = await pageObject.page.screenshot();

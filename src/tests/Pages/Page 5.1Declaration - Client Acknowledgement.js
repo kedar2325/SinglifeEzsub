@@ -1,5 +1,6 @@
 const { expect } = require('@playwright/test');
 const { Click, assertText, clickAndSendkeys } = require('../Helper/Action');
+const { sleep } = require('../Helper/Action');
 const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -26,6 +27,7 @@ nextButton:"//button[normalize-space()='Next']"
 }
 class ClientAcknowledgement{
 async verifyClientAcknowledgement(){ 
+        await sleep(2000);
         await assertText(PageLocators.clientAcknowledgementTitle, "Let’s stay in touch - on your terms");
     }
 
