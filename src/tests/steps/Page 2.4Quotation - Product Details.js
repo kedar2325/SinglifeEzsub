@@ -7,7 +7,7 @@ setDefaultTimeout(40000);
 require('dotenv').config();
 
 
-const { ProductDetails } = require('../Pages/Page 2.4QuotationCreation - ProductDetails');
+const { ProductDetails } = require('../Pages/Page 2.4Quotation - Product Details');
 const { pageObject } = require('../Hooks/PageObjects');
 
 let ProductDetailsPage;

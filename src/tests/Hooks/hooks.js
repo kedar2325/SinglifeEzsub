@@ -14,8 +14,7 @@ BeforeAll(async function() {
         // pageObject.case=process.env.NumberOfCases;
     switch (browserName.toLowerCase()) {
         case 'chromium':
-            browser = await chromium.launch({ headless: false, args: ["--start-maximized"] });
-            
+            browser = await chromium.launch({ headless: false, args: ["--start-maximized"] });     
             break;
         case 'firefox':
             browser = await firefox.launch({ headless: false });

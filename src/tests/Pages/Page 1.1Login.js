@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys,Click, launchURL,  assertParticularText, takeScreenshot } = require('../Helper/Action');
+const { clickAndSendkeys,Click, launchURL,  assertParticularText, takeScreenshots, assertElementVisible, assertElementEnabled, sleep } = require('../Helper/Action');
 const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -22,17 +22,20 @@ const PageLocators={
         await launchURL(process.env.url)    
     }
     async  Enterusername(){
+        await assertElementVisible(PageLocators.username,"Username field");
         await clickAndSendkeys(PageLocators.username,excelValue()[process.env.caseID].LoginID);
     }
     async  EnterPassword(){
+        await assertElementVisible(PageLocators.password,"Password field")
         await clickAndSendkeys(PageLocators.password,excelValue()[process.env.caseID].Password);
     }
     async  ClickLoginButton(){
+        await assertElementEnabled(PageLocators.loginButton,"Login button")
         await Click(PageLocators.loginButton)
     }
     async assertHomeText(){
         await assertParticularText(PageLocators.homeGreetText,"👋 Welcome, ")
-        await takeScreenshot("Login Completed")
+        await takeScreenshots("Login Completed")
 
         //const screen1 = await PageLocators.page.screenshot({path: '../test-results/screenshot.png',fullPage: true});
  // allure.screenshot('screenShot', screen1, 'image/png');

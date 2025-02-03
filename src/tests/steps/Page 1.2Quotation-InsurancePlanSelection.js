@@ -1,5 +1,5 @@
 const { Given, Then, When, setDefaultTimeout } = require("@cucumber/cucumber");
-const { PlanSelection } = require("../Pages/Page 1.2Quotation-LifeInsurancePlanSelection");
+const { PlanSelection } = require("../Pages/Page 1.2Quotation-InsurancePlanSelection");
 const { pageObject } = require("../Hooks/PageObjects");
 const { sleep } = require('../Helper/Action');
 setDefaultTimeout(20000);

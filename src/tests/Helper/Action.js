@@ -22,6 +22,7 @@ const xlsx = require('xlsx');
 
 async function launchURL(URL) {
     await pageObject.page.goto(URL);
+    await sleep(4000);
     return pageObject.page;
 }
 async function GetByText_Click(text) {
@@ -127,6 +128,9 @@ async function dropDownValidate(Webelement, options) {
 async function takeScreenshot(name) {
     await pageObject.page.screenshot({ path: "test-results/Screenshots/" + Date.now() + name + ".png" });
 }
+async function takeScreenshots(name) {
+    await pageObject.page.screenshot({ path: "test-results/Screenshots/" + name + ".png" });
+}
 
 async function statusCode(response, code) {
     if (response.status() == code) {
@@ -184,6 +188,7 @@ async function assertCheckBox(Webelement,text) {
 }
 async function assertParticularText(Webelement,text) {
     const elementText = await pageObject.page.locator(Webelement).textContent();
+    console.log(`Expected text ${text} are found`);
   if (!elementText.includes(text)) {
     throw new Error(`Expected text: "${text}", but found: "${elementText}"`);
   }
@@ -288,8 +293,9 @@ function readExcelData(filePath, sheetName) {
 async function assertElementHidden(Webelement) {
     await expect(pageObject.page.locator(Webelement)).toBeHidden();
 }
-async function assertElementEnabled(Webelement) {
+async function assertElementEnabled(Webelement,text) {
     await expect(pageObject.page.locator(Webelement)).toBeEnabled();
+    console.log(`${text} field is enabled`)
 }
 async function assertElementDisabled(Webelement) {
     await expect(pageObject.page.locator(Webelement)).toBeDisabled();
@@ -346,6 +352,7 @@ async function assertElementNotVisible(Webelement) {
 
 
 module.exports = {
+    takeScreenshots,
     assertElementNotVisible,
     assertElementNotDisabled,
     assertElementNotChecked,

@@ -1,5 +1,5 @@
 const { expect } = require('@playwright/test');
-const { clickAndSendkeys, launchURL, sleep, Click, assertText } = require('../Helper/Action');
+const { clickAndSendkeys, launchURL, sleep, Click, assertText, assertElementVisible } = require('../Helper/Action');
 const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -17,13 +17,16 @@ class ProductSelection{
     }
     async navigationToProductSelection(){
         await sleep(1000)
+        await assertElementVisible(PageLocators.searchTab,"Product search tab")
         await clickAndSendkeys(PageLocators.searchTab,excelValue()[process.env.caseID].ProductName);   
+        console.log(`User select ${excelValue()[process.env.caseID].ProductName} Product`);
     }
     async search(){
         await sleep(1000)
         
     }
     async selectInList(){
+        await assertElementVisible(PageLocators.clickSelect,"Product Select button")
         await Click(PageLocators.clickSelect);
     }
     async clickNext(){

@@ -3,7 +3,7 @@ setDefaultTimeout(20000);
 require('dotenv').config();
 
 //login import
-const { RiderSelection } = require('../Pages/Page 2.5QuotationCreation - Rider Selection');
+const { RiderSelection } = require('../Pages/Page 2.5Quotation - Rider Selection');
 const { pageObject } = require('../Hooks/PageObjects');
 const { sleep } = require('../Helper/Action');
 

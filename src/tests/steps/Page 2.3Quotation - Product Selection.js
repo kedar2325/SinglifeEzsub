@@ -5,7 +5,7 @@ setDefaultTimeout(15000);
 require('dotenv').config();
 
 //ProductSelection import
-const { ProductSelection } = require('../Pages/Page 2.3QuotationCreation - Product Selection');
+const { ProductSelection } = require('../Pages/Page 2.3Quotation - Product Selection');
 const { pageObject } = require('../Hooks/PageObjects');
 
 let ProductSelectionPage;
