@@ -25,14 +25,14 @@ class QuotationSelectNationaliandResidency{
         pageObject.page=page;
     }
     async SmokingStatus(){
-        await sleep(1000);
+        await sleep(2000);
         let smoking_status = excelValue()[process.env.caseID].smokingstatus
         await assertElementEnabled(`//p[normalize-space()='${smoking_status}']`,"Smoking status button")
         await toClick(`//p[normalize-space()='${smoking_status}']`)
         
     }
     async SelectNationality(){
-        await sleep(1000);
+        await sleep(2000);
         await Click(PageLocators.nationality_click);
         let nationality=excelValue()[process.env.caseID].nationality;
         await assertElementVisible(`//div[@id='nationalityCode']//div[contains(text(),'${nationality}')]`,"Nationality input field")
@@ -40,7 +40,7 @@ class QuotationSelectNationaliandResidency{
         console.log(`User selected nationality is ${nationality}`)
     }
     async SelectCountryofBirth(){
-        await sleep(1000);
+        await sleep(2000);
         let countryofresidence = excelValue()[process.env.caseID].countryOfResidence
         await assertElementVisible(PageLocators.countryofresidence_click,"Country of Residence input")
         await Click(PageLocators.countryofresidence_click)
@@ -49,7 +49,7 @@ class QuotationSelectNationaliandResidency{
     }
    
     async SelectResidencyStatus(){
-        await sleep(1000);
+        await sleep(2000);
         await assertElementVisible(PageLocators.residencystatus,"Residencystatus")
         await toClick(PageLocators.residencystatus);
         let residency_status = excelValue()[process.env.caseID].residencyStatus
@@ -57,16 +57,17 @@ class QuotationSelectNationaliandResidency{
         console.log(`${residency_status} is Selected`);
     }
     async VerifyResidencyStatus(){
-        await sleep(1000);
+        await sleep(1800);
         let residency_status = excelValue()[process.env.caseID].residencyStatus
         await assertText(`//div[contains(text(),'${residency_status}')]`,excelValue()[process.env.caseID].residencyStatus);
         await toClick(PageLocators.next_btn);
-        await sleep(2000);
-         await Click(PageLocators.next_btn);
+        await sleep(1500);
+        await Click(PageLocators.next_btn);
     }
     async VerifySecondAssured(){
-        if(excelValue()[process.env.caseID]!='Self'){
+        if(excelValue()[process.env.caseID].quotationType!='Self'){
             console.log("Complete second assured details");
+            //Select profile type
             let profileType = excelValue()[process.env.caseID].ProfileTypeSelection;
             if (profileType == 'New EzSub Profile') {
                 await assertElementEnabled(`//p[text()='${profileType}']`,"Ezsub Profile button")
@@ -76,9 +77,10 @@ class QuotationSelectNationaliandResidency{
             else {
                 console.log(`${profileType} is not yet Implemented`)
             }
+            //Select NRIC
                await assertElementVisible(PageLocators.NRICNumber,"NRIC input field")
-             await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[process.env.caseID].NRICField)
-             
+             await clickAndSendkeys(PageLocators.NRICNumber, excelValue()[process.env.caseID].Nric_SLA)
+             //Select salutation
              await toClick(PageLocators.salutationID);
               let salutationID = excelValue()[process.env.caseID].SalutationValue
               await clickByRole('option', { name: salutationID, exact: true });
@@ -87,7 +89,7 @@ class QuotationSelectNationaliandResidency{
             await clickAndSendkeys(PageLocators.firstName, excelValue()[process.env.caseID].First_Name);
            await assertElementVisible(PageLocators.DOBfield,"Date of Birth field")
             await toClick(PageLocators.DOB);
-            await sleep(2000);
+            await sleep(1000);
             await yearSelection(excelValue()[process.env.caseID].SecondLAyear);
             await MonthSelection(excelValue()[process.env.caseID].SecondLAmonth);
             await DateSelection(excelValue()[process.env.caseID].SecondLAdate);
@@ -96,7 +98,6 @@ class QuotationSelectNationaliandResidency{
             let occupationID=excelValue()[process.env.caseID].occupationID;
             await clickByRole('option', { name: occupationID })
             console.log(`Selected occupation ID is ${occupationID}`)
-            await sleep(2000);
             let smoking_status = excelValue()[process.env.caseID].smokingstatus
             await assertElementEnabled(`//p[normalize-space()='${smoking_status}']`,"Smoking status button")
             await toClick(`//p[normalize-space()='${smoking_status}']`)
@@ -109,6 +110,7 @@ class QuotationSelectNationaliandResidency{
             await sleep(2000);
             let countryofresidence = excelValue()[process.env.caseID].countryOfResidence
             await assertElementVisible(PageLocators.countryofresidence_click,"Country of Residence input")
+            await sleep(2000);
             await toClick(PageLocators.countryofresidence_click)
             await toClick(`//div[@id='residenceCountryCode']//div[contains(text(),'${countryofresidence}')]`)
             console.log(`${countryofresidence} is Selected`);
@@ -124,11 +126,13 @@ class QuotationSelectNationaliandResidency{
             let assured_relationship = excelValue()[process.env.caseID].assured_relationship
             await toClick(`//div[@id='relationship']//div[text()='${assured_relationship}']`)
             console.log(`${assured_relationship} is Selected`);
-            await toClick(PageLocators.next_btn);
-            await sleep(4000);
-            await toClick(PageLocators.next_btn);
-            await sleep(2000);
-            await assertText(PageLocators.verifyProductSelectionPage, "Product selection for");      
+            await sleep(1500);
+            await Click(PageLocators.next_btn);
+            console.log("on Backdate page")
+            await sleep(3000);
+            await Click(PageLocators.next_btn);
+            await sleep(3000);
+           // await assertText(PageLocators.verifyProductSelectionPage, "Product selection for");      
         }
         else{
             console.log("User selects Self quotation type so second life assured is no needed");

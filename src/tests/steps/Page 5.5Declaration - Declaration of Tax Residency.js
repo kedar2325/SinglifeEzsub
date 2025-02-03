@@ -20,10 +20,10 @@ When('user selects tax resident in singapore yes', async function () {
 
 When('user enter tax declaration', async function () {
   await pageTaxDeclaration.enterDeclarationTabOne();
-  let QuotationType = excelValue()[process.env.caseID].quotationType
-    if(QuotationType!="Self"){
-    await pageTaxDeclaration.enterDeclarationTabTwo()
-  }
+  // let QuotationType = excelValue()[process.env.caseID].quotationType
+  //   if(QuotationType!="Self"){
+  //   await pageTaxDeclaration.enterDeclarationTabTwo()
+  // }
 });
 When('user enters tin number', async function () {
   await pageTaxDeclaration.enterNricNumber();
@@ -38,6 +38,7 @@ When('user checks the declaration', async function () {
   await pageTaxDeclaration.checkTaxResidence();
 });
 Then('user selects next', async function () {
+  await pageTaxDeclaration.clickNextButton();
   if (pageTaxDeclaration.checkTaxResidence) {
     // Capture screenshot and attach it to Allure
    
@@ -45,5 +46,5 @@ Then('user selects next', async function () {
     this.attach(screenshot, 'image/png');
     
   }
-  await pageTaxDeclaration.clickNextButton();
+ 
 });

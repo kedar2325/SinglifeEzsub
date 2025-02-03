@@ -45,13 +45,13 @@ BeforeAll(async function() {
 //     });
 // }
 
-After(function (scenario) {
-    if (scenario.result?.status === 'failed') {
-      // Capture the screenshot and attach it to Allure report
-      const screenshot = this.page.screenshot();
-      allure.attachment('Failure Screenshot', screenshot, 'image/png');
-    }
-  });
+// After(function (scenario) {
+//     if (scenario.result?.status === 'failed') {
+//       // Capture the screenshot and attach it to Allure report
+//       const screenshot = this.page.screenshot();
+//       allure.attachment('Failure Screenshot', screenshot, 'image/png');
+//     }
+//   });
 
 
 // After( function(scenario) {

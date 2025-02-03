@@ -22,7 +22,6 @@ When('user answer underwriting Questions', async function () {
   await underwritingpage.verifyUnderwriting();
 });
 When('user answer second underwriting Questions', async function () {
-  console.log("p3.4 UW two")
   await underwritingpage.verifyUnderwritingTwo();
 });
 
@@ -31,14 +30,14 @@ When('user answer second underwriting Questions', async function () {
 //   //await   underwritingpage.clickNotoUnderwritingQuestions();
 //   });
 Then('user clicks the next to move from underwriting page', async function () {
-  console.log("Entered next btn step file in p3.4")
-  if (underwritingpage.verifyUnderwriting()) {
-    // Capture screenshot and attach it to Allure
+  // console.log("Entered next btn step file in p3.4")
+  // if (underwritingpage.verifyUnderwriting()) {
+  //   // Capture screenshot and attach it to Allure
     
-    const screenshot = await pageObject.page.screenshot();
-    this.attach(screenshot, 'image/png');
-    await sleep(500);
-  }
+  //   const screenshot = await pageObject.page.screenshot();
+  //   this.attach(screenshot, 'image/png');
+  //   await sleep(500);
+  // }
   await underwritingpage.clickNextButton();
 });
 

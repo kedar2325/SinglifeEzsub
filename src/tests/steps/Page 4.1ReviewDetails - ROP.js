@@ -37,10 +37,12 @@ When('user clicks next', async function () {
 When('user selects LA Yes or No option', async function () {
   let QuotationType=excelValue()[process.env.caseID].quotationType
   let NoOfQues = excelValue()[process.env.caseID].NumberOfQues2
+  console.log(NoOfQues);
   if(QuotationType=="Third-Party"){
     await sleep(2000);
     if(NoOfQues=="1"){
-  await ROPDetails.SecondLA_Select_Yes_No_Ques1_1();
+      console.log("entering if");
+  await ROPDetails.Select_Yes_No_Ques2();
   }else{
     await ROPDetails.SecondLA_Select_Yes_No_Ques1();
     await ROPDetails.SecondLA_Select_Yes_No_Ques2();
@@ -50,11 +52,11 @@ When('user selects LA Yes or No option', async function () {
 
 Then('user validate the payer details text', async function () {
   await ROPDetails.verifyPayerDetails();
-  if (ROPDetails.verifyPayerDetails) {
-    // Capture screenshot and attach it to Allure
-    await sleep(1000);
-    const screenshot = await pageObject.page.screenshot();
-    this.attach(screenshot, 'image/png');
-  }
+  // if (ROPDetails.verifyPayerDetails) {
+  //   // Capture screenshot and attach it to Allure
+  //   await sleep(1000);
+  //   const screenshot = await pageObject.page.screenshot();
+  //   this.attach(screenshot, 'image/png');
+  // }
 
 });

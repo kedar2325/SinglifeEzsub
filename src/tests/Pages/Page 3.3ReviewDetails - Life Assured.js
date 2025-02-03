@@ -60,6 +60,7 @@ class ReviewDetailsLifeAssured{
       
     }
     async EnterResidentialAddress(){   
+        await sleep(1000);
         let postalCode=excelValue()[process.env.caseID].postalcode;
         postalCode=String(postalCode);
         await clickAndSendkeys(PageLocators.postalcode,postalCode)
@@ -108,7 +109,7 @@ class ReviewDetailsLifeAssured{
    async secondLifeAssuredDetails(){
     console.log("Second life assured details")
     //await sleep(2000);
-    if(excelValue()[process.env.caseID]!="Self"){
+    if(excelValue()[process.env.caseID].quotationType!="Self"){
             //assert page
             await assertParticularText(PageLocators.lifeassured_exist,"Assured")
             //enter cityof resisdence
@@ -173,7 +174,7 @@ class ReviewDetailsLifeAssured{
    }
     async GotoUnderwritingpage(){
         await toClick(PageLocators.next_btn)
-        await sleep(5000);
+        await sleep(3000);
 
     }
 

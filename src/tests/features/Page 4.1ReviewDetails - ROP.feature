@@ -5,4 +5,6 @@ Feature: 4.1.Review Details - Replacement of policies
     When user selects Yes or No option
     And user clicks next
     And user selects LA Yes or No option
+    And user clicks next
     Then user validate the payer details text
+  

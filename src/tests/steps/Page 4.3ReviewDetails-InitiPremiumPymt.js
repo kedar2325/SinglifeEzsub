@@ -30,10 +30,10 @@ When('user click on Next', async function () {
 
 Then('user validate the on your terms text', async function () {
   await InitialPremiumPymt.verifyDeclarationPage();
-  if (InitialPremiumPymt.SubsequentPremiumPayment) {
-    // Capture screenshot and attach it to Allure
-    await sleep(1000);
-    const screenshot = await pageObject.page.screenshot();
-    this.attach(screenshot, 'image/png');
-  }
+  // if (InitialPremiumPymt.SubsequentPremiumPayment) {
+  //   // Capture screenshot and attach it to Allure
+  //   await sleep(1000);
+  //   const screenshot = await pageObject.page.screenshot();
+  //   this.attach(screenshot, 'image/png');
+  // }
 });
