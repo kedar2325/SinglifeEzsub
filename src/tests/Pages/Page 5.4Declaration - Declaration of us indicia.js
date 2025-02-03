@@ -24,8 +24,9 @@ class DeclarationUsIndicia{
         }
     async clickIndiciaOption(){
         console.log("click indicia func")
-        console.log(excelValue()[pageObject.case].indicaoption)
-        let indicaoption = excelValue()[pageObject.case].indicaoption
+        
+        let indicaoption = excelValue()[process.env.caseID].indicaoption
+        console.log(indicaoption)
         if(indicaoption.includes("Yes")){
             await Click(`//p[normalize-space()='${indicaoption}']`)
             await assertParticularText(PageLocators.indiciaDeclaration,"Please complete the United States of America (US) ")

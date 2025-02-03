@@ -1,6 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { setDefaultTimeout} = require('@cucumber/cucumber');
 const { sleep } = require('../Helper/Action');
+const { excelValue } = require('../Helper/Helper');
 setDefaultTimeout(15000);
 require('dotenv').config();
 
@@ -15,7 +16,7 @@ Given('user able to view ques', async function () {
   await ROPDetails.navigationToROP();
 });
 
-When('User selects Yes or No option', async function () {
+When('user selects Yes or No option', async function () {
   await ROPDetails.Select_Yes_No_Ques1();
   await ROPDetails.Select_Yes_No_Ques2();
 
@@ -23,6 +24,14 @@ When('User selects Yes or No option', async function () {
 When('user clicks next', async function () {
   await ROPDetails.button();
 });
+When('user selects LA Yes or No option', async function () {
+  let QuotationType=excelValue()[process.env.caseID].quotationType
+  if(QuotationType=="ThirdParty"){
+  await ROPDetails.SecondLA_Select_Yes_No_Ques1();
+  await ROPDetails.SecondLA_Select_Yes_No_Ques2();
+  }
+});
+
 Then('user validate the payer details text', async function () {
   await ROPDetails.verifyPayerDetails();
   if (ROPDetails.verifyPayerDetails) {

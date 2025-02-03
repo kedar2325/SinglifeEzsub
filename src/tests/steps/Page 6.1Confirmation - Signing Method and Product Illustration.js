@@ -34,7 +34,7 @@ When('user preview the PDF of Assured Signature and success', async function () 
 });
 
 When('user preview the PDF of Credit Signature and success', async function () {
-    let PaymentType = excelValue()[pageObject.case].PaymentType
+    let PaymentType = excelValue()[process.env.caseID].PaymentType
     if(PaymentType=="CreditCard"){
     await pageSigningMethod.creditCardClickandSummary();
   }

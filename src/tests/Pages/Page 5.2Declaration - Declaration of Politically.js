@@ -27,13 +27,13 @@ class DeclarationPolitically{
     }
     async clickPoliticallyExposedPerson(){
         console.log("click politically func in ")
-        console.log(excelValue()[pageObject.case].PoliticallyExposedPerson);
-        console.log(excelValue()[pageObject.case].Name_of_PEP);
-        console.log(excelValue()[pageObject.case].RelationshipAssured);
         let Element;
-        let PoliticallyExposedPerson=excelValue()[pageObject.case].PoliticallyExposedPerson;
-        let PoliticallyExposedPersonName=excelValue()[pageObject.case].Name_of_PEP;
-        let RelationshipAssured=excelValue()[pageObject.case].RelationshipAssured;
+        let PoliticallyExposedPerson=excelValue()[process.env.caseID].PoliticallyExposedPerson;
+        let PoliticallyExposedPersonName=excelValue()[process.env.caseID].Name_of_PEP;
+        let RelationshipAssured=excelValue()[process.env.caseID].RelationshipAssured;
+        console.log(PoliticallyExposedPerson)
+        console.log(PoliticallyExposedPersonName)
+        console.log(RelationshipAssured)
         switch (PoliticallyExposedPerson) {
             case "No":
                 Element=PageLocators.politicallyExposedPersonN;

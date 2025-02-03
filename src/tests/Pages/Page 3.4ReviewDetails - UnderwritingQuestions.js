@@ -45,10 +45,11 @@ class underwritingQuestions{
         await sleep(8000);
     }
     async verifyUnderwriting(){
-        let UnderwritingQuestionsReq = excelValue()[pageObject.case].UnderwitingQuesReq
+        let QuotationType = excelValue()[process.env.caseID].quotationType
+        let UnderwritingQuestionsReq = excelValue()[process.env.caseID].UnderwitingQuesReq
         if(UnderwritingQuestionsReq=="Yes"){
         let path=""
-            let ListofQA=process.env.UnderwritingQuestions.split('|');
+            let ListofQA=excelValue()[process.env.caseID].UnderwritingQuestions.split('|');
             for (let CombineQA of ListofQA) {
                 let Answer = CombineQA.split(',');
                 const locatorText = Answer[0];
@@ -65,6 +66,36 @@ class underwritingQuestions{
                 path="";
             }
             }
+        let SecondUnderwritingQuestionsReq = excelValue()[process.env.caseID].SecondUnderwritingQuestionsReq;
+        if(QuotationType!="Self"){
+            console.log("P3.4 - quo <> self");
+            await Click(PageLocators.next_btn);
+            await sleep(2000);
+            if(SecondUnderwritingQuestionsReq=="Yes"){
+            await clickAndSendkeys(PageLocators.height,process.env.Height);
+            await clickAndSendkeys(PageLocators.weight,process.env.Weight);
+            await toClick(PageLocators.calculate);
+            await sleep(8000);
+            let path=""
+            let SecondUnderwritingQuestions = excelValue()[process.env.caseID].SecondUnderwritingQuestions
+            let ListofQA=SecondUnderwritingQuestions.split('|');
+            for (let CombineQA of ListofQA) {
+                let Answer = CombineQA.split(',');
+                const locatorText = Answer[0];
+                const locatorValue = Answer[1];
+                console.log(locatorText);
+                console.log(locatorValue);
+                path=`//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}']`;
+                // for (let QALocator of Answer){ 
+                //     path=path.concat(path,QALocator);
+                // }
+                await toClick(path);
+                console.log(path);
+                await sleep(1100);
+                path="";
+            }
+            }
+        }
     }
     // async VerifyUnderwriting() {
     //     await toClick("(//p[text()='No'])[1]");

@@ -30,8 +30,11 @@ const PageLocators={
     financialAssuredSignatureCanva:"(//canvas)[2]",
     confirmButton:"//button[normalize-space()='Confirm']",
     signatureFormSuccessMsg:"(//p[contains(text(),'Fully Signed')])[1]",
+    thirdPartyAssuredTitle:"//div[contains(text(),'Assured Signature')]",
+    thirdPartyLifeAssuredTitle:"//div[contains(text(),'Life Assured Signature')]",
     thirdPartyLifeAssuredButton:"//div[@id='clickable-box_1']//img",
     thirdPartyFinancialSignatureButton:"//div[@id='clickable-box_2']",
+    thirdPartyFinancialSignatureTitle:"//div[contains(text(),'Financial Advisor Signature')]",
     //signaturePrevBtn:"(//button[@type='button'][normalize-space()='Preview PDF & sign'])[1]",
     //Credit Cards
     creditCardPrevBtn:"(//button[@type='button'][normalize-space()='Preview PDF & sign'])[2]",
@@ -70,6 +73,11 @@ class SigningMethod {
         await sleep(2000);
     }
     async signatureClickandSummary(){
+        let QuotationType=excelValue()[process.env.caseID].quotationType
+        console.log(QuotationType);
+        await sleep(1500);
+        if(QuotationType=="Self"){
+        console.log("P6.1 Self Signature start")
         await Click(PageLocators.assuredSignatureForm);        
         await Click(PageLocators.assuredSignatureButton);
         await assertText(PageLocators.signatureFormTitle,"Signature Form");
@@ -98,6 +106,38 @@ class SigningMethod {
         await sleep(2000);
         await Click(PageLocators.saveSignature);
         await assertText(PageLocators.signatureFormSuccessMsg,"Fully Signed");
+        }
+        else{
+        console.log("P6.1 Non SelfSelf Signature start")
+        await Click(PageLocators.assuredSignatureForm);        
+        await Click(PageLocators.assuredSignatureButton);
+        await assertText(PageLocators.signatureFormTitle,"Signature Form");
+        await sleep(2000);
+        await assertText(PageLocators.thirdPartyAssuredTitle, "Assured Signature");
+        await Signature(PageLocators.canvaAssured)
+        await Click(PageLocators.confirmButton);
+        
+        //LifeAssured Signature
+
+        await assertText(PageLocators.signatureFormTitle,"Signature Form");
+        await Click(PageLocators.thirdPartyLifeAssuredButton);
+        await sleep(2000);
+        await assertText(PageLocators.thirdPartyLifeAssuredTitle, "Life Assured Signature");
+        await Signature(PageLocators.canvaAssured)
+        await Click(PageLocators.confirmButton);
+
+        //financial advisor signature
+        await assertText(PageLocators.signatureFormTitle,"Signature Form");
+        await Click(PageLocators.thirdPartyFinancialSignatureButton);
+        await assertText(PageLocators.thirdPartyFinancialSignatureTitle,"Financial Advisor Signature");
+        await Click(PageLocators.financialAssuredSignatureCanva);
+        await Signature(PageLocators.canvaAssured)
+        await Click(PageLocators.confirmButton);
+        await sleep(2000);
+
+        await Click(PageLocators.saveSignature);
+        await assertText(PageLocators.signatureFormSuccessMsg,"Fully Signed");   
+        }
     }
     async creditCardClickandSummary(){
         await Click(PageLocators.creditCardPrevBtn);

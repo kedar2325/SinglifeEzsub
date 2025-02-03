@@ -25,7 +25,7 @@ When('user able to upload proof of address', async function () {
 });
 
 When('user able to upload proof of mas', async function () {
-  //let PaymentType = excelValue()[pageObject.case].PaymentType
+  //let PaymentType = excelValue()[process.env.caseID].PaymentType
   await pageSupportingDocs.uploadProofMas();
   
   // if (process.env.PaymentType == "CreditCard") {

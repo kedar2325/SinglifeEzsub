@@ -40,14 +40,18 @@ class DeclarationBeneficialOwnership{
     }
     async clickBeneficialOwnerOption(){
         console.log("beneficial option selection exits")
-        console.log(excelValue()[pageObject.case].beneficial_owner);
-        console.log(excelValue()[pageObject.case].bo1_firstname);
-        console.log(excelValue()[pageObject.case].bo1_lastname);
-        console.log(excelValue()[pageObject.case].bo1_nricno);
-        let beneficialoption = excelValue()[pageObject.case].beneficial_owner;
-        let beneficialFirstName = excelValue()[pageObject.case].bo1_firstname;
-        let beneficialLastName = excelValue()[pageObject.case].bo1_lastname;
-        let beneficalNRICNum = excelValue()[pageObject.case].bo1_nricno;
+        // console.log(excelValue()[process.env.caseID].beneficial_owner);
+        // console.log(excelValue()[process.env.caseID].bo1_firstname);
+        // console.log(excelValue()[process.env.caseID].bo1_lastname);
+        // console.log(excelValue()[process.env.caseID].bo1_nricno);
+        let beneficialoption = excelValue()[process.env.caseID].beneficial_owner;
+        let beneficialFirstName = excelValue()[process.env.caseID].bo1_firstname;
+        let beneficialLastName = excelValue()[process.env.caseID].bo1_lastname;
+        let beneficalNRICNum = excelValue()[process.env.caseID].bo1_nricno;
+        console.log(beneficialoption)
+        console.log(beneficialFirstName)
+        console.log(beneficialLastName)
+        console.log(beneficalNRICNum)
         if(beneficialoption.includes("Yes")){
             await Click(`//p[normalize-space()='Declaration of Beneficial Ownership']/following::p[text()='${beneficialoption}']`)
             await clickAndSendkeys(PageLocators.beneficialLastName1,beneficialFirstName)
@@ -58,19 +62,19 @@ class DeclarationBeneficialOwnership{
             await DateSelection();
             await clickAndSendkeys(PageLocators.beneficialNRIC1,beneficalNRICNum)
             await Click(PageLocators.beneficialNationality_Click1)
-            let nationality = excelValue()[pageObject.case].bo1_nationality;
+            let nationality = excelValue()[process.env.caseID].bo1_nationality;
             await Click(`(//div[text()='${nationality}'])[1]`)
             //await clickByRole('button', { name: 'Yes, proceed' })
             console.log("clicked")
             await Click(PageLocators.beneficialOwnerRelationship1)
-            let relationship = excelValue()[pageObject.case].bo1_relationship;
+            let relationship = excelValue()[process.env.caseID].bo1_relationship;
             await Click(`//div[contains(text(),'${relationship}')]`)
-            let postalCode = excelValue()[pageObject.case].bo1_postalcode;
+            let postalCode = excelValue()[process.env.caseID].bo1_postalcode;
             await clickAndSendkeys(PageLocators.beneficialOwnerPostalcode1,process.env.bo1_postalcode);
            
             await Click(PageLocators.beneficialaddress_searchbtn1)
             await sleep(2000); 
-            let unitNo = excelValue()[pageObject.case].bo1_unitno;
+            let unitNo = excelValue()[process.env.caseID].bo1_unitno;
             await clickAndSendkeys(PageLocators.beneficialUnitNo1,unitNo)
  }
  else{

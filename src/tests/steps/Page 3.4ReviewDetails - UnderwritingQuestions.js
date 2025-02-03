@@ -32,7 +32,7 @@ Then('user clicks the next to move from underwriting page', async function () {
     
     const screenshot = await pageObject.page.screenshot();
     this.attach(screenshot, 'image/png');
-    await sleep(1000);
+    await sleep(500);
   }
   await underwritingpage.clickNextButton();
 });
