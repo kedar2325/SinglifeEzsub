@@ -52,7 +52,21 @@ BeforeAll(async function() {
 //       allure.attachment('Failure Screenshot', screenshot, 'image/png');
 //     }
 //   });
+After(async function ( scenario) {
+    
 
+    if (scenario.result?.status === Status.FAILED ) {
+        console.log(`Scenario failed: ${scenario.pickle.name}`);
+
+        // Capture screenshot on failure
+        const screenshot = await pageObject.page.screenshot();
+        await this.attach(screenshot, 'image/png');
+
+        // Capture the page console logs if available
+        const logs = await pageObject.page.evaluate(() => console.log);
+        await this.attach(JSON.stringify(logs, null, 2), 'application/json');
+    }
+})
 
 // After( function(scenario) {
 //     try {

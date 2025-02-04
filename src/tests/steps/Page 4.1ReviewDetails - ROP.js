@@ -11,44 +11,48 @@ const { pageObject } = require('../Hooks/PageObjects');
 
 let ROPDetails;
 
-Given('user able to view ques', async function () {
+Given('user able to see ROP page with product', async function () {
   ROPDetails = new ROP(pageObject.page);
   await ROPDetails.navigationToROP();
 });
 
-When('user selects Yes or No option', async function () {
-  let QuotationType=excelValue()[process.env.caseID].quotationType
-  let NoOfQues = excelValue()[process.env.caseID].NumberOfQues1
-  if(QuotationType=="Self"){
-    if(NoOfQues=="1"){
-      await ROPDetails.Select_Yes_No_Ques1();
-    }else{
-  await ROPDetails.Select_Yes_No_Ques1();
-  await ROPDetails.Select_Yes_No_Ques2();
-    }
-  }else{
-    await ROPDetails.Select_Yes_No_Ques1();
-  }
+When('user completes assured details', async function () {
+  await ROPDetails.selectAssuredDetails()
+  // let QuotationType=excelValue()[process.env.caseID].quotationType
+  // let NoOfQues = excelValue()[process.env.caseID].NumberOfQues1
+  // if(QuotationType=="Self"){
+  //   if(NoOfQues=="1"){
+  //     await ROPDetails.Select_Yes_No_Ques1();
+  //   }else{
+  // await ROPDetails.Select_Yes_No_Ques1();
+  // await ROPDetails.Select_Yes_No_Ques2();
+  //   }
+  // }else{
+  //   await ROPDetails.Select_Yes_No_Ques1();
+  // }
 
 });
-When('user clicks next', async function () {
-  await ROPDetails.button();
+When('user completes second assured details', async function () {
+  await ROPDetails.selectsecondAssuredDetails()
+  // let QuotationType=excelValue()[process.env.caseID].quotationType
+  // let NoOfQues = excelValue()[process.env.caseID].NumberOfQues2
+  // console.log(NoOfQues);
+  // if(QuotationType=="Third-Party"){
+  //   await sleep(2000);
+  //   if(NoOfQues=="1"){
+  //     console.log("entering if");
+  // await ROPDetails.Select_Yes_No_Ques2();
+  // }else{
+  //   await ROPDetails.SecondLA_Select_Yes_No_Ques1();
+  //   await ROPDetails.SecondLA_Select_Yes_No_Ques2();
+  // }
+//}
 });
-When('user selects LA Yes or No option', async function () {
-  let QuotationType=excelValue()[process.env.caseID].quotationType
-  let NoOfQues = excelValue()[process.env.caseID].NumberOfQues2
-  console.log(NoOfQues);
-  if(QuotationType=="Third-Party"){
-    await sleep(2000);
-    if(NoOfQues=="1"){
-      console.log("entering if");
-  await ROPDetails.Select_Yes_No_Ques2();
-  }else{
-    await ROPDetails.SecondLA_Select_Yes_No_Ques1();
-    await ROPDetails.SecondLA_Select_Yes_No_Ques2();
-  }
-}
-});
+
+When('user clicks next to move payer details page', async function () {
+  await ROPDetails.nxtbutton()
+  
+})
 
 Then('user validate the payer details text', async function () {
   await ROPDetails.verifyPayerDetails();
