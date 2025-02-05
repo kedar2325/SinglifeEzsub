@@ -19,10 +19,10 @@ When('user click the calculate button', async function () {
   await underwritingpage.clickCalculate();
 });
 When('user answer underwriting Questions', async function () {
-  await underwritingpage.verifyUnderwriting();
+  await underwritingpage.assuredUnderwriting();
 });
 When('user answer second underwriting Questions', async function () {
-  await underwritingpage.verifyUnderwritingTwo();
+  await underwritingpage.SecondAssuredUnderwriting();
 });
 
 // When('user complete all the underwriting questions appropratiely', async function () {

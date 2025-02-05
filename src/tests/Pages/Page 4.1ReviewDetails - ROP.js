@@ -42,7 +42,7 @@ class ROP{
         pageObject.page=page;
     }
     async navigationToROP(){
-        await sleep(1000);
+        await sleep(2000);
         let productName= excelValue()[process.env.caseID].ProductName
         let Element = `(//p[contains(text(),'${productName}')])[1]`
         await assertText(Element, productName); 

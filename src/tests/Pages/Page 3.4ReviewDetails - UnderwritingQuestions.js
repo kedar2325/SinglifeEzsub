@@ -1,4 +1,4 @@
-const { clickAndSendkeys, sleep, toClick, assertText, Click, sendkeys, isVisible } = require('../Helper/Action');
+const { clickAndSendkeys, sleep, toClick, assertText, Click, sendkeys, isVisible, assertElementVisible } = require('../Helper/Action');
 const { excelValue } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
@@ -13,6 +13,7 @@ const PageLocators={
     calculate2: "(//button[@type='button'][normalize-space()='Calculate'])[1]",
     residencystatus_no: "//div[text()='Singlife Steadypay Saver']",
     underwritingNotReq:"//div[contains(text(),'This section is not required for this application')]",
+    SecondAssuredtext:"(//div[text()='This section is not required for this application'])[2]",
     //
     underwitingQuestion:"span[contains(text(),'In the last 12 months preceding the date of this application, have you been residing in Singapore for more than 183 days?')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='No']",
     underwitingQuestion:"span[contains(text(),'In the last 12 months preceding the date of this application, have you been residing in Singapore for more than 183 days?')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='No']",
@@ -50,24 +51,34 @@ class underwritingQuestions{
         await toClick(PageLocators.calculate);
         await sleep(6000);
     }
-    async verifyUnderwriting(){
-        let UnderwritingQuestionsReq = excelValue()[process.env.caseID].UnderwitingQuesReq
-        if(UnderwritingQuestionsReq=="Yes"){
-        let path=""
+    async assuredUnderwriting(){
+        // let UnderwritingQuestionsReq = excelValue()[process.env.caseID].UnderwitingQuesReq
+        // if(UnderwritingQuestionsReq=="Yes"){
+        let Element=""
             let ListofQA=excelValue()[process.env.caseID].UnderwritingQuestions.split('|');
             for (let CombineQA of ListofQA) {
                 let Answer = CombineQA.split(',');
                 const locatorText = Answer[0];
                 const locatorValue = Answer[1];
-                console.log(locatorText);
-                console.log(locatorValue);
-                path=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[1]`;
-                await toClick(path);
-                console.log(path);
-                await sleep(1000);
-                path="";
+                // console.log(locatorText);
+                // console.log(locatorValue);
+                Element=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[1]`;
+                await toClick(Element);
+                // console.log(path);
+                await sleep(2000);
+                Element="";
             }
+        }
+
+            async SecondAssuredUnderwriting(){
+                let quotationType=excelValue()[process.env.caseID].quotationType;
+                if(quotationType!="Self"){
+                    await toClick("//p[text()='Underwriting questions for:']/parent::div/ul/li[2]");
+                    await sleep(1500);
+                    await assertElementVisible(SecondAssuredtext,"Second assured underwriting field");
+                }
             }
+            // }
         // let SecondUnderwritingQuestionsReq = excelValue()[process.env.caseID].SecondUnderwritingQuestionsReq;
         // if(QuotationType!="Self"){
         //     console.log("P3.4 - quo <> self");
@@ -105,40 +116,40 @@ class underwritingQuestions{
         //     console.log("clicked next button")
         // }
         // await sleep(3000);
-    }
-    async verifyUnderwritingTwo(){
-        let QuotationType = excelValue()[process.env.caseID].quotationType
-        let SecondUnderwritingQuestionsReq = excelValue()[process.env.caseID].SecondUnderwritingQuestionsReq;
-        if(QuotationType!="Self"){
-            await Click(PageLocators.next_btn);
-            await sleep(4000);
-            if(SecondUnderwritingQuestionsReq=="Yes"){
-            console.log("UW ques not req")
-            let Height2 = String(excelValue()[process.env.caseID].LA_Height);
-            let Weight2 = String(excelValue()[process.env.caseID].LA_Weight);
-            await clickAndSendkeys(PageLocators.height2,Height2);
-            await clickAndSendkeys(PageLocators.weight2,Weight2);
-            await toClick(PageLocators.calculate2);
-            await sleep(4000);
-            let path=""
-            let SecondUnderwritingQuestions = excelValue()[process.env.caseID].SecondUnderwritingQuestions
-            let ListofQA=SecondUnderwritingQuestions.split('|');
-            for (let CombineQA of ListofQA) {
-                let Answer = CombineQA.split(',');
-                const locatorText = Answer[0];
-                const locatorValue = Answer[1];
-                console.log(locatorText);
-                console.log(locatorValue);
-                path=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[2]`;
-                await toClick(path);
-                console.log(path);
-                await sleep(1000);
-                path="";
-            }
-            }
-        }
+    // }
+    // async verifyUnderwritingTwo(){
+    //     let QuotationType = excelValue()[process.env.caseID].quotationType
+    //     let SecondUnderwritingQuestionsReq = excelValue()[process.env.caseID].SecondUnderwritingQuestionsReq;
+    //     if(QuotationType!="Self"){
+    //         await Click(PageLocators.next_btn);
+    //         await sleep(4000);
+    //         if(SecondUnderwritingQuestionsReq=="Yes"){
+    //         console.log("UW ques not req")
+    //         let Height2 = String(excelValue()[process.env.caseID].LA_Height);
+    //         let Weight2 = String(excelValue()[process.env.caseID].LA_Weight);
+    //         await clickAndSendkeys(PageLocators.height2,Height2);
+    //         await clickAndSendkeys(PageLocators.weight2,Weight2);
+    //         await toClick(PageLocators.calculate2);
+    //         await sleep(4000);
+    //         let path=""
+    //         let SecondUnderwritingQuestions = excelValue()[process.env.caseID].SecondUnderwritingQuestions
+    //         let ListofQA=SecondUnderwritingQuestions.split('|');
+    //         for (let CombineQA of ListofQA) {
+    //             let Answer = CombineQA.split(',');
+    //             const locatorText = Answer[0];
+    //             const locatorValue = Answer[1];
+    //             console.log(locatorText);
+    //             console.log(locatorValue);
+    //             path=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[2]`;
+    //             await toClick(path);
+    //             console.log(path);
+    //             await sleep(1000);
+    //             path="";
+    //         }
+    //         }
+    //     }
 
-    }
+    // }
     // async VerifyUnderwriting() {
     //     await toClick("(//p[text()='No'])[1]");
     //     await assertText(PageLocators.residencystatus_no,'Singlife Steadypay Saver');
