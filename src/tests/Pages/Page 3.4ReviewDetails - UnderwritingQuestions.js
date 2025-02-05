@@ -158,7 +158,7 @@ class underwritingQuestions{
     //     }
     // }
     async clickNextButton(){
-            await sleep(3000)
+            await sleep(1000)
             await toClick(PageLocators.next_btn);
         }
 }
