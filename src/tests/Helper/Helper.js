@@ -176,9 +176,9 @@ async function screenshotOnFailure(scenario) {
     await pageObject.page.screenshot({ path: screenshotPath, timeout: 5000 });
   
     // Attach the screenshot to Allure report
-    if (scenario.attach) {
+    if (this.attach) {
       const screenshotData = fs.readFileSync(screenshotPath).toString('base64');
-      scenario.attach(screenshotData, 'image/png');  // Attach as Base64 (Allure-compatible)
+      this.attach(screenshotData, 'image/png');  // Attach as Base64 (Allure-compatible)
       console.log(`📸 Screenshot saved and attached to Allure: ${screenshotPath}`);
     } else {
       console.log(`⚠️ Screenshot saved but could not attach: ${screenshotPath}`);
