@@ -9,7 +9,7 @@
     "test:group": "cucumber-js test --tags @2ndAssured",
     "allure:generate": "allure generate ./allure-results -o ./allure-report --clean",
     "allure:open": "allure open ./allure-report",
-    "report-test": "npm run allure:generate && npm run allure:open",
+    "report-test": "npm run test && npm run allure:generate && npm run allure:open",
     "allure": "allure-commandline"
   },
   "keywords": [],

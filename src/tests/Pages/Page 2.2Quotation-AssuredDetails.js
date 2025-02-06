@@ -32,7 +32,6 @@ class QuotationSelectNationaliandResidency{
         
     }
     async SelectNationality(){
-        await sleep(2000);
         await Click(PageLocators.nationality_click);
         let nationality=excelValue()[process.env.caseID].nationality;
         await assertElementVisible(`//div[@id='nationalityCode']//div[contains(text(),'${nationality}')]`,"Nationality input field")
@@ -40,7 +39,6 @@ class QuotationSelectNationaliandResidency{
         console.log(`User selected nationality is ${nationality}`)
     }
     async SelectCountryofBirth(){
-        await sleep(2000);
         let countryofresidence = excelValue()[process.env.caseID].countryOfResidence
         await assertElementVisible(PageLocators.countryofresidence_click,"Country of Residence input")
         await Click(PageLocators.countryofresidence_click)
