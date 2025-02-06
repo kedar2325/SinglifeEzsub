@@ -16,7 +16,7 @@ const PageLocators={
     SecondAssuredtext:"(//div[text()='This section is not required for this application'])[2]",
     //
     underwitingQuestion:"span[contains(text(),'In the last 12 months preceding the date of this application, have you been residing in Singapore for more than 183 days?')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='No']",
-    underwitingQuestion:"span[contains(text(),'In the last 12 months preceding the date of this application, have you been residing in Singapore for more than 183 days?')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='No']",
+    //underwitingQuestion:"span[contains(text(),'In the last 12 months preceding the date of this application, have you been residing in Singapore for more than 183 days?')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='No']",
     next_btn: "//button[text()='Next']",
     //Questions
     // 1.In the last 12 months preceding the date of this application, have you been residing in Singapore
@@ -63,9 +63,9 @@ class underwritingQuestions{
                 // console.log(locatorText);
                 // console.log(locatorValue);
                 Element=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[1]`;
+                await sleep(1000);
                 await toClick(Element);
                 // console.log(path);
-                await sleep(2000);
                 Element="";
             }
         }

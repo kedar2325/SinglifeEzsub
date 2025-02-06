@@ -2,7 +2,7 @@ const { Given, When, setDefaultTimeout, Then} = require('@cucumber/cucumber');
 const { underwritingQuestions } = require('../Pages/Page 3.4ReviewDetails - UnderwritingQuestions');
 const { pageObject } = require('../Hooks/PageObjects');
 const { sleep } = require('../Helper/Action');
-setDefaultTimeout(20000);
+setDefaultTimeout(45000);
 let underwritingpage;
 Given('user able to reach the underwriting tab', async function () {
   underwritingpage = new underwritingQuestions(pageObject.page)

@@ -1,6 +1,10 @@
 const path = require('path');
 const { clickAndSendkeys, getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, assertCheckBox, mouseDown,mouseMove,mouseUp, readExcelData } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
+const { AllureRuntime, AllureReport } = require('allure-cucumberjs');
+
+
+const fs = require('fs');
 require('dotenv').config();
 
 async function yearSelection(year) {
@@ -99,7 +103,7 @@ async function Signature(Webelement){
         await mouseUp();
 }
 function excelValue(){
-    const excelData=readExcelData("C:/Users/msundarraj/Desktop/Ezsub/data.xlsx","Sheet1")
+    const excelData=readExcelData("C:/Users/12194/Desktop/SinglifeEzsub/data.xlsx","Sheet1")
     return excelData;
 }
 async function PolicyTerm(){
@@ -132,7 +136,63 @@ async function NoofYears() {
     await clickAndSendkeys(`//p[text()='${yearText}']//parent::label//parent::div/div/input`,years);
 }
 
+// helper.js (or rename helper.ts to helper.js)
 
+
+// async function screenshotOnFailure(scenario) {
+//   // Ensure scenario name is correctly retrieved
+//   const scenarioName = scenario.pickle?.name || scenario.sourceLocation?.uri || 'Unknown_Scenario';
+//   const formattedName = scenarioName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+//   const screenshotPath = `screenshots/${formattedName}.png`;
+
+//   // Ensure the directory exists
+//   if (!fs.existsSync('screenshots')) {
+//     fs.mkdirSync('screenshots', { recursive: true });
+//   }
+
+//   await pageObject.page.screenshot({ path: screenshotPath, timeout: 5000 });
+
+//   // Attach the screenshot to the Cucumber report (if supported)
+//   if (scenario.attach) {
+//     const screenshotData = fs.readFileSync(screenshotPath);
+//     scenario.attach(screenshotData.toString('base64'), 'image/png');
+//     console.log(`📸 Screenshot saved and attached: ${screenshotPath}`);
+//   } else {
+//     console.log(`⚠️ Screenshot saved but could not attach: ${screenshotPath}`);
+//   }
+// }
+async function screenshotOnFailure(scenario) {
+    // Ensure scenario name is correctly retrieved
+    const scenarioName = scenario.pickle?.name || scenario.sourceLocation?.uri || 'Unknown_Scenario';
+    const formattedName = scenarioName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '')  
+
+    const screenshotPath = `failed_screenshots/${formattedName}.png`;
+  
+    // Ensure the directory exists
+    if (!fs.existsSync('failed_screenshots')) {
+      fs.mkdirSync('failed_screenshots', { recursive: true });
+    }
+  
+    await pageObject.page.screenshot({ path: screenshotPath, timeout: 5000 });
+  
+    // Attach the screenshot to Allure report
+    if (scenario.attach) {
+      const screenshotData = fs.readFileSync(screenshotPath).toString('base64');
+      scenario.attach(screenshotData, 'image/png');  // Attach as Base64 (Allure-compatible)
+      console.log(`📸 Screenshot saved and attached to Allure: ${screenshotPath}`);
+    } else {
+      console.log(`⚠️ Screenshot saved but could not attach: ${screenshotPath}`);
+    }
+
+//   const allure = new AllureRuntime();
+//   allure.attachment(screenshotPath, fs.readFileSync(screenshotPath), 'image/png');
+//   console.log(`✅ Screenshot attached to Allure report: ${screenshotPath}`);
+}
+  
+ 
+  
+  
+  
 
 
 
@@ -149,5 +209,6 @@ module.exports = {
     MonthSelection,
     DateSelection,
     RiderSelectionMethod,
-    Signature
+    Signature,
+    screenshotOnFailure
 }
