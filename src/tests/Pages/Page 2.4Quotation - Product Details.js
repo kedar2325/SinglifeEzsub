@@ -10,7 +10,7 @@ const PageLocators = {
     policyterm: "#policyTerm",
     sumassured: "//input[@name='sumAssured']",
     calculatebtn: "//button[text()='Calculate']",
-    amountexist: "//p[contains(@class,'sc-b68ad98c-0 dIXHmT') and text()='SGD']",
+    amountexist: "//p[text()='Estimated Premium Payable']/parent::div/following-sibling::div//p[contains(text(), 'SGD')]",
     nextButton: "//button[contains(text(),'Next')]"
 }
 class ProductDetails {

@@ -18,8 +18,11 @@ When('user able to fill the height and weight fields', async function () {
 When('user click the calculate button', async function () {
   await underwritingpage.clickCalculate();
 });
-When('user answer underwriting Questions', async function () {
-  await underwritingpage.assuredUnderwriting();
+When('user answer underwriting Questions first half', async function () {
+  await underwritingpage.assuredUnderwritingFirst();
+});
+When('user answer underwriting Questions second half', async function () {
+  await underwritingpage.assuredUnderwritingSecond();
 });
 When('user answer second underwriting Questions', async function () {
   await underwritingpage.SecondAssuredUnderwriting();

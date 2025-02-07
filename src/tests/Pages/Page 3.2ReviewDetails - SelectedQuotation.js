@@ -9,7 +9,7 @@ const PageLocators={
     next_btn: "//button[text()='Next']",
     quotationoverview_exist: "//p[text()='Quotation Overview']",
     proceedtoapply_btn: "//button[text()='Proceed to apply']",
-    lifeassured_exist: "//p[@class='sc-b68ad98c-0 detZbA']"
+    lifeassured_exist: "//p[text()='Selected Quotations']/following-sibling::p[text()='Life Assured']"
 
 }
 class ReviewDetailsSelectedQuotation{

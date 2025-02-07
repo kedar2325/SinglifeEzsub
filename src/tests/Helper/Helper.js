@@ -103,7 +103,7 @@ async function Signature(Webelement){
         await mouseUp();
 }
 function excelValue(){
-    const excelData=readExcelData("C:/Users/12194/Desktop/SinglifeEzsub/data.xlsx","Sheet1")
+    const excelData=readExcelData("C:/SinglifeEzsub/data.xlsx","Sheet1")
     return excelData;
 }
 async function PolicyTerm(){
@@ -176,9 +176,9 @@ async function screenshotOnFailure(scenario) {
     await pageObject.page.screenshot({ path: screenshotPath, timeout: 5000 });
   
     // Attach the screenshot to Allure report
-    if (this.attach) {
+    if (scenario.attach) {
       const screenshotData = fs.readFileSync(screenshotPath).toString('base64');
-      this.attach(screenshotData, 'image/png');  // Attach as Base64 (Allure-compatible)
+      scenario.attach(screenshotData, 'image/png');  // Attach as Base64 (Allure-compatible)
       console.log(`📸 Screenshot saved and attached to Allure: ${screenshotPath}`);
     } else {
       console.log(`⚠️ Screenshot saved but could not attach: ${screenshotPath}`);
