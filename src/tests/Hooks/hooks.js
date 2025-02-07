@@ -2,7 +2,7 @@ const { Before, After, Status, setDefaultTimeout, BeforeAll, AfterAll } = requir
 const { chromium,firefox,webkit } = require('@playwright/test');
 const { screenshotOnFailure } = require('../Helper/Helper');
 const { pageObject } = require('./PageObjects');
-const { AllureRuntime } = require('allure-cucumberjs');
+const { AllureRuntime,AllureCucumberTestRuntime } = require('allure-cucumberjs');
 require('dotenv').config();
 
 // const path = require('path');
@@ -47,7 +47,7 @@ BeforeAll(async function() {
 //         launchReport: true
 //     });
 // }
-
+//1st try
 // After(async function (scenario) {
 //     console.log(`Scenario status: ${scenario.result?.status}`); // Debugging
   
@@ -56,7 +56,7 @@ BeforeAll(async function() {
 //       await screenshotOnFailure({ page: this.page }, scenario);
 //     }
 // })
-
+//2nd try
 After(async function (scenario) {
     console.log(`Scenario status: ${scenario.result?.status}`);
   
@@ -68,13 +68,14 @@ After(async function (scenario) {
       
   
       // Attach manually for Allure
-    //   const screenshotPath = `screenshots/${scenario.pickle?.name.replace(/\s+/g, '_')}.png`;
-    //   const allure = new AllureRuntime();
-    //   allure.attachment(screenshotPath, Buffer.from(screenshotPath, 'base64'), 'image/png');
+      const screenshotPath = `screenshots/${scenario.pickle?.name.replace(/\s+/g, '_')}.png`;
+       const allure = new AllureCucumberTestRuntime();
+      allure.attachment(screenshotPath, Buffer.from(screenshotPath, 'base64'), 'image/png');
     }
   
   });
-    
+
+
     
   
 // After(async function ( scenario) {

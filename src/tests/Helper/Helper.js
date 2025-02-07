@@ -1,7 +1,8 @@
 const path = require('path');
 const { clickAndSendkeys, getCurrentMonthName, toClick, sleep, doubleClick, mouseHoverClick, assertCheckBox, mouseDown,mouseMove,mouseUp, readExcelData } = require('../Helper/Action');
 const { pageObject } = require('../Hooks/PageObjects');
-const { AllureRuntime, AllureReport } = require('allure-cucumberjs');
+const { AllureRuntime, AllureReport,AllureCucumberTestRuntime } = require('allure-cucumberjs');
+const { allure } = require('allure-playwright');
 
 
 const fs = require('fs');
@@ -138,7 +139,7 @@ async function NoofYears() {
 
 // helper.js (or rename helper.ts to helper.js)
 
-
+//1st try
 // async function screenshotOnFailure(scenario) {
 //   // Ensure scenario name is correctly retrieved
 //   const scenarioName = scenario.pickle?.name || scenario.sourceLocation?.uri || 'Unknown_Scenario';
@@ -161,34 +162,38 @@ async function NoofYears() {
 //     console.log(`⚠️ Screenshot saved but could not attach: ${screenshotPath}`);
 //   }
 // }
+
+//2nd try
 async function screenshotOnFailure(scenario) {
-    // Ensure scenario name is correctly retrieved
-    const scenarioName = scenario.pickle?.name || scenario.sourceLocation?.uri || 'Unknown_Scenario';
-    const formattedName = scenarioName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '')  
 
-    const screenshotPath = `failed_screenshots/${formattedName}.png`;
-  
-    // Ensure the directory exists
-    if (!fs.existsSync('failed_screenshots')) {
-      fs.mkdirSync('failed_screenshots', { recursive: true });
-    }
-  
-    await pageObject.page.screenshot({ path: screenshotPath, timeout: 5000 });
-  
-    // Attach the screenshot to Allure report
-    if (this.attach) {
-      const screenshotData = fs.readFileSync(screenshotPath).toString('base64');
-      this.attach(screenshotData, 'image/png');  // Attach as Base64 (Allure-compatible)
-      console.log(`📸 Screenshot saved and attached to Allure: ${screenshotPath}`);
-    } else {
-      console.log(`⚠️ Screenshot saved but could not attach: ${screenshotPath}`);
+    if (scenario.result.status === 'FAILED') {
+        const screenshotPath = `failed_screenshots/${scenario.pickle.name}.jpeg`;
+        await pageObject.page.screenshot({ path: screenshotPath });
+    
+        try {
+          if (scenario.attach) {
+            const screenshotData = fs.readFileSync(screenshotPath).toString('base64');
+          //  scenario.attach(screenshotData, 'image/png'); // ✅ Attach screenshot to Allure
+           this.attachment('Failure Screenshot', screenshotData, 'image/png'); // ✅ Allure attachment
+           
+           console.log(screenshotData); 
+           console.log(`📸 Screenshot attached to Allure: ${screenshotPath}`);
+          } else {
+            console.log(`⚠️ Screenshot saved but could not attach: ${screenshotPath}`);
+          }
+        } catch (error) {
+          console.error(`❌ Error attaching screenshot: ${error}`);
+        }
+      }
+    
+
+
+// const allureRuntime = new AllureCucumberTestRuntime({ resultsDir: 'allure-results' });
+// //const allureRuntime = new AllureRuntime({ resultsDir: 'allure-results' }); // ✅ Correct usage
+//  allureRuntime.attachment(screenshotPath, fs.readFileSync(screenshotPath), 'image/png');
+//  console.log(`✅ Screenshot attached to Allure report: ${screenshotPath}`);
     }
 
-//   const allure = new AllureRuntime();
-//   allure.attachment(screenshotPath, fs.readFileSync(screenshotPath), 'image/png');
-//   console.log(`✅ Screenshot attached to Allure report: ${screenshotPath}`);
-}
-  
  
   
   
