@@ -15,8 +15,8 @@ const PageLocators={
     //ThirdParty Details
     LastOrFamilyName: "//input[@name='payorFamilyName']",
     FirstOrGivenName: "//input[@name='payorFirstName']",
-    PayerRelationship: "//div[@id='relationship']//img[@class='sc-afc5380d-0 ekTQMr']",
-    PayerType: "//div[@id='payorType']//img[@class='sc-afc5380d-0 ekTQMr']",
+    PayerRelationship: "//div[@id='relationship']//img",
+    PayerType: "//div[@id='payorType']//img",
     BusinessRegNo: "//input[@name='businessRegNo']",
     NRICNumber: "//input[@name='payorIdentityCardNo']",
     ReasonForPaying: "//div[@id='payorReason']//img",

@@ -104,7 +104,7 @@ async function Signature(Webelement){
         await mouseUp();
 }
 function excelValue(){
-    const excelData=readExcelData("C:/Users/12194/Desktop/SinglifeEzsub/data.xlsx","Sheet1")
+    const excelData=readExcelData("C:/SinglifeEzsub/data.xlsx","Sheet1")
     return excelData;
 }
 async function PolicyTerm(){

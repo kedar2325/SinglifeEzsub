@@ -77,12 +77,11 @@ class SigningMethod {
         console.log(QuotationType);
         await sleep(1500);
         if(QuotationType=="Self"){
-        console.log("P6.1 Self Signature start")
         await Click(PageLocators.assuredSignatureForm);        
         await Click(PageLocators.assuredSignatureButton);
         await assertText(PageLocators.signatureFormTitle,"Signature Form");
        // await Click(PageLocators.assuredSignatureButton);
-        await sleep(2000);
+        await sleep(1500);
         await assertText(PageLocators.lifeAssuredSignatureTitle, "Life Assured Signature");
 
       //  await windowHandle(PageLocators.assuredSignatureButton,PageLocators.canvaAssured);
@@ -103,16 +102,15 @@ class SigningMethod {
         //add code for financial advisor signature
         await Signature(PageLocators.canvaAssured)
         await Click(PageLocators.confirmButton);
-        await sleep(2000);
+        await sleep(1500);
         await Click(PageLocators.saveSignature);
         await assertText(PageLocators.signatureFormSuccessMsg,"Fully Signed");
         }
         else{
-        console.log("P6.1 Non SelfSelf Signature start")
         await Click(PageLocators.assuredSignatureForm);        
         await Click(PageLocators.assuredSignatureButton);
         await assertText(PageLocators.signatureFormTitle,"Signature Form");
-        await sleep(2000);
+        await sleep(1500);
         await assertText(PageLocators.thirdPartyAssuredTitle, "Assured Signature");
         await Signature(PageLocators.canvaAssured)
         await Click(PageLocators.confirmButton);
@@ -121,7 +119,7 @@ class SigningMethod {
 
         await assertText(PageLocators.signatureFormTitle,"Signature Form");
         await Click(PageLocators.thirdPartyLifeAssuredButton);
-        await sleep(2000);
+        await sleep(1500);
         await assertText(PageLocators.thirdPartyLifeAssuredTitle, "Life Assured Signature");
         await Signature(PageLocators.canvaAssured)
         await Click(PageLocators.confirmButton);
@@ -133,7 +131,7 @@ class SigningMethod {
         await Click(PageLocators.financialAssuredSignatureCanva);
         await Signature(PageLocators.canvaAssured)
         await Click(PageLocators.confirmButton);
-        await sleep(2000);
+        await sleep(1500);
 
         await Click(PageLocators.saveSignature);
         await assertText(PageLocators.signatureFormSuccessMsg,"Fully Signed");   

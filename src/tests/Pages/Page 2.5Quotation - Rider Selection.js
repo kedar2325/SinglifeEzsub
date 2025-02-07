@@ -4,7 +4,7 @@ const { excelValue, UncheckRiders } = require('../Helper/Helper');
 const { pageObject } = require('../Hooks/PageObjects');
 const { RiderSelectionMethod } = require('../Helper/Helper');
 require('dotenv').config();
-const riderCIPW = 'Critical Illness Premium Waiver II'
+
 const PageLocators={
     RiderGreetText:"//div[text()='Rider(s) Selection']",
     easyTerm: "//p[text()='EasyTerm']",
@@ -26,7 +26,6 @@ class RiderSelection{
             for(let rider of ListofUncheckRider){
                 await UncheckRiders(rider);
                 await sleep(1000);
-                console.log("28839 uncheck");
             }
 
         let ListofRider=excelValue()[process.env.caseID].Rider.split(',');
@@ -37,7 +36,6 @@ class RiderSelection{
                 let sumAssured=list[1];
                 await RiderSelectionMethod(rider,sumAssured);
                 await sleep(2000);
-                console.log("28839 check");
             }
         
     }

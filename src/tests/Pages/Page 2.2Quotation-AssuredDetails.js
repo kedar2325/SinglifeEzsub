@@ -13,8 +13,8 @@ const PageLocators={
     occupationID: "#occupationCode",
     smokingstatus: " //p[normalize-space()='Non-smoker']",
     nationality_click: "//div[@id='nationalityCode']//img",
-    countryofresidence_click: "//div[@id='residenceCountryCode']//img[@class='sc-afc5380d-0 ekTQMr']",
-    residencystatus: "//div[@id='residencyStatusCodeQuotation']//img[@class='sc-afc5380d-0 ekTQMr']",
+    countryofresidence_click: "//div[@id='residenceCountryCode']//img",
+    residencystatus: "//div[@id='residencyStatusCodeQuotation']//img",
     next_btn: "//button[text()='Next']",
     assuredRelationship:"//div[@id='relationship']//img",
      verifyProductSelectionPage: "//p[contains(text(),'Product selection for')]"
@@ -47,7 +47,6 @@ class QuotationSelectNationaliandResidency{
     }
    
     async SelectResidencyStatus(){
-        await sleep(2000);
         await assertElementVisible(PageLocators.residencystatus,"Residencystatus")
         await toClick(PageLocators.residencystatus);
         let residency_status = excelValue()[process.env.caseID].residencyStatus
@@ -55,7 +54,6 @@ class QuotationSelectNationaliandResidency{
         console.log(`${residency_status} is Selected`);
     }
     async VerifyResidencyStatus(){
-        await sleep(1800);
         let residency_status = excelValue()[process.env.caseID].residencyStatus
         await assertText(`//div[contains(text(),'${residency_status}')]`,excelValue()[process.env.caseID].residencyStatus);
         await toClick(PageLocators.next_btn);

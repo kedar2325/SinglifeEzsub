@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const PageLocators={
     verifyProductSelectionPage: "//p[contains(text(),'Product selection for')]",
-    searchTab: "//div[@class='sc-223f9362-0 fbhqIF bg-white']//input[@id='search']",
+    searchTab: "(//input[@id='search'])[1]",
     clickSelect: "//button[contains(text(),'Select')]",
     nextButton: "//button[contains(text(),'Next')]",
 }
@@ -17,13 +17,12 @@ class ProductSelection{
     }
     async navigationToProductSelection(){
         await sleep(1000)
-        await assertElementVisible(PageLocators.searchTab,"Product search tab")
-        await clickAndSendkeys(PageLocators.searchTab,excelValue()[process.env.caseID].ProductName);   
-        console.log(`User select ${excelValue()[process.env.caseID].ProductName} Product`);
+        await assertElementVisible(PageLocators.searchTab,"Product search tab")    
     }
     async search(){
         await sleep(1000)
-        
+        await clickAndSendkeys(PageLocators.searchTab,excelValue()[process.env.caseID].ProductName);   
+        console.log(`User select ${excelValue()[process.env.caseID].ProductName} Product`);
     }
     async selectInList(){
         await assertElementVisible(PageLocators.clickSelect,"Product Select button")

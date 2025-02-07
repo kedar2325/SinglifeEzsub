@@ -51,7 +51,7 @@ class underwritingQuestions{
         await toClick(PageLocators.calculate);
         await sleep(6000);
     }
-    async assuredUnderwriting(){
+    async assuredUnderwritingFirst(){
         // let UnderwritingQuestionsReq = excelValue()[process.env.caseID].UnderwitingQuesReq
         // if(UnderwritingQuestionsReq=="Yes"){
         let Element=""
@@ -69,6 +69,25 @@ class underwritingQuestions{
                 Element="";
             }
         }
+
+        async assuredUnderwritingSecond(){
+            // let UnderwritingQuestionsReq = excelValue()[process.env.caseID].UnderwitingQuesReq
+            // if(UnderwritingQuestionsReq=="Yes"){
+            let Element=""
+                let ListofQA=excelValue()[process.env.caseID].SecondUnderwritingQuestions.split('|');
+                for (let CombineQA of ListofQA) {
+                    let Answer = CombineQA.split(',');
+                    const locatorText = Answer[0];
+                    const locatorValue = Answer[1];
+                    // console.log(locatorText);
+                    // console.log(locatorValue);
+                    Element=`(//span[contains(text(),'${locatorText}')]/parent::p/parent::div/parent::div/parent::div//following-sibling::div/div/p[text()='${locatorValue}'])[1]`;
+                    await sleep(1000);
+                    await toClick(Element);
+                    // console.log(path);
+                    Element="";
+                }
+            }
 
             async SecondAssuredUnderwriting(){
                 let quotationType=excelValue()[process.env.caseID].quotationType;

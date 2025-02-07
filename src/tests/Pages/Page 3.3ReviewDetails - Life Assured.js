@@ -5,7 +5,7 @@ const { pageObject } = require('../Hooks/PageObjects');
 require('dotenv').config();
 
 const PageLocators={
-    lifeassured_exist: "//p[@class='sc-b68ad98c-0 detZbA']",
+    lifeassured_exist: "//p[text()='Selected Quotations']/following-sibling::p[text()='Life Assured']",
     email: "//input[@name='email']",
     cityOfResidence:"//p[text()='City of Residence']//parent::label//following-sibling::div/input",
     mobilecode: "//input[contains(@name,'mobileCC')]",
@@ -14,13 +14,13 @@ const PageLocators={
     maritalstatus: "//div[@id='maritalStatusCode']//img",
     //maritalstatus_married: "//div[contains(text(),'${maritalstatus}')]",
     race: "//div[@id='raceCode']//img",
-    countryofbirth: "//div[@id='birthCountryCode']//div[@class='css-1wy0on6']",
+    countryofbirth: "//div[@id='birthCountryCode']//img",
     country:"//div[@id='resAddress.countryCode']",
     selectCountry:"//div[@id='resAddress.countryCode']//div[text()='Brazil']",
     postalcode: "//input[@name='resAddress.postalCode']",
     search: "//button[text()='Search']",
-    address_landedproperty: "//div[contains(@class,'grid gap-6 grid-cols-2 pt-6')]//img[@id='tick_icon']",
-    correspondanceaddress_checkbox: "//div[@class='flex flex-start py-4']//img[@id='tick_icon']",
+    address_landedproperty: "//label[text()='Address is a landed property']/parent::div//img[@id='tick_icon']",
+    // correspondanceaddress_checkbox: "//div[@class='flex flex-start py-4']//img[@id='tick_icon']",
     unitno: "//input[@name='resAddress.unitNo']",
     annualincome: "//input[@name='employment.annualIncome']",
     employername: "//input[@name='employment.companyName']",
